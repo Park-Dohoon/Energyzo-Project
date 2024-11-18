@@ -7,6 +7,10 @@
 <title>index.jsp</title>
 </head>
 <body>
+<<<<<<< HEAD
 에너자이조 프로젝트!ww
+=======
+에너자이조 프로젝트! www
+>>>>>>> origin/main
 </body>
 </html>
