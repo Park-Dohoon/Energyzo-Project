@@ -7,6 +7,6 @@
 <title>index.jsp</title>
 </head>
 <body>
-에너자이조 프로젝트!
+에너자이조 프로젝트! ee
 </body>
 </html>
