@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.energyzo.javaproject.model.SellerRepository">
+	
+	<insert id="insertOneItem" parameterType="com.energyzo.javaproject.model.vo.EstateVO">
+		INSERT INTO ESTATE_TB(	
+								est_id
+								,agent_num
+								,est_reg_date
+								,est_type
+								,est_tra_type
+								,est_tra_cond
+								,est_addr
+								,est_m_area
+								,est_m_floor
+								,est_jungong
+								)
+		VALUES(	
+				SEQ_ESTATE_TB.nextval
+				,#{agent_num}
+				,sysdate
+				,#{est_type}
+				,#{est_tra_type}
+				,#{est_tra_cond}
+				,#{est_addr}
+				,#{est_m_area}
+				,#{est_m_floor}
+				,#{est_jungong}
+				)		 
+	</insert> 
+
+	<select id="searchLastEstId" resultType="com.energyzo.javaproject.model.vo.EstateVO">
+		SELECT 	Max(est_id) as est_id
+		FROM 	ESTATE_TB
+	</select>
+
+	<insert id="insertOneItemImage" parameterType="com.energyzo.javaproject.model.vo.EstateImgDTO">
+		INSERT INTO est_pic_tb(	
+						PIC_NUM
+						,EST_ID 
+						,FNAME 
+						,REALFNAME
+						)
+		VALUES(	
+				seq_est_pic_tb.nextval
+				,#{est_id}
+				,#{fname}
+				,#{realfname}
+				)
+	</insert>
+
+</mapper>

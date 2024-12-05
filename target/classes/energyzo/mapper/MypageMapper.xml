@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.energyzo.javaproject.model.MypageRepository">
+
+
+	<select id="getUserList" resultType="com.energyzo.javaproject.model.vo.UserVO">
+	    SELECT * FROM user_tb
+	</select>
+
+
+    <update id="updateUserProfile" parameterType="com.energyzo.javaproject.model.vo.UserVO">
+        UPDATE user_tb
+        SET
+            name = #{name},
+            nick_name = #{nick_name},
+            mobile = #{mobile},
+            birth = #{birth},
+            address = #{address}
+        WHERE user_id = #{user_id}
+    </update>
+
+	<select id="getWishlist" resultType="com.energyzo.javaproject.model.vo.WishlistVO">
+	      SELECT
+            f.fav_num AS fav_num,
+            e.est_id AS est_id,
+            SUBSTR(e.est_addr, INSTR(e.est_addr, ' ') + 1, LENGTH(e.est_addr)) AS region,
+            e.est_monthpay AS monthpay,
+            e.est_manage AS manageFee,
+            u.nick_name AS nickname
+        FROM
+            fav_tb f
+        JOIN
+            estate_tb e ON f.est_num = e.est_id
+        JOIN
+            user_tb u ON f.user_id = u.user_id
+	</select>
+	
+	<!-- as뒤 명칭도 vo와 일치시켜줘야한다.  -->
+		<select id="getPointlist" resultType="com.energyzo.javaproject.model.vo.PointVO">
+				SELECT
+			    p.POINT_NUM AS point_num,
+			    p.POINTDATE AS pointdate,
+			    p.POINT_SOURCE AS point_source,
+			    p.point_pt AS point_pt
+			FROM
+			    point p
+			JOIN
+			    user_tb u ON p.user_id = u.user_id
+
+	</select>
+
+	<select id="getEstatelist" resultType="com.energyzo.javaproject.model.vo.EstateVO">
+
+			SELECT * FROM estate_tb WHERE EST_ID = #{est_id}
+
+	</select> 
+
+	<select id="getEstpic" resultType="com.energyzo.javaproject.model.vo.EstPicVO">
+
+		SELECT * 
+		FROM est_pic_tb 
+		WHERE est_id = #{est_id} 
+		  AND ex_in = 'M'
+	</select> 
+	
+	
+	<select id="getSubPicsByEstId" resultType="com.energyzo.javaproject.model.vo.EstPicVO">
+			SELECT * 
+			FROM est_pic_tb
+			WHERE est_id = #{est_id}
+			  AND ex_in = 'S'
+	</select> 
+
+	<select id="getEstOptionsByEstId" resultType="com.energyzo.javaproject.model.vo.EstOptionVO">
+		SELECT 
+		    e.est_id, 
+		    e.est_opt_num, 
+		    l.est_opt_name
+		FROM 
+		    est_opt_tb e
+		JOIN 
+		    est_opt_list_tb l
+		ON 
+		    e.est_opt_num = l.est_opt_num
+		WHERE
+		    e.est_id = #{est_id} 
+	</select> 
+
+
+</mapper>

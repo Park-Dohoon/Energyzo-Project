@@ -4,13 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>index.jsp</title>
+<title>상세페이지</title>
 </head>
 <body>
-<<<<<<< HEAD
-에너자이조 프로젝트!ww
-=======
-에너자이조 프로젝트! www
->>>>>>> origin/main
+상세페이지입니다
 </body>
 </html>

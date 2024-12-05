@@ -171,7 +171,7 @@
 			<scope>provided</scope>
 		</dependency>
 		
-		<!-- gson : 자바 객체를 json 타입의 문자열로 변환 -->
+		<!-- gson : 자바 문자열을 json 타입의 객체로 변환 -->
 		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
 		<dependency>
 		    <groupId>com.google.code.gson</groupId>
