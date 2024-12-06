@@ -10,6 +10,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	    SELECT * FROM user_tb
 	</select>
 
+	<select id="getUser" resultType="com.energyzo.javaproject.model.vo.UserVO">
+	    SELECT * FROM user_tb
+	    WHERE user_id = #{user_id, jdbcType=VARCHAR}
+	</select>
+
+
+
 
     <update id="updateUserProfile" parameterType="com.energyzo.javaproject.model.vo.UserVO">
         UPDATE user_tb
@@ -42,7 +49,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<select id="getPointlist" resultType="com.energyzo.javaproject.model.vo.PointVO">
 				SELECT
 			    p.POINT_NUM AS point_num,
-			    p.POINTDATE AS pointdate,
+			    p.POINT_DATE AS point_date,
 			    p.POINT_SOURCE AS point_source,
 			    p.point_pt AS point_pt
 			FROM
@@ -88,6 +95,89 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE
 		    e.est_id = #{est_id} 
 	</select> 
+	
+	
 
+	<insert id="insertAgent" parameterType="com.energyzo.javaproject.model.vo.AgentVO">
+	    INSERT INTO agent_tb (
+	        agent_num, user_id, agent_office, agent_name, agent_reg_num, agent_tel, agent_addr, agent_fname, agent_rfname, agent_reg_state
+	       
+	    )
+	    VALUES (
+	        seq_agent_tb.nextval, 
+	        #{user_id, jdbcType=VARCHAR},    <!-- userId 값을 여기에서 사용 -->
+	        #{agent_office}, 
+	        #{agent_name}, 
+	        #{agent_reg_num}, 
+	        #{agent_tel}, 
+	        #{agent_addr},
+	        #{agent_fname, jdbcType=VARCHAR},
+	       	#{agent_rfname, jdbcType=VARCHAR},
+	        #{agent_reg_state}
+	        
+	 
+	    )
+	</insert>
+	
+	<update id="updateUserPassword">
+	    UPDATE user_tb
+	    SET password = #{newPassword}
+	    WHERE user_id = #{user_id}
+	</update>
+
+	
+	<!-- 판매자 정보 가지고 오기 -->
+	<select id="getAgent" resultType="com.energyzo.javaproject.model.vo.AgentVO">
+      SELECT 
+            agent_office,
+            agent_reg_num,
+            agent_tel,
+            agent_name,
+            agent_addr,
+            agent_fname,
+            TO_CHAR(power_date, 'YYYY-MM-DD') AS power_date
+        FROM agent_tb
+        WHERE user_id = #{user_id}	
+        
+        </select>
+	
+	<!-- 파워링크 구매내역 가지고 오기 -->
+	<select id="getPaymentlist" resultType="com.energyzo.javaproject.model.vo.PointVO">
+
+    SELECT 
+        TO_CHAR(POINT_DATE, 'YYYY-MM-DD') AS POINT_DATE, 
+        POINT_PT, 
+        POINT_SOURCE, 
+      	 (POINT_PT / 1000) AS POINT_EXTENSION_DAYS
+    FROM POINT 
+    WHERE user_id = #{userId} AND point_source = '결제'
+
+        
+        </select>
+        
+        <insert id="insertPayment" parameterType="com.energyzo.javaproject.model.vo.PointVO">
+        
+        INSERT INTO point (point_num, user_id, point_pt, point_source, point_date)
+		VALUES (seq_point.nextval, #{user_id, jdbcType=VARCHAR}, #{point_pt}, '결제', sysdate)
+        
+        </insert>
+        
+    <update id="updateAgentPointDate" parameterType="com.energyzo.javaproject.model.vo.AgentVO">
+        UPDATE agent_tb
+        SET
+            power_date = #{power_date}
+   		 WHERE user_id = #{user_id, jdbcType=VARCHAR}
+    </update>
+        
+	<select id="getPayment" resultType="com.energyzo.javaproject.model.vo.PointVO">
+		SELECT SUM(CASE 
+		               WHEN point_source IN ('충전', '출책') THEN point_pt
+		               WHEN point_source IN ('경매', '결제') THEN -point_pt
+		               ELSE 0
+		           END) AS total_points
+		FROM point
+		WHERE user_id = #{user_id, jdbcType=VARCHAR}
+        
+        </select>
 
 </mapper>

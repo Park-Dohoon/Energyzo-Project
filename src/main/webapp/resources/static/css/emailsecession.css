@@ -1,0 +1,33 @@
+/* .form-group 클래스를 이메일 인증 요청에도 적용 */
+.form-group {
+    display: flex; /* input과 버튼을 한 줄로 배치 */
+    align-items: center; /* 수직 가운데 정렬 */
+    gap: 10px; /* 버튼과 입력 필드 사이에 간격 추가 */
+}
+
+.form-group input,
+.form-group select {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    flex-grow: 1; /* 입력 필드와 select가 가능한 공간을 차지 */
+}
+
+.form-group span {
+    margin: 0 10px; /* @ 기호 양쪽에 여백 추가 */
+}
+
+.auth-button, .verify-button {
+    padding: 5px 15px; /* 버튼 크기 줄이기 */
+    font-size: 14px; /* 버튼 텍스트 크기 줄이기 */
+    background-color: #005555; /* 버튼 배경색 */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.auth-button:hover, .verify-button:hover {
+    background-color: #008585; /* 버튼 hover 효과 */
+}
