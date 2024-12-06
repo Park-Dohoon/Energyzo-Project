@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.energyzo.javaproject.model.SearchRepository">
+	
+	<!-- 지역별 부동산 매물 검색 -->
+	<select id="searchListByAddr" 
+	parameterType	="com.energyzo.javaproject.model.vo.EstateVO"
+	resultType		="com.energyzo.javaproject.model.vo.EstateVO">
+		SELECT 	*
+		FROM 	estate_tb
+		<where>
+			EST_ADDR LIKE '%${est_addr}%'
+		</where>
+	</select> 
+	
+	<!-- 매물에 부여된 옵션 검색 -->
+	<select id="searchOptionListById"
+	parameterType	="com.energyzo.javaproject.model.vo.EstateVO"
+	resultType		="com.energyzo.javaproject.model.vo.EstOptionVO">
+		SELECT 	ot.EST_OPT_MAN_NUM 	AS est_num
+				,ot.EST_ID 			AS est_id
+				,ot.EST_OPT_NUM 	AS est_opt_num
+				,lt.EST_OPT_NAME 	AS est_opt_name
+		FROM 	est_opt_tb ot
+				INNER JOIN 	EST_OPT_LIST_TB lt 
+						ON	ot.EST_OPT_NUM = lt.EST_OPT_NUM
+		<where>
+			EST_ID = ${est_id}
+		</where>
+	</select>
+	
+	<!-- 매물에 부여된 옵션 검색 -->
+	<select id="searchImgListById"
+	parameterType	="com.energyzo.javaproject.model.vo.EstateVO"
+	resultType		="com.energyzo.javaproject.model.vo.EstateImgDTO">
+		SELECT 	*
+		FROM 	EST_PIC_TB
+		<where>
+			EST_ID = ${est_id}
+		</where>
+	</select>
+	
+</mapper>

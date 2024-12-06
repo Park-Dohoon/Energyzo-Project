@@ -1,9 +1,12 @@
 package com.energyzo.javaproject.service;
 
+import java.util.StringTokenizer;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.energyzo.javaproject.model.SellerRepository;
+import com.energyzo.javaproject.model.vo.EstOptionVO;
 import com.energyzo.javaproject.model.vo.EstateImgDTO;
 import com.energyzo.javaproject.model.vo.EstateVO;
 
@@ -26,22 +29,22 @@ public class SellerServiceImpl implements SellerService{
 		
 		
 		// 3. 이미지 저장
+		// 객체생성
 		EstateImgDTO dto1 = new EstateImgDTO();
 		EstateImgDTO dto2 = new EstateImgDTO();
 		EstateImgDTO dto3 = new EstateImgDTO();
 		EstateImgDTO dto4 = new EstateImgDTO();
 		EstateImgDTO dto5 = new EstateImgDTO();
 		EstateImgDTO dto6 = new EstateImgDTO();
-
+		//데이터 입력
 		// 1번파일 입력
-		if(vo.getFile1() != null) {
+		if(vo.getFname1() != null) {
 			dto1.setEst_id		(vo.getEst_id());
 			dto1.setFname		(vo.getFname1());
 			dto1.setRealfname	(vo.getRealfname1());
 			
 			repo.insertOneItemImage(dto1);
 		}
-
 		// 2번파일 입력
 		if(vo.getFname2() != null) {
 			dto2.setEst_id		(vo.getEst_id());
@@ -50,7 +53,6 @@ public class SellerServiceImpl implements SellerService{
 			
 			repo.insertOneItemImage(dto2);
 		}
-
 		// 3번파일 입력
 		if(vo.getFname3() != null) {
 			dto3.setEst_id		(vo.getEst_id());
@@ -59,7 +61,6 @@ public class SellerServiceImpl implements SellerService{
 			
 			repo.insertOneItemImage(dto3);
 		}
-
 		// 4번파일 입력
 		if(vo.getFname4() != null) {
 			dto4.setEst_id		(vo.getEst_id());
@@ -68,7 +69,6 @@ public class SellerServiceImpl implements SellerService{
 			
 			repo.insertOneItemImage(dto4);
 		}
-
 		// 5번파일 입력
 		if(vo.getFname5() != null) {
 			dto5.setEst_id		(vo.getEst_id());
@@ -77,7 +77,6 @@ public class SellerServiceImpl implements SellerService{
 			
 			repo.insertOneItemImage(dto5);
 		}
-
 		// 6번파일 입력
 		if(vo.getFname6() != null) {
 			dto6.setEst_id		(vo.getEst_id());
@@ -85,6 +84,21 @@ public class SellerServiceImpl implements SellerService{
 			dto6.setRealfname	(vo.getRealfname6());
 			
 			repo.insertOneItemImage(dto6);
+		}
+		
+		
+		// 4. 옵션 저장
+		// 스트링을 옵션별로 분리 
+		StringTokenizer st = new StringTokenizer(vo.getTagArray());
+		// 하나씩 DB입력
+		while(st.hasMoreTokens()) {
+			EstOptionVO taginput = new EstOptionVO();
+			
+			taginput.setEst_id		(vo.getEst_id());
+			taginput.setEst_opt_name(st.nextToken());
+			
+			repo.insertOption(taginput);
+			
 		}
 		
 		

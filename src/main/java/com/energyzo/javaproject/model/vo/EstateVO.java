@@ -12,32 +12,37 @@ import lombok.Data;
 @Data
 public class EstateVO {
 
-    private Integer est_id;           	// 상품번호 - 사용 o
-    private Integer agent_num;        	// 중개인 번호 - 사용 o
-    private Date 	est_reg_date;    	// 등록일 - 사용 o
-    private Date 	est_tra_com_date; 	// 거래완료일 - 사용 o
-    private String 	est_type;      		// 부동산 유형 - 사용 o
-    private String 	est_tra_type;  		// 거래유형 - 사용 o
-    private Integer est_tra_cond;     	// 가격(보증금) - 사용 o
+    private Integer est_id;           	// 상품번호 		- 사용 o
+    private Integer agent_num;        	// 중개인 번호 	- 사용 o
+    private Date 	est_reg_date;    	// 등록일 		- 사용 o
+    private Date 	est_tra_com_date; 	// 거래완료일 		- 사용 o
+    private String 	est_type;      		// 부동산 유형 	- 사용 o
+    private String 	est_tra_type;  		// 거래유형 		- 사용 o
+    private Integer est_tra_cond;     	// 가격(보증금)	- 사용 o
     private Integer est_monthpay;     	// 월세
     private Integer est_manage;       	// 관리비
-    private String 	est_addr;      		// 주소 - 사용 o
+    private String 	est_addr;      		// 주소 			- 사용 o
     private String 	est_lati;      		// 위도
     private String 	est_longi;     		// 경도
     private String 	est_direc;     		// 방향
     private String 	est_usage;     		// 용도
-    private Integer est_m_area;       	// 관리면적 - 사용 o
+    private Integer est_m_area;       	// 관리면적 		- 사용 o
     private Integer est_t_area;       	// 총면적
     private Integer est_t_floor;      	// 총층
-    private Integer est_m_floor;      	// 관리층 - 사용 o
+    private Integer est_m_floor;      	// 관리층 		- 사용 o
     private Integer est_elev_num;     	// 엘리베이터 수
     private Integer est_room_num;     	// 방 수
     private Integer est_bath_num;     	// 욕실 수
     private Integer est_gara_num;     	// 주차공간 수
     private Date 	est_gumsa;       	// 검사일자
     private Date 	est_sungin;      	// 성인날짜
-    private Integer est_jungong;     	// 준공일자 - 사용 o	
+    private Integer est_jungong;     	// 준공일자 		- 사용 o	
 	
+    
+    // 태그관련
+    private String tagArray;			// 태그 정보를 저장, 공백으로 구분
+    
+    
     // 이미지 파일처리 관련****************************************************
     private String rootPath;			// 현재 실행중인 프로젝트의 경로
     

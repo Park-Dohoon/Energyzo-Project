@@ -5,8 +5,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.energyzo.javaproject.model.SellerRepository">
 	
+	<!-- 부동산 매물 입력 -->
 	<insert id="insertOneItem" parameterType="com.energyzo.javaproject.model.vo.EstateVO">
-		INSERT INTO ESTATE_TB(	
+		INSERT INTO ESTATE_TB	(	
 								est_id
 								,agent_num
 								,est_reg_date
@@ -18,7 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 								,est_m_floor
 								,est_jungong
 								)
-		VALUES(	
+		VALUES	(	
 				SEQ_ESTATE_TB.nextval
 				,#{agent_num}
 				,sysdate
@@ -31,25 +32,43 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				,#{est_jungong}
 				)		 
 	</insert> 
-
+	
+	<!-- 부동산 매물의 최근 id 조회 -->
 	<select id="searchLastEstId" resultType="com.energyzo.javaproject.model.vo.EstateVO">
 		SELECT 	Max(est_id) as est_id
 		FROM 	ESTATE_TB
 	</select>
 
+	<!-- 부동산 매물에 이미지 입력 -->
 	<insert id="insertOneItemImage" parameterType="com.energyzo.javaproject.model.vo.EstateImgDTO">
-		INSERT INTO est_pic_tb(	
-						PIC_NUM
-						,EST_ID 
-						,FNAME 
-						,REALFNAME
-						)
-		VALUES(	
+		INSERT INTO est_pic_tb	(	
+								PIC_NUM
+								,EST_ID 
+								,FNAME 
+								,REALFNAME
+								)
+		VALUES	(	
 				seq_est_pic_tb.nextval
 				,#{est_id}
 				,#{fname}
 				,#{realfname}
 				)
+	</insert>
+	
+	<!-- 부동산 매물에 옵션 입력 -->
+	<insert id="insertOption" parameterType="com.energyzo.javaproject.model.vo.EstOptionVO">
+		INSERT INTO EST_OPT_TB	(
+								EST_OPT_MAN_NUM
+								,EST_ID 
+								,EST_OPT_NUM 
+								)
+		VALUES	(
+			seq_est_opt_tb.nextval
+			,#{est_id}
+			,(	SELECT EST_OPT_NUM 
+				FROM EST_OPT_LIST_TB 
+				WHERE est_opt_name = #{est_opt_name})
+		)
 	</insert>
 
 </mapper>

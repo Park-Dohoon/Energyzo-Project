@@ -32,8 +32,8 @@
 $(function(){
 	$('#btn_regist').click(function(){
 		
-		console.log($('input[type="file"]'));	
-		
+		// 등록 버튼이 눌렸을 때
+		// 입력 유효성 검사(입력값이 null인 경우)
 		if ( $('input[name="agent_num"]').val() == "" ){
 			
 			$('input[name="agent_num"]').focus();
@@ -59,18 +59,43 @@ $(function(){
 			$('input[name="est_jungong"]').focus();
 			
 		} else {
+			// 무결성 검사 후 다음 페이지에 데이터 넘기기
+			let selectedTag = "";
+			
+			for(let i=0; i < $('.btn-tag').length; i++){
+				if($('#tagListTable button:nth-of-type('+i+')').attr("onoff") == "true"){
+					selectedTag += $('#tagListTable button:nth-of-type('+i+')').val()+" ";
+				}
+			}
+			$('#tagArray').val($.trim(selectedTag));
 			
 			$('form[action="regist_item.do"]').submit();
 		}
 		
 	})
 	
+	// 파일 입력 처리(파일 입력 시 다른 파일도 입력할 수 있게 보여주기)
+	// 전체 숨김 처리 후 첫번째 파일 입력만 가능하게 보여줌 
 	$('input[type="file"]').hide();
 	$('input[idx="1"]').show();
+	// 파일 입력 시 다음 입력칸 보여주기
 	$('input[type="file"]').change(function(){
 		
-		console.log(($(this).attr("idx")+1));
 		$('input[idx="'+(parseInt($(this).attr("idx"))+1)+'"]').show();
+		
+	})
+	
+	// 태그 버튼 성정
+	$('.btn-tag').css({"background-color":"white", "color":"#055"});
+	$('.btn-tag').click(function(){
+		// 토글 설정
+		if($(this).attr("onoff")=="false"){
+			$(this).css({"background-color":"#055", "color":"white"});
+			$(this).attr("onoff", "true");
+		} else{
+			$(this).css({"background-color":"white", "color":"#055"});
+			$(this).attr("onoff", "false");
+		}
 		
 	})
 	
@@ -194,8 +219,8 @@ $(function(){
                     <div class="row">
                         <!-- 왼쪽: 상품 정보 -->
                         <div class="col-md-6">
-                              <div class="mb-3">
-								    <label for="productName" class="form-label">상품번호</label>
+                              	<div class="mb-3">
+								    <label for="productId" class="form-label">상품번호</label>
 								    <input name='est_id' type="text" class="form-control" id="productName" placeholder="자동배정" readonly>
 								</div>
                                 <div class="mb-3">
@@ -243,7 +268,7 @@ $(function(){
                         </div>
                         <!-- 오른쪽: 이미지 및 추가 필드 -->
                         <div class="col-md-6">
-                            
+                            	
 			                    <div class="mb-3">
 								    <label for="option" class="form-label">면적(㎡)</label>
 								    <input name='est_m_area' type="number" class="form-control" id="item-size">
@@ -257,9 +282,7 @@ $(function(){
                                     <label for="realPrice" class="form-label">건축연도</label>
                                     <input name='est_jungong' type="number" class="form-control" id="realPrice" >
                                 </div>
-                            
-                            <br>
-                            
+                                                        
                             <div>
 	                            <label for="file" class="form-label">외부사진 / 내부사진 (최대 6개)</label>
 	                             
@@ -279,8 +302,27 @@ $(function(){
                             </div>
                         </div>
                     </div>
+                    <input id='tagArray' name='tagArray' type='hidden'>
                     </form>
-                    
+                    <label for="btn-tag" class="form-label">태그선택</label><br>
+                    <div style="border: solid lightgray 1px; border-radius: 0.375rem; padding: 2%;">
+                    <span id='tagListTable'>
+						<button class='btn btn-primary btn-tag' onoff='false' value='보안'		>보안		</button>
+						<button class='btn btn-primary btn-tag' onoff='false' value='세탁기'		>세탁기	</button>
+						<button class='btn btn-primary btn-tag' onoff='false' value='침대'		>침대		</button>
+						<button class='btn btn-primary btn-tag' onoff='false' value='제습기'		>제습기	</button>
+						<button class='btn btn-primary btn-tag' onoff='false' value='전자레인지'	>전자레인지</button>
+						<button class='btn btn-primary btn-tag' onoff='false' value='가스레인지'	>가스레인지</button>
+						<button class='btn btn-primary btn-tag' onoff='false' value='인덕션'		>인덕션	</button>
+						<button class='btn btn-primary btn-tag' onoff='false' value='건조기'		>건조기	</button>
+						<button class='btn btn-primary btn-tag' onoff='false' value='난방종류'		>난방종류	</button>
+						<button class='btn btn-primary btn-tag' onoff='false' value='책상'		>책상		</button>
+						<button class='btn btn-primary btn-tag' onoff='false' value='냉장고'		>냉장고	</button>
+						<button class='btn btn-primary btn-tag' onoff='false' value='신발장'		>신발장	</button>
+						<button class='btn btn-primary btn-tag' onoff='false' value='싱크대'		>싱크대	</button>
+						<button class='btn btn-primary btn-tag' onoff='false' value='옷장'		>옷장		</button>
+					</span>
+                    </div>
                     <!-- 버튼 섹션 -->
                     <div class="btn-section">
                         <button id="btn_regist" class="btn btn-primary">상품등록</button>

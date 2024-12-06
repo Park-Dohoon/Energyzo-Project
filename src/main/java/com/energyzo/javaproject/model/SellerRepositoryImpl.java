@@ -4,6 +4,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.energyzo.javaproject.model.vo.EstOptionVO;
 import com.energyzo.javaproject.model.vo.EstateImgDTO;
 import com.energyzo.javaproject.model.vo.EstateVO;
 
@@ -27,4 +28,9 @@ public class SellerRepositoryImpl implements SellerRepository{
 		sqlsession.insert("com.energyzo.javaproject.model.SellerRepository.insertOneItemImage", dto);
 		
 	}
+	
+	public void insertOption(EstOptionVO vo) {
+		sqlsession.insert("com.energyzo.javaproject.model.SellerRepository.insertOption", vo);
+	}
+	
 }

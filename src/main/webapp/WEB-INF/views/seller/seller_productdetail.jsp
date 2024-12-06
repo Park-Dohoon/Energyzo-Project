@@ -28,18 +28,18 @@
 <script>
 $(function(){
 	
+	// 이미지 저장 시간 대기
 	sleep(5000);
 	function sleep(ms) {
 		  const start = Date.now();
 		  while (Date.now() - start < ms) {}
 	}
 	
+	
+	// 이미지를 붙일 태그 초기화
 	$('#image-window').empty();
-	
-	$('option[value="'+$('#est_type').val()+'"]').attr("selected", true);
-	$('option[value="'+$('#est_tra_type').val()+'"]').attr("selected", true);
-	
-	
+	// 이미지 넘겨온 값으로 불이기
+	let imgcnt=0;
 	for(let i=1; i<=6; i++){
 		
 		if (($('input[name="file'+i+'"]').val()) != ""){
@@ -48,14 +48,47 @@ $(function(){
 			let tag 	= $('<div>').append( $('<img>').attr("src", path) );
 			
 			$('#image-window').append(tag);
+			imgcnt++;
 		}
 	}
+	// 이미지가 없을 경우
+	if(imgcnt == 0){
+		$('#image-window').append($('<label class="form-label"/>').text("저장한 이미지가 없습니다"));
+		
+	} else{
+		// bxslider 설정
+		$('.bxslider').bxSlider({
+		      mode: 'fade',
+		      captions: true,
+		      slideWidth: 600
+		    });
+	}
 	
-	$('.bxslider').bxSlider({
-	      mode: 'fade',
-	      captions: true,
-	      slideWidth: 600
-	    });
+	
+	// 부동산 유형, 거래유형 넘겨온 값으로 설정
+	$('option[value="'+$('#est_type').val()+'"]').attr("selected", true);
+	$('option[value="'+$('#est_tra_type').val()+'"]').attr("selected", true);
+	
+	
+	// 태그 버튼 설정
+	$('.btn-tag').css({"background-color":"white", "color":"#055"});
+	$('.btn-tag').click(function(){
+		// 토글 설정
+		if($(this).attr("onoff")=="false"){
+			$(this).css({"background-color":"#055", "color":"white"});
+			$(this).attr("onoff", "true");
+		} else{
+			$(this).css({"background-color":"white", "color":"#055"});
+			$(this).attr("onoff", "false");
+		}
+		
+	})
+	// 태그 버튼 넘겨온 값으로 설정
+	let tagArr = $('#tagArray').val().split(" ");
+	for(let i=0; i<tagArr.length; i++){
+		$('.btn-tag[value="'+tagArr[i]+'"]').attr("onoff", "true");
+		$('.btn-tag[value="'+tagArr[i]+'"]').css({"background-color":"#055", "color":"white"});
+	}
 	
 })
 
@@ -242,17 +275,10 @@ $(function(){
                                     <label for="realPrice" class="form-label">건축연도</label>
                                     <input name='est_jungong' type="number" class="form-control" id="realPrice" value='${item.est_jungong }'>
                                 </div>
-                            </form>
+                            
                             
                             <div>
 	                            <label for="file" class="form-label">외부사진 / 내부사진 (최대 6개)</label>
-	                            <!-- <img src='http://localhost:8080/javaproject/resources/static/upload/128e1517-dced-414a-8764-d9d0cf5694de.png'/>
-	                            <img src='../resources/static/upload/128e1517-dced-414a-8764-d9d0cf5694de.png'/> -->
-	                            <%-- [ ${item.realfname1} ] <br/> [ '../resources/static/upload/${item.realfname1}' ]<br/>
-	                            <img src='../resources/static/upload/${item.realfname1}'/>
-	                            
-	                            <hr/><hr/>
-	                             --%>
 	                            <div id='image-container' class="product-main-image mb-3" style="border: solid lightgray 1px; border-radius: 0.375rem; padding: 2%;">
 	                            	
 	                                <input type="hidden" name='file1' value='${item.realfname1 }'/>
@@ -264,7 +290,7 @@ $(function(){
 	                                
 	                                <div class="bxslider" id="image-window" style="width:100%; text-align:center">
 	                                
-	                                	<h5>이미지 로딩중입니다</h5>
+	                                	<label class="form-label">이미지 로딩중</label>
 	                                
 	                                </div>
 	                            </div>
@@ -275,6 +301,28 @@ $(function(){
                         </div>
                     </div>
                     
+                    <input id='tagArray' name='tagArray' type='hidden' value='${item.tagArray}'>
+                    
+                    </form>
+                    <label for="btn-tag" class="form-label">태그선택</label><br>
+                    <div style="border: solid lightgray 1px; border-radius: 0.375rem; padding: 2%;">
+                    <span id='tagListTable'>
+						<button class='btn btn-primary btn-tag' onoff='false' value='보안'		>보안		</button>
+						<button class='btn btn-primary btn-tag' onoff='false' value='세탁기'		>세탁기	</button>
+						<button class='btn btn-primary btn-tag' onoff='false' value='침대'		>침대		</button>
+						<button class='btn btn-primary btn-tag' onoff='false' value='제습기'		>제습기	</button>
+						<button class='btn btn-primary btn-tag' onoff='false' value='전자레인지'	>전자레인지</button>
+						<button class='btn btn-primary btn-tag' onoff='false' value='가스레인지'	>가스레인지</button>
+						<button class='btn btn-primary btn-tag' onoff='false' value='인덕션'		>인덕션	</button>
+						<button class='btn btn-primary btn-tag' onoff='false' value='건조기'		>건조기	</button>
+						<button class='btn btn-primary btn-tag' onoff='false' value='난방종류'		>난방종류	</button>
+						<button class='btn btn-primary btn-tag' onoff='false' value='책상'		>책상		</button>
+						<button class='btn btn-primary btn-tag' onoff='false' value='냉장고'		>냉장고	</button>
+						<button class='btn btn-primary btn-tag' onoff='false' value='신발장'		>신발장	</button>
+						<button class='btn btn-primary btn-tag' onoff='false' value='싱크대'		>싱크대	</button>
+						<button class='btn btn-primary btn-tag' onoff='false' value='옷장'		>옷장		</button>
+					</span>
+                    </div>
                     
                     <!-- 버튼 섹션 -->
                     <div class="btn-section">

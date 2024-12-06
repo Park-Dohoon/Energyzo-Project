@@ -8,10 +8,11 @@
 </head>
 <body>
 
-<a href='search/searchmain.do'>검색메인이동</a>
+<a href='search/searchmain.do?est_addr=서울+강남구'>검색메인이동</a>
 <br><br>
 <a href='seller/seller_productdetail.do'>상세페이지보기</a>
 <br><br>
 <a href='seller/seller_productinsert.do'>물건입력하기</a>
+
 </body>
 </html>
