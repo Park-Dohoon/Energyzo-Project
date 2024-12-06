@@ -13,6 +13,6 @@
 <a href='seller/seller_productdetail.do'>상세페이지보기</a>
 <br><br>
 <a href='seller/seller_productinsert.do'>물건입력하기</a>
-
+기영 연결
 </body>
 </html>
