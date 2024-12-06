@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.SalesDao">
+
+	<select id='getSalesList' resultType='com.energyzo.javaproject.model.vo.Adm_SalesVO'>
+		SELECT * FROM agent_tb
+	</select>
+	
+	
+	<select id='getSalesApply' resultType='com.energyzo.javaproject.model.vo.Adm_SalesVO'>
+		SELECT * FROM agent_tb
+		WHERE agent_reg_state=2
+	</select>
+	
+
+</mapper>

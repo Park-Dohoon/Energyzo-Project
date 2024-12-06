@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.ItemsDao">
+
+	<select id='getItemsList' resultType='com.energyzo.javaproject.model.vo.Adm_ItemsVO'>
+		SELECT 
+		    e.est_id AS est_id,
+		    e.est_reg_date AS est_reg_date,
+		    e.est_tra_com_date AS est_tra_com_date,
+		    e.est_type AS est_type,
+		    e.est_tra_type AS est_tra_type,
+		    e.est_tra_cond AS est_tra_cond,
+		    e.est_monthpay AS est_monthpay,
+		    e.est_manage AS est_manage,
+		    e.est_addr AS est_addr,
+		    e.est_lati AS est_lati,
+		    e.est_longi AS est_longi,
+		    e.est_direc AS est_direc,
+		    e.est_usage AS est_usage,
+		    e.est_m_area AS est_m_area,
+		    e.est_t_area AS est_t_area,
+		    e.est_t_floor AS est_t_floor,
+		    e.est_m_floor AS est_m_floor,
+		    e.est_elev_num AS est_elev_num,
+		    e.est_room_num AS est_room_num,
+		    e.est_bath_num AS est_bath_num,
+		    e.est_gara_num AS est_gara_num,
+		    e.est_gumsa AS est_gumsa,
+		    e.est_sungin AS est_sungin,
+		    e.est_jungong AS est_jungong,
+		    a.agent_num AS agent_num,
+		    a.user_id AS user_id,
+		    a.agent_office AS agent_office,
+		    a.agent_reg_num AS agent_reg_num,
+		    a.agent_tel AS agent_tel,
+		    a.agent_name AS agent_name,
+		    a.agent_addr AS agent_addr,
+		    a.agent_rfname AS agent_rfname,
+		    a.agent_fname AS agent_fname,
+		    a.agent_reg_state AS agent_reg_state
+		FROM 
+		    estate_tb e
+		LEFT JOIN 
+		    agent_tb a
+		ON 
+		    e.agent_num = a.agent_num
+	
+	</select>
+	
+	
+	<select id='getItemsAccuseList' resultType='com.energyzo.javaproject.model.vo.Adm_ItemsVO'>
+		SELECT 
+		    e.est_id, 
+		    a.agent_name, 
+		    COUNT(c.est_id) AS accuse_count
+		FROM 
+		    estate_tb e
+		LEFT JOIN 
+		    agent_tb a ON e.agent_num = a.agent_num
+		LEFT JOIN 
+		    complain_tb c ON e.est_id = c.est_id
+		GROUP BY 
+		    e.est_id, a.agent_name
+	
+	</select>
+	
+	
+	<select id='getItemsdiscountList' resultType='com.energyzo.javaproject.model.vo.Adm_ItemsVO'>
+		SELECT 
+		    r.dis_num AS dis_num,
+		    r.est_id AS est_id,
+		    rs.rapid_item AS rapid_item,
+		    r.dis_price AS dis_price,
+		    r.dis_date AS dis_date
+		FROM 
+		    rapid_tb r
+		JOIN 
+		    rapid_set_tb rs
+		ON 
+		    r.rapid_num = rs.rapid_num
+    
+	</select>
+
+
+
+<select id="getdetailItem" resultType="com.energyzo.javaproject.model.vo.Adm_ItemsVO">
+    SELECT 
+        e.est_id AS est_id,
+        e.est_reg_date AS est_reg_date,
+        e.est_tra_com_date AS est_tra_com_date,
+        e.est_type AS est_type,
+        e.est_tra_type AS est_tra_type,
+        e.est_tra_cond AS est_tra_cond,
+        e.est_monthpay AS est_monthpay,
+        e.est_manage AS est_manage,
+        e.est_addr AS est_addr,
+        e.est_lati AS est_lati,
+        e.est_longi AS est_longi,
+        e.est_direc AS est_direc,
+        e.est_usage AS est_usage,
+        e.est_m_area AS est_m_area,
+        e.est_t_area AS est_t_area,
+        e.est_t_floor AS est_t_floor,
+        e.est_m_floor AS est_m_floor,
+        e.est_elev_num AS est_elev_num,
+        e.est_room_num AS est_room_num,
+        e.est_bath_num AS est_bath_num,
+        e.est_gara_num AS est_gara_num,
+        e.est_gumsa AS est_gumsa,
+        e.est_sungin AS est_sungin,
+        e.est_jungong AS est_jungong,
+        a.agent_num AS agent_num,
+        a.user_id AS user_id,
+        a.agent_office AS agent_office,
+        a.agent_reg_num AS agent_reg_num,
+        a.agent_tel AS agent_tel,
+        a.agent_name AS agent_name,
+        a.agent_addr AS agent_addr,
+        a.agent_rfname AS agent_rfname,
+        a.agent_fname AS agent_fname,
+        a.agent_reg_state AS agent_reg_state
+    FROM 
+        estate_tb e
+    LEFT JOIN 
+        agent_tb a
+    ON 
+        e.agent_num = a.agent_num
+    WHERE
+        e.est_id = #{id}   <!-- est_id가 id와 일치하는 값을 찾음 -->
+</select>
+
+
+</mapper>
