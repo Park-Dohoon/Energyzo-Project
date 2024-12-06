@@ -16,6 +16,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</where>
 	</select> 
 	
+	<!-- id별 부동산 매물 검색 -->
+	<select id="searchListById" 
+	parameterType	="com.energyzo.javaproject.model.vo.EstateVO"
+	resultType		="com.energyzo.javaproject.model.vo.EstateVO">
+		SELECT 	*
+		FROM 	estate_tb
+		<where>
+			est_id = ${est_id}
+		</where>
+	</select>
+	
 	<!-- 매물에 부여된 옵션 검색 -->
 	<select id="searchOptionListById"
 	parameterType	="com.energyzo.javaproject.model.vo.EstateVO"
