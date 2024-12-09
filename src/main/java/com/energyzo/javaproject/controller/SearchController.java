@@ -44,7 +44,6 @@ public class SearchController {
 		
 		EstateVO vo = new EstateVO();
 		
-		//vo.setEst_addr(temp.getEst_addr());
 		List<EstateVO> result = service.searchListByAddr(temp); 
 		
 		return result;

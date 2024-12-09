@@ -25,13 +25,11 @@ public class SearchServiceImpl implements SearchService {
 		
 		// 이미지 정보 얻어오기
 		List<EstateImgDTO> imgVO = repo.searchImgListById(result);
-		
 		// vo에 이미지 정보 세팅
 		result = setImg4EstateVO(imgVO, result);
 		
 		// 옵션 정보 얻어오기
 		List<EstOptionVO> optionVO = repo.searchOptionListById(result);
-		
 		// 옵션정보를 뽑아내 한 스트링으로 합치기
 		result = setTag4EstateVO(optionVO, result);
 		
@@ -48,17 +46,14 @@ public class SearchServiceImpl implements SearchService {
 			
 			// 이미지 정보 얻오오기
 			List<EstateImgDTO> imgVO = repo.searchImgListById(temp);
-			
 			// vo에 이미지 정보 세팅
 			temp = setImg4EstateVO(imgVO, temp);
 			
 			
 			// 옵션 정보 얻어오기
 			List<EstOptionVO> optionVO = repo.searchOptionListById(temp);
-			
 			// 옵션정보를 뽑아내 한 스트링으로 합치기
 			temp = setTag4EstateVO(optionVO, temp);
-			
 			
 			
 			// 세팅된 vo를 list에 할당
