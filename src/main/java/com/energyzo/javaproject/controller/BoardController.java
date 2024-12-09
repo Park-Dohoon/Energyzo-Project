@@ -13,32 +13,33 @@ import com.energyzo.javaproject.model.vo.*;
 import com.energyzo.javaproject.service.*;
 
 @Controller
+@RequestMapping("/board.do")
 public class BoardController {
 
 	@Autowired
 	private BoardService service;
 	
 	// 로그인 페이지 이동
-	@RequestMapping("login")
+	@RequestMapping("login.do")
 	public String login() {
 		return "login";
 	}
 	
     // 로그인 폼 제출 후 처리하는 메서드
-    @PostMapping("loginPage")
+    @PostMapping("loginPage.do")
     public String login(@ModelAttribute UserVO uvo, HttpServletRequest request) {
     	UserVO user = service.login(uvo);
         if(user != null) {
         	// 로그인 성공 시, 세션에 사용자 정보를 저장
         	HttpSession session = request.getSession();
         	session.setAttribute("loggedInUser", uvo.getUser_id());  // 세션에 사용자 정보 저장
-        	return "redirect:tabletest";  // 로그인 후 게시판 목록 페이지로 이동
+        	return "redirect:tabletest.do";  // 로그인 후 게시판 목록 페이지로 이동
         }
-        return "redirect:login";  // 로그인 실패 시 다시 로그인 페이지로 이동
+        return "redirect:login.do";  // 로그인 실패 시 다시 로그인 페이지로 이동
     }
 	
 	// 게시글 목록보기
-	@RequestMapping("tabletest")
+	@RequestMapping("tabletest.do")
 	public String tableTest(HttpServletRequest request, Model m) {
         HttpSession session = request.getSession(false);
         String loggedInUser = (session != null) ? (String) session.getAttribute("loggedInUser") : null;
@@ -49,11 +50,11 @@ public class BoardController {
 		List<BoardVO> list = service.getBoardList();
 		m.addAttribute("boardList", list);
 		
-		return "boardviewtest";
+		return "board/boardviewtest";
 	}
 	
 	// 게시글 상세보기
-	@RequestMapping("getBoard")
+	@RequestMapping("getBoard.do")
 	public String getBoardView(BoardVO bvo, Model m, HttpSession session) {
 		String viewedKey = "viewedPost_" + bvo.getFree_num(); 
 		
@@ -69,23 +70,23 @@ public class BoardController {
 		BoardVO testbvo = service.getBoard(bvo);
 		m.addAttribute("board", testbvo);
 		
-		return "getBoardView";
+		return "board/getBoardView";
 	}
 	
 	// 게시글 입력창
-	@RequestMapping("insertBoard")
+	@RequestMapping("insertBoard.do")
 	public String insertBoard() {
 		
-		return "insertBoard";
+		return "board/insertBoard";
 	}
 	
 	// 게시글 입력
-	@RequestMapping("insertBoardSave")
+	@RequestMapping("insertBoardSave.do")
 	public String insertBoardSave(@ModelAttribute BoardVO bvo, HttpSession session) {
 		if (bvo.getFree_title() == null || bvo.getFree_title().isEmpty() || 
 				bvo.getFree_cont() == null || bvo.getFree_cont().isEmpty()) {
 	            // 입력값이 없다면 목록 화면으로 리다이렉트
-	            return "redirect:tabletest";
+	            return "redirect:tabletest.do";
 	        }
 		
 		String userId = (String)session.getAttribute("loggedInUser");
@@ -96,36 +97,36 @@ public class BoardController {
 		}
 		service.insertBoard(bvo);
 		
-		return "redirect:tabletest";
+		return "redirect:board/tabletest.do";
 	}
 	
 	// 게시글 수정 페이지로 이동
-	@RequestMapping("modifytable")
+	@RequestMapping("modifytable.do")
 	public String updateBoard(BoardVO bvo, Model m) {
 		BoardVO bvo2 = service.getBoard(bvo);
 		m.addAttribute("board", bvo2);
 		
-		return "updateBoard";
+		return "board/updateBoard";
 	}
 	
 	// 게시글 수정
-	@RequestMapping("BoardUpdate")
+	@RequestMapping("BoardUpdate.do")
 	public String updateBoard(BoardVO bvo) {
 		service.updateBoard(bvo);
 		
-		return "redirect:tabletest";
+		return "redirect:board/tabletest.do";
 	}
 	
 	// 게시글 삭제
-	@RequestMapping("deleteBoard")
+	@RequestMapping("deleteBoard.do")
 	public String deleteBoard(BoardVO bvo) {
 		service.deleteBoard(bvo);
 		
-		return "redirect:tabletest";
+		return "redirect:tabletest.do";
 	}
 	
 	// 게시글 신고
-	@RequestMapping("reportBoard")
+	@RequestMapping("reportBoard.do")
 	public String reportBoard(@ModelAttribute ComBullVO cbvo, HttpSession session) {
 		try {
 			// 세션에서 유저 ID를 가져옴
@@ -134,7 +135,7 @@ public class BoardController {
 			Integer fnum = (Integer)session.getAttribute("FreeNum"); 
 			// 유저 ID가 세션에 있는지 확인 (추가 검증)
 			if (id == null || id.isEmpty()) {
-				return "redirect:login";
+				return "redirect:board/login.do";
 			}
 			
 	        // UserVO에 세션값 설정
@@ -153,8 +154,8 @@ public class BoardController {
 	        
 		} catch (Exception e) {
 			e.printStackTrace();
-			return "redirect:tabletest";
+			return "redirect:board/tabletest.do";
 	    }
-		return "redirect:tabletest";
+		return "redirect:board/tabletest.do";
 	}
 }
