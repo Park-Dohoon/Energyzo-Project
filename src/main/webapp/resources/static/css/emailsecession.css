@@ -8,26 +8,40 @@
 .form-group input,
 .form-group select {
     padding: 10px;
-    font-size: 16px;
+    font-size: 16px; /* 첫 번째 파일의 입력 필드 크기와 맞추기 */
     border-radius: 5px;
-    border: 1px solid #ddd;
-    flex-grow: 1; /* 입력 필드와 select가 가능한 공간을 차지 */
+    border: 1px solid #ced4da;
+    flex-grow: 1;
 }
 
-.form-group span {
-    margin: 0 10px; /* @ 기호 양쪽에 여백 추가 */
-}
-
-.auth-button, .verify-button {
-    padding: 5px 15px; /* 버튼 크기 줄이기 */
-    font-size: 14px; /* 버튼 텍스트 크기 줄이기 */
-    background-color: #005555; /* 버튼 배경색 */
+/* 버튼 크기 통일 */
+.auth-button{
+    width: 150px;
+    padding: 12px 20px; /* 높이와 가로 길이를 조정 */
+    font-size: 16px;  /* 버튼 텍스트 크기 */
+    background-color: #005555;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 5px;  /* 테두리 둥글기 */
     cursor: pointer;
+    box-sizing: border-box; /* 패딩을 포함한 크기 조정 */
 }
 
 .auth-button:hover, .verify-button:hover {
-    background-color: #008585; /* 버튼 hover 효과 */
+    background-color: #008585;
+}
+
+.verify-button {
+    background-color: #005555;  /* 배경 색상 변경 */
+    color: white;  /* 텍스트 색상 변경 */
+  	width: 150px;
+    max-width: 200px;  /* 최대 너비 설정 */
+    padding: 10px 20px;  /* 여백 설정 */
+    border: none;  /* 테두리 없애기 */
+    cursor: pointer;  /* 커서 모양 변경 */
+    border-radius: 5px;
+}
+
+.verify-button:hover {
+    background-color: #003d3d;  /* 호버시 배경 색상 변경 */
 }

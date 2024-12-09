@@ -29,7 +29,7 @@
 $(function(){
 	
 	// 이미지 저장 시간 대기
-	sleep(5000);
+	//sleep(5000);
 	function sleep(ms) {
 		  const start = Date.now();
 		  while (Date.now() - start < ms) {}

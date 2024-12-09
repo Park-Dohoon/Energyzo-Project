@@ -102,28 +102,34 @@
                             </div>
                             <div class="card-body">
                                 <table id="datatablesSimple">
-                                    <thead>
+                                     <thead>
                                         <tr>
-                                            <th>상품번호</th>
-                                            <th>지역(동)</th>
-                                            <th>보증금/월세액</th>
-                                            <th>관리비</th> 
-                                            <th>등록해제</th> 
-                                            
+                                            <th>상품등록번호</th>
+                                            <th>판매자명</th>
+                                            <th>거래유형</th>
+                                            <th>월세</th>
+                                            <th>관리비</th>
+                                            <th>등록일</th>
                                         </tr>
                                     </thead>
                              
                                     <tbody>
-                                 		 <c:forEach var="item" items="${pointlist}">
-								            <tr>
-									             <td>${item.point_num}</td>
-									            <td>${item.pointdate}</td>
-									            <td>${item.point_source}</td>
-									            <td>${item.point_pt}</td>
-									         	<td>${item.point_pt}</td>
-									            
-								            </tr>
-								        </c:forEach>
+                                 		<c:forEach var='list' items='${estate}'>
+                                 			<c:set var="user_id" value="psbbsp303" />
+												<c:if test="${list.user_id == 'psbbsp303'}">
+										    <tr>
+										      <td>
+											    <a href="seller/seller_productdetail.do?est_id=${list.est_id}" class="link-class">${list.est_id}</a>
+											</td>
+
+										        <td>${list.agent_name}</td>
+										        <td>${list.est_tra_cond}</td>
+										        <td>${list.est_monthpay}</td>
+										        <td>${list.est_manage}</td>
+										        <td>${list.est_reg_date}</td>
+										    </tr>
+										    </c:if>
+										</c:forEach>
                                   
                                     </tbody>
                                 </table>
@@ -131,7 +137,7 @@
 								    <a href="pointrecharge.do" id="pointRechargeButton" class="btn btn-primary" style="width:120px; display: inline-block; text-align: center; padding: 10px 0; text-decoration: none; color: white;">포인트 구매</a>
 								</div> -->
 								<div class="btn-section">
-								    <button class="btn btn-primary" style="width:120px" onclick="location.href='newregistration.do'">상품추가</button>
+								    <button class="btn btn-primary" style="width:120px" onclick="location.href='seller/seller_productinsert.do'">상품추가</button>
 								</div>
 								
 			                    

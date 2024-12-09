@@ -9,6 +9,8 @@ public class PointVO {
 	private String user_id;
 	private int point_pt;
 	private String point_source;
-	private String pointdate;
-	
+	private String point_date;
+	private int point_extension_days;
+    private int total_points; // 추가 필요
+
 }

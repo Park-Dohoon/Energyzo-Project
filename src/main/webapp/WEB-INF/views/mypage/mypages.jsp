@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%-- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+ --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +23,7 @@
 <body>
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
 		<!-- Navbar Brand-->
-		<a class="navbar-brand ps-3" href="index.html">방 잇다</a>
+		<a class="navbar-brand ps-3" href="mypages.do">방 잇다</a>
 		<!-- Sidebar Toggle-->
 		<button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
 			id="sidebarToggle" href="#!">
@@ -68,11 +68,11 @@
 							</div> 내 정보
 						</a> 
 						<!-- <div class="sb-sidenav-menu-heading">Interface</div>
- -->						<a class="nav-link" href="wishlist.do">
+ -->			<!-- 			<a class="nav-link" href="wishlist.do">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-tachometer-alt"></i>
 							</div> 찜목록
-						</a>
+						</a> -->
 						<a class="nav-link" href="point.do">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-tachometer-alt"></i>
@@ -136,7 +136,7 @@
 							        </div>
 							        <div class="mb-3">
 							            <label for="birthDate" class="form-label">생년월일</label>
-							            <input type="text" class="form-control" id="birthDate" name="birth" placeholder="생년월일을 입력해주세요"  value="${users.birth}">
+							            <input type="date" class="form-control" id="birthDate" name="birth" placeholder="생년월일을 입력해주세요"  value="${users.birth}">
 							        </div>
 							        <div class="mb-3">
 							            <label for="address" class="form-label">주소</label>

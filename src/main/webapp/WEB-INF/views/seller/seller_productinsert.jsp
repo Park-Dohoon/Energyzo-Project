@@ -72,6 +72,9 @@ $(function(){
 			$('form[action="regist_item.do"]').submit();
 		}
 		
+		
+		
+		
 	})
 	
 	// 파일 입력 처리(파일 입력 시 다른 파일도 입력할 수 있게 보여주기)

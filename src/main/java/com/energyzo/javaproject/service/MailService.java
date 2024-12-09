@@ -25,7 +25,7 @@ public class MailService {
     public String createNumber() {
         Random random = new Random();
         Set<Integer> uniqueNumbers = new HashSet<>();  
-        StringBuilder key = new StringBuilder();   
+        StringBuilder key = new StringBuilder();  
         
 
         while (key.length() < 6) { // 6개의 고유한 숫자를 생성

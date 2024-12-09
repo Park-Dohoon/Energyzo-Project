@@ -1,0 +1,55 @@
+/* 화면 오른쪽 고정 박스 스타일 */
+.fixed-box {
+  position: fixed; /* 화면에 고정 */
+  top: 50%; /* 수직 중앙 */
+  right: 20px; /* 오른쪽 여백 20px */
+  transform: translate(0%, -50%); /* 수직 가운데 정렬 */
+  border: 2px solid #005555; /* 테두리 색상 변경 */
+  background-color: #ffffff; /* 깔끔한 흰색 배경 */
+  padding: 15px 20px; /* 내부 여백 */
+  text-align: center; /* 텍스트 가운데 정렬 */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* 좀 더 부드러운 그림자 */
+  z-index: 9999; /* 요소를 가장 위로 올림 */
+  border-radius: 10px; /* 박스 모서리를 둥글게 */
+}
+
+/* 링크와 아이콘 컨테이너 스타일 */
+.fixed-box a {
+  display: flex; /* 아이콘과 텍스트를 가로로 정렬 */
+  align-items: center; /* 아이콘과 텍스트 수직 정렬 */
+  justify-content: center; /* 아이콘과 텍스트를 가운데 정렬 */
+  margin: 12px 0; /* 링크 간 간격 */
+  color: #005555; /* 텍스트 색상 */
+  text-decoration: none; /* 밑줄 제거 */
+  font-size: 16px; /* 글자 크기 */
+  font-weight: bold; /* 텍스트 굵게 */
+  transition: all 0.3s ease; /* 호버 시 부드러운 애니메이션 */
+}
+
+/* 링크 호버 효과 */
+.fixed-box a:hover {
+  color: #ffffff; /* 텍스트 색상 반전 */
+  background-color: #005555; /* 배경색 변경 */
+  border-radius: 5px; /* 호버 시 모서리 부드럽게 */
+  padding: 8px 10px; /* 내부 여백 추가 */
+}
+
+/* 아이콘 스타일 */
+.fixed-box svg {
+  margin-right: 8px; /* 아이콘과 텍스트 간격 */
+  fill: #005555; /* 아이콘 색상 */
+  width: 20px; /* 아이콘 크기 */
+  height: 20px; /* 아이콘 크기 */
+  transition: all 0.3s ease; /* 호버 시 애니메이션 */
+}
+
+/* 아이콘 호버 스타일 */
+.fixed-box a:hover svg {
+  fill: #ffffff; /* 호버 시 아이콘 색상 변경 */
+}
+
+
+
+
+/*=============================================*/
+

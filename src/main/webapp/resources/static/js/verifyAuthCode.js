@@ -10,8 +10,16 @@ function verifyAuthCode() {
         type: 'POST',
         data: { authCode: authCode },  // 입력한 인증코드
         success: function(response) {
-        /*    alert(response);  // 서버에서 받은 인증 결과
-*/            alert("인증성공!")
-        }
+            // 서버의 응답 처리 (인증 성공 또는 실패 메시지)
+            console.log("서버 응답:", response);
+            // 인증 완료 메시지를 모달로 표시
+            if (response.message) {
+                $('#unregisterModal .modal-body').text(response.message); // 서버에서 보낸 메시지를 모달에 추가
+            } else {
+                $('#unregisterModal .modal-body').text("인증이 완료되었습니다. 홈 화면으로 이동합니다.");
+            }
+            // 모달 띄우기
+            $('#unregisterModal').modal('show');
+        },
     });
 }
