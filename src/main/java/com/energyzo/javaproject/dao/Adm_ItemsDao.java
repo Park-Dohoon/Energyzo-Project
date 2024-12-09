@@ -10,4 +10,5 @@ public interface Adm_ItemsDao {
 	public List<Adm_ItemsVO> listaccuseItems(Adm_ItemsVO vo);
 	public List<Adm_ItemsVO> listdiscountItems(Adm_ItemsVO vo);
 	public Adm_ItemsVO detailItem(Adm_ItemsVO id);
+	public List<Adm_ItemsVO> itemPic(Adm_ItemsVO id);
 }

@@ -49,4 +49,14 @@ public class Adm_ItemsServiceImpl implements Adm_ItemsService{
 	}
 	
 	
+	public List<Adm_ItemsVO> itemPic(Adm_ItemsVO id) {
+		System.out.println("itemsService itempic 도착");
+		System.out.println("Received id : "+id);
+		List<Adm_ItemsVO> list = itemsDAO.itemPic(id);
+		System.out.println("service list : "+list);
+		System.out.println("itemsService itempic 출발");
+		return list;
+	}
+	
+	
 }

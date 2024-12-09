@@ -58,5 +58,16 @@ public class Adm_ItemsDaoImpl implements Adm_ItemsDao{
 		return list;
 		
 	}
+	
+	public List<Adm_ItemsVO> itemPic(Adm_ItemsVO id){
+		System.out.println("itemsDaoimpl detailItems 도착");
+		
+		List<Adm_ItemsVO> list = sqlSession.selectList("dao.ItemsDao.getItempic", id);
+		System.out.println("Received ID : "+list);
+				
+		System.out.println("itemsDaoimpl detailItems 출발");
+		return list;
+		
+	}
 
 }

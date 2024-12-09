@@ -62,6 +62,13 @@ public String adm_item_discount(Adm_ItemsVO vo, Model model) {
 }
 
 
+@GetMapping("adm_item_update")
+public String adm_item_update(Adm_ItemsVO vo) {
+	System.out.println("controller adm_item_update 도착");
+	
+	System.out.println("controller adm_item_update 출발");
+	return ("/adm/item/adm_item_all");
+}
 
 @PostMapping("adm_item_detail")
 public String adm_item_detail() {
@@ -78,16 +85,26 @@ public String adm_item_all_Detail(@RequestParam("id") String id, Model model) {
 	//상품관리-전체상품
 	//List<Adm_ItemsVO> list = itemsService.listallItems(vo);
 	Adm_ItemsVO param=new Adm_ItemsVO();
+	
 	param.setId(id);
+	
+	
 	Adm_ItemsVO list = itemsService.detailItem(param);
 	model.addAttribute("item", list);
     System.out.println(list);
-	System.out.println("adm_item_all_Detail 아웃");
+    System.out.println("controller adm_item_all_Detail 아웃");
+    
+    System.out.println("controller adm_item_pic 진입");
+    System.out.println("received ID : "+id);
+    System.out.println(param);
+    List<Adm_ItemsVO> piclist = itemsService.itemPic(param);
+    model.addAttribute("itempic", piclist);
+    System.out.println(piclist);
+	System.out.println("controller adm_item_pic 아웃");
 	
 	return ("/adm/item/detail/adm_item_all_Detail");
 	//return ("/adm/item/detail/seller_productdetail");
 }
-
 
 
 

@@ -33,6 +33,7 @@ public class Adm_ItemsVO {
     private String est_jungong;    // est_jungong DATE	
     
 
+    //판매자
 	private String user_id;
 	private String agent_office;
 	private int agent_reg_num;
@@ -43,18 +44,27 @@ public class Adm_ItemsVO {
 	private String agent_fname;
 	private int agent_reg_state;
 	
-    private int comp_num;      // complaint number
-    private String comp_date;  // complaint date 
-    private int accuse_count;  // 누적 신고수
+	//신고
+    private int comp_num;      		// 신고번호
+    private String comp_date;  		// 신고일자 
+    private int accuse_count;  		// 누적 신고수
 	
 
-    private int dis_num;      // complaint number
-    private int rapid_num;    // rapid number
-    private String dis_date;  // date of the complaint (String)
-    private int dis_price;    // price of the complaint
+    //할인
+    private int dis_num;      		// 할인번호
+    private int rapid_num;    		// 할인항목번호
+    private String dis_date;  		// 할인신청일자
+    private int dis_price;    		// 할인가격
 	
-    private String rapid_item;  // rapid_item
+    //할인 항목
+    private String rapid_item;  	// 할인항목명
     
-    private String id;
+    private String id;				// 부동산 세부 정보를 찾기 위해 선택된 id
+    
+    //사진
+    private int pic_num;			//사진 관리번호
+    private String realfname;			//사진 저장 경로
+    private String fname;		//사진 이름
+    
 
 }
