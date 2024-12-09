@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.energyzo.javaproject.model.vo.EstateVO;
+import com.energyzo.javaproject.service.SearchService;
 import com.energyzo.javaproject.service.SellerService;
 
 
@@ -15,9 +16,13 @@ public class SellerController {
 	
 	@Autowired
 	SellerService service;
+	@Autowired
+	SearchService searchService;
 	
 	@RequestMapping("seller_productdetail.do")
-	public String seller_productdetail() {
+	public String seller_productdetail(EstateVO vo, Model m) {
+		
+		m.addAttribute(vo);
 		
 		return "seller/seller_productdetail";
 	}
@@ -32,8 +37,10 @@ public class SellerController {
 		
 		vo = service.insertOneItem(vo);
 		
-		m.addAttribute("item", vo);
+		EstateVO result = searchService.searchListById(vo);
 		
-		return "seller/seller_productdetail";
+		m.addAttribute("item", result);
+		
+		return "redirect:seller/seller_productdetail";
 	}
 }
