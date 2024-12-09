@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.energyzo.javaproject.service.MailService;
+import com.energyzo.javaproject.service.MailService_seoyeon;
 
 @Controller
 //@RequiredArgsConstructor
-public class MailController {
+public class MailController_seoyeon {
 
    @Autowired
-    private MailService mailService;
+    private MailService_seoyeon mailService;
    
 
     @ResponseBody
@@ -35,7 +35,7 @@ public class MailController {
     
        //System.out.println("여기도나요요요요용?11====>" + email); 
        return authCode; // Response body에 값을 반환       
-    } 
+    }
     
    
     

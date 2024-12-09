@@ -16,7 +16,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class MailService {
+public class MailService_seoyeon {
 
     private final JavaMailSender javaMailSender;
     private static final String senderEmail = "ksuwyg9115@gmail.com"; //보내는 사람 이메일 주소
