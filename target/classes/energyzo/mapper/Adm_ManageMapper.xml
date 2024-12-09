@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.ManageDao">
+
+	<select id='getPopList' resultType='com.energyzo.javaproject.model.vo.Adm_ManageVO'>
+		SELECT * FROM pop_set_tb
+	</select>
+	
+	
+	    <!-- 페이징 처리된 옵션 목록 조회 -->
+    <select id="findOptionsWithPagination" resultType="com.energyzo.javaproject.model.vo.Adm_ManageVO">
+        SELECT * 
+        FROM est_opt_list_tb 
+        ORDER BY est_opt_num ASC
+        LIMIT #{pageSize} OFFSET #{startRow}
+    </select>
+        
+    <!-- 전체 옵션 개수 조회 -->
+    <select id="countOptions" resultType="int">
+        SELECT COUNT(*) FROM est_opt_list_tb
+    </select>
+
+    <!-- 옵션 추가 -->
+    <insert id="insertOption">
+        INSERT INTO est_opt_list_tb (est_opt_num, est_opt_name)
+        VALUES (SEQ_EST_OPT_NUM.NEXTVAL, #{estOptName})
+    </insert>
+
+    <!-- 옵션 삭제 -->
+    <delete id="deleteOption">
+        DELETE FROM est_opt_list_tb WHERE est_opt_num = #{estOptNum}
+    </delete>
+
+</mapper>

@@ -1,0 +1,118 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 50%;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+.reason{
+	  font-size: 20px;
+}
+
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.subtitle {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.section {
+    margin-bottom: 20px;
+}
+
+.section label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.section select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.warning {
+    background-color: #ffd6d6; /* 연한 빨강 */
+    padding: 15px;
+    border: 1px solid #ff9999; /* 약간 더 진한 빨강 */
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.warning h3 {
+    color: #d32f2f; /* 진한 빨강 텍스트 */
+    margin-bottom: 10px;
+}
+
+
+.warning ul {
+    margin: 0;
+    padding: 0 20px;
+}
+
+.warning ul li {
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.checkbox {
+    margin-bottom: 20px;
+}
+
+.checkbox label {
+    font-size: 14px;
+    color: #555;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+}
+
+.btn {
+    padding: 10px 20px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn.cancel {
+    background-color: #f44336;
+    color: white;
+}
+
+.btn.secession {
+	background-color: #ffd6d6;
+    color: red;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+.btn.cancel:hover {
+    background-color: #d32f2f;
+}

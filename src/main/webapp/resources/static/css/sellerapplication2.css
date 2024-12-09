@@ -1,0 +1,86 @@
+.container-fluid {
+    margin-top: 20px;
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+html, body {
+    margin: 0; /* 기본 여백 제거 */
+    padding: 0;
+    width: 100%; /* 전체 화면 너비 */
+    height: 100%; /* 전체 화면 높이 */
+    overflow-x: hidden; /* 가로 스크롤 방지 */
+}
+.status-container {
+    width: 100vw; /* 화면 전체 너비 */
+    height: 100vh; /* 화면 전체 높이 */
+    background-color: #f7f9fc; /* 배경색 */
+    display: flex; /* 중앙 정렬을 위한 flex */
+    justify-content: center; /* 가로 정렬 */
+    align-items: center; /* 세로 정렬 */
+    box-sizing: border-box; /* 패딩 포함 크기 계산 */
+    padding: 20px; /* 화면이 작을 때 여백 */
+}
+
+
+.status-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.status-step {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.step {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: #fff;
+    background-color: #00695c;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.step i {
+    margin-right: 8px;
+    font-size: 18px;
+}
+
+.arrow {
+    font-size: 24px;
+    color: #333;
+}
+
+/* 반응형 디자인을 위한 미디어 쿼리 */
+@media (max-width: 768px) { /* 태블릿 및 작은 화면 */
+    .status-container {
+        padding: 10px; /* 작은 여백 */
+    }
+
+    button {
+        font-size: 14px; /* 버튼 텍스트 크기 축소 */
+        padding: 8px 16px; /* 버튼 크기 조정 */
+    }
+}
+
+@media (max-width: 480px) { /* 모바일 화면 */
+    .status-container {
+        flex-direction: column; /* 수직 정렬로 변경 */
+    }
+
+    button {
+        width: 100%; /* 버튼 너비를 전체로 */
+        max-width: 300px; /* 너무 커지지 않도록 최대값 설정 */
+        font-size: 12px; /* 더 작은 버튼 텍스트 */
+        padding: 10px; /* 버튼 패딩 조정 */
+    }
+}

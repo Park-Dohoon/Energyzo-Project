@@ -34,18 +34,22 @@ public class SearchController {
 		return "search/searchmain";
 	}
 	
+	// 검색 메인 ajax : 매물 목록 검색
 	@ResponseBody
 	@RequestMapping("searchPropertyByAddr.do")
 	public List<EstateVO> searchPropertyByAddr(EstateVO vo) {
-		System.out.println(vo.toString());
+		
 		List<EstateVO> result = service.searchListByAddr(vo); 
 		
 		return result;
 	}
 	
 	// 상세보기 페이지 이동
-	@RequestMapping("searchinfo")
-	public String searchInfo(EstateVO vo) {
+	@RequestMapping("searchinfo.do")
+	public String searchInfo(EstateVO vo,Model m) {
+		
+		EstateVO result = service.searchListById(vo);
+		m.addAttribute("item", result);
 		
 		return "search/searchinfo";
 	}

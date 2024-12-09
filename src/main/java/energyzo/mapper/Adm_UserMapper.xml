@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.UserDao">
+
+	<select id='getUserList' resultType='com.energyzo.javaproject.model.vo.Adm_UserVO'>
+		SELECT * FROM user_tb
+	</select>
+	
+	<insert id='insertUser' parameterType="com.energyzo.javaproject.model.vo.Adm_UserVO">
+	INSERT INTO user_tb(
+		user_id,
+		auth_num,
+		email,
+		kakao_pk,
+		nick_name,
+		name,
+		mobile,
+		birth,
+		address,
+		password
+		) 
+	VALUES(
+		41,
+		2,
+		'email1',
+		'kakao_pk1',
+		'nick_name1',
+		'name1',
+		'mobile1',
+		sysdate,
+		'address1',
+		'password1'
+		)
+	</insert>
+
+</mapper>

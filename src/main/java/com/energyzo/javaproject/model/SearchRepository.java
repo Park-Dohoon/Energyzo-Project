@@ -10,6 +10,8 @@ public interface SearchRepository {
 	
 	public List<EstateVO> searchListByAddr(EstateVO vo);
 	
+	public EstateVO searchListById(EstateVO vo);
+	
 	public List<EstOptionVO> searchOptionListById(EstateVO vo);
 	
 	public List<EstateImgDTO> searchImgListById(EstateVO vo);

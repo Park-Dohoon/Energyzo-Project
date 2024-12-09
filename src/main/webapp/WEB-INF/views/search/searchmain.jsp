@@ -147,7 +147,7 @@ $(function(){
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	    mapOption = {
 	        center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
-	        level: 8 // 지도의 확대 레벨
+	        level: 9 // 지도의 확대 레벨
 	    };  
 	
 	// 지도를 생성합니다    
@@ -166,8 +166,8 @@ $(function(){
 		let innerTag_head 	= '<div style="width:150px;height:100%;text-align:center;padding:6px 0;" align="center">'
 		let innerTag_rear 	= '</div>'
 		
-		let aTag			= '<a href="/javaproject/search/searchinfo.do" style="color:black">상세정보'+(i+1)+'</a>'
-		let imgTag 			= '<div style="padding:2%"><img src="../resources/static/base_template/logo/방잇다로고_최종_누끼.png" style="width:100%"></div>' 
+		let aTag			= '<a href="/search/searchinfo.do" style="color:black">상세정보'+(i+1)+'</a>'
+		let imgTag 			= '<div style="padding:5%;"><img src="../resources/static/base_template/logo/방잇다로고_최종_누끼.png" style="width:100% height:150px"></div>' 
 		
 		let innerTag 		= innerTag_head + aTag + imgTag + innerTag_rear;
 		
@@ -570,7 +570,7 @@ $(function(){
 				let innerTag_head 	= '<div style="width:150px;height:100%;text-align:center;padding:6px 0;" align="center">'
 				let innerTag_rear 	= '</div>'
 							
-				let aTag			= '<a href="/javaproject/search/searchinfo.do" style="color:black">'+addrList[i].BLDG_NM+'</a>'
+				let aTag			= '<a href="/searchinfo.do" style="color:black">'+addrList[i].BLDG_NM+'</a>'
 				let imgTag 			= '<div style="padding:2%"><img src="../resources/static/base_template/logo/방잇다로고_최종_누끼.png" style="width:100%"></div>' 
 							
 				let innerTag 		= innerTag_head + aTag + imgTag + innerTag_rear;
@@ -641,7 +641,7 @@ $(function(){
 				let itemContainer2 	= $('<div class="property-item mb-30"/>');
 				
 				// image container
-				let itemImg = $('<a href="searchinfo" class="img"/>')
+				let itemImg = $('<a href="/searchinfo.do" class="img"/>')
 							.append( $('<img src="../resources/static/base_template/images/img_1.jpg" alt="Image" class="img-fluid" />') );
 				
 				// content container
@@ -678,7 +678,7 @@ $(function(){
 				
 				// attatch
 				itemInnerContainer.append(itemInfoRow);
-				itemInnerContainer.append($('<a href="searchinfo" class="btn btn-primary py-2 px-3">자세히 보기</a>'));
+				itemInnerContainer.append($('<a href="searchinfo.do" class="btn btn-primary py-2 px-3">자세히 보기</a>'));
 				
 				itemContentContainer.append(itemPriceContainer);
 				itemContentContainer.append(itemInnerContainer);
@@ -717,7 +717,7 @@ $(function(){
 				let innerTag_head 	= '<div style="width:150px;height:100%;text-align:center;padding:6px 0;" align="center">'
 				let innerTag_rear 	= '</div>'
 							
-				let aTag			= '<a href="/javaproject/search/searchinfo.do" style="color:black">'+result2[i].est_type+'</a>'
+				let aTag			= '<a href="/javaproject/search/searchinfo.do?est_id='+result2[i].est_id+'" style="color:black">'+result2[i].est_type+'</a>'
 				let imgTag 			= ((result2[i].realfname1 == undefined)	? '<div style="padding:2%"><img src="../resources/static/base_template/logo/방잇다로고_최종_누끼.png" style="width:100%"></div>'
 																			: '<div style="padding:2%"><img src="../resources/static/upload/'+result2[i].realfname1+'" style="width:100%"></div>');
 							
@@ -786,8 +786,8 @@ $(function(){
 				
 				// image container
 				itemImgRealPath = ((result2[i].realfname1 == undefined)	? '../resources/static/base_template/logo/Re_방잇다로고_최종_누끼.png'
-																		: '../resources/static/upload/'+result2[i].realfname1) 
-				let itemImg = $('<div  style="height:300px;">').append($('<a href="searchinfo" class="img" style="width:100%" />')
+																		: '../resources/static/upload/'+result2[i].realfname1)
+				let itemImg = $('<div  style="height:300px;">').append($('<a href="/javaproject/search/searchinfo.do?est_id='+result2[i].est_id+'" class="img" style="width:100%" />')
 							.append( $('<img src="'+itemImgRealPath+'" alt="property image" class="img-fluid" />') ));
 				
 				// content container
@@ -824,7 +824,7 @@ $(function(){
 				
 				// attatch
 				itemInnerContainer.append(itemInfoRow);
-				itemInnerContainer.append($('<a href="searchinfo" class="btn btn-primary py-2 px-3">자세히 보기</a>'));
+				itemInnerContainer.append($('<a href="/javaproject/search/searchinfo.do?est_id='+result2[i].est_id+'" class="btn btn-primary py-2 px-3">자세히 보기</a>'));
 				
 				itemContentContainer.append(itemPriceContainer);
 				itemContentContainer.append(itemInnerContainer);

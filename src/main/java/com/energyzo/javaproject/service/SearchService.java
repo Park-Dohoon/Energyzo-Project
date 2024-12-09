@@ -8,4 +8,6 @@ public interface SearchService {
 	
 	public List<EstateVO> searchListByAddr(EstateVO vo);
 	
+	public EstateVO searchListById(EstateVO vo);
+	
 }
