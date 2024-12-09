@@ -27,7 +27,9 @@
 			<list>
 				<!-- 여기에 alias 추가 -->
 				<!-- <value>com.javaclass.zreview.model.vo.CateVO</value> -->
-				
+				<value>com.energyzo.javaproject.model.vo.BoardVO</value>
+				<value>com.energyzo.javaproject.model.vo.UserVO</value>
+				<value>com.energyzo.javaproject.model.vo.ComBullVO</value>
 			</list>
 		</property>
 	</bean>

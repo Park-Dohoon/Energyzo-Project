@@ -14,11 +14,11 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css"
 	rel="stylesheet" />
-<link href="resources/static/table/css/styles.css" rel="stylesheet" />
+<link href="../resources/static/css/styles.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
 	crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<link href="resources/static/table/css/getBoardView.css"
+<link href="../resources/static/css/getBoardView.css"
 	rel="stylesheet">
 <% 
 	// 세션에서 로그인 사용자 정보 가져오기
@@ -58,7 +58,7 @@ $(function(){
 				<div class="container-fluid px-4">
 					<h1 class="mt-4">자유게시판</h1>
 					<ol class="breadcrumb mb-4">
-						<li class="breadcrumb-item"><a href="index.html">메인페이지</a></li>
+						<li class="breadcrumb-item"><a href="resources/static/index.html">메인페이지</a></li>
 						<li class="breadcrumb-item active">자유게시판</li>
 					</ol>
 					<div class="card mb-4"></div>
@@ -68,7 +68,7 @@ $(function(){
 					</c:if>
 					<c:if test="${empty loggedInUser}">
 						<p>
-							로그인하지 않았습니다. <a href="login">로그인</a>
+							로그인하지 않았습니다. <a href="login.do">로그인</a>
 						</p>
 					</c:if>
 					<button id='report'>신고하기</button>
@@ -110,8 +110,8 @@ $(function(){
 	<div id="myModal" class="modal">
 		<div class="modal-content">
 			<h3 id='popup_title'>신고사유를 선택해주세요</h3>
-			<form action='reportBoard' method="post">
-				<label><input id='cbox1' name='bad' value='욕설/부적절한 표현'
+			<form action='reportBoard.do' method="post">
+				<label><input id='cbox1' name='comp_bull_reason' value='욕설/부적절한 표현'
 				class='cbox' type="checkbox">욕설/부적절한 표현</label><br>
 				
 				<label><input id='cbox2' name='comp_bull_reason' value='스팸홍보/도배'
@@ -137,9 +137,9 @@ $(function(){
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 		crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-	<script src="resources/static/table/js/scripts.js"></script>
-	<script src="resources/static/table/js/button.js"></script>
-	<script src="resources/static/table/js/datatables-simple-demo.js"></script>
+	<script src="../resources/static/js/scripts.js"></script>
+	<script src="../resources/static/js/button.js"></script>
+	<script src="../resources/static/js/datatables-simple-demo.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
 		crossorigin="anonymous"></script>

@@ -15,8 +15,8 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css"
 	rel="stylesheet" />
-<link href="resources/static/table/css/styles.css" rel="stylesheet" />
-<link href="resources/static/table/css/board.css" rel="stylesheet">
+<link href="../resources/static/css/styles.css" rel="stylesheet" />
+<link href="../resources/static/css/board.css" rel="stylesheet">
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
 	crossorigin="anonymous"></script>
 <script src="https://api.jquery.com/jquery.ajax/"></script>
@@ -50,7 +50,7 @@ $(function() {
 
 		//글쓰기 버튼 이벤트
 		$('#newBoard').on('click', function() {
-			window.location = 'insertBoard';
+			window.location = 'insertBoard.do';
 		});
 	});
 </script>
@@ -58,7 +58,7 @@ $(function() {
 <body class="sb-nav-fixed">
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
 		<!-- Navbar Brand-->
-		<a class="navbar-brand ps-3" href="resources/static/table/index.html">방잇다</a>
+		<a class="navbar-brand ps-3" href="../resources/static/index.html">방잇다</a>
 		<!-- Sidebar Toggle-->
 		<button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
 			id="sidebarToggle" href="#!">
@@ -184,7 +184,7 @@ $(function() {
 						</c:if>
 						<c:if test="${empty loggedInUser}">
 							<p>
-								로그인하지 않았습니다.<a href="login">로그인</a>
+								로그인하지 않았습니다.<a href="login.do">로그인</a>
 							</p>
 						</c:if>
 						<div class="card-body">
@@ -235,9 +235,9 @@ $(function() {
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 		crossorigin="anonymous"></script>
-	<script src="resources/static/table/js/scripts.js"></script>
-	<script src="resources/static/table/js/button.js"></script>
-	<script src="resources/static/table/js/datatables-simple-demo.js"></script>
+	<script src="../resources/static/js/scripts.js"></script>
+	<script src="../resources/static/js/button.js"></script>
+	<script src="../resources/static/js/datatables-simple-demo.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
 		crossorigin="anonymous"></script>

@@ -54,7 +54,7 @@
 	</select>
 	
 	<!-- 게시글 신고 -->
-	<insert id="reportBoard" parameterType="CompBullVO">
+	<insert id="reportBoard" parameterType="ComBullVO">
 		INSERT INTO comp_bull_tb(comp_bull_num, user_id, free_num,
 							comp_bull_date, comp_bull_reason)
 		VALUES(seq_comp_bull_tb.nextval, #{user_id}, #{free_num}, sysdate, #{comp_bull_reason})

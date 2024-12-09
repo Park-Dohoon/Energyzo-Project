@@ -13,7 +13,7 @@ import com.energyzo.javaproject.model.vo.*;
 import com.energyzo.javaproject.service.*;
 
 @Controller
-@RequestMapping("/board.do")
+@RequestMapping("/board")
 public class BoardController {
 
 	@Autowired

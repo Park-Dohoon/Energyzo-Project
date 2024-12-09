@@ -10,7 +10,7 @@
 
 <div class='container'>
     <h2>간단한 로그인</h2>
-    <form action="loginPage" method="POST">
+    <form action="loginPage.do" method="POST">
         <label for="username">아이디:</label>
         <input type="text" id="user_id" name="user_id" required>
         <br>

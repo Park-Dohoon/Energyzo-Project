@@ -88,9 +88,11 @@ $(function(){
     }
 
 	// 폼에 hidden 필드를 동적으로 추가해서 값을 서버로 전송하도록 처리
-    if (selectedReasons.length > 0	) {
-        // 선택된 사유를 hidden 필드에 추가
-        $('#selectedReasons').val(selectedReasons.join(','));
+	if (selectedReasons.length > 0	) {
+		console.log(selectedReasons)
+		
+		// 선택된 사유를 hidden 필드에 추가
+		$('#selectedReasons').val(selectedReasons.join('/'));
 
       	// '기타' 텍스트를 hidden 필드에 추가
         $('#hiddenAdditionalText').val(additionalText);
@@ -100,6 +102,7 @@ $(function(){
 
 		// 해당 게시글을 세션에 저장
 		sessionStorage.setItem('reportBoard', reportBoard);
+		alert("신고가 완료됬습니다.")
 		} else {
 		alert("신고 사유를 선택해주세요.");
 		}
