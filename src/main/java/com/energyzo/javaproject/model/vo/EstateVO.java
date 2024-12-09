@@ -97,9 +97,10 @@ public class EstateVO {
 		
 		if(!file.isEmpty()) {
 			this.fname2 = file.getOriginalFilename();
+			String fileType = this.fname2.substring(this.fname2.indexOf("."));
 			
 			UUID uuid = UUID.randomUUID();
-			this.realfname2 = uuid.toString();
+			this.realfname2 = uuid.toString() + fileType;
 			
 			File f = new File(rootPath+"\\src\\main\\webapp\\resources\\static\\upload\\"+realfname2);
 			
@@ -117,9 +118,10 @@ public class EstateVO {
 		
 		if(!file.isEmpty()) {
 			this.fname3 = file.getOriginalFilename();
+			String fileType = this.fname3.substring(this.fname3.indexOf("."));
 			
 			UUID uuid = UUID.randomUUID();
-			this.realfname3 = uuid.toString();
+			this.realfname3 = uuid.toString() + fileType;
 			
 			File f = new File(rootPath+"\\src\\main\\webapp\\resources\\static\\upload\\"+realfname3);
 			
@@ -137,9 +139,10 @@ public class EstateVO {
 		
 		if(!file.isEmpty()) {
 			this.fname4 = file.getOriginalFilename();
+			String fileType = this.fname4.substring(this.fname4.indexOf("."));
 			
 			UUID uuid = UUID.randomUUID();
-			this.realfname4 = uuid.toString();
+			this.realfname4 = uuid.toString() + fileType;
 			
 			File f = new File(rootPath+"\\src\\main\\webapp\\resources\\static\\upload\\"+realfname4);
 			
@@ -157,9 +160,10 @@ public class EstateVO {
 		
 		if(!file.isEmpty()) {
 			this.fname5 = file.getOriginalFilename();
+			String fileType = this.fname5.substring(this.fname5.indexOf("."));
 			
 			UUID uuid = UUID.randomUUID();
-			this.realfname5 = uuid.toString();
+			this.realfname5 = uuid.toString() + fileType;
 			
 			File f = new File(rootPath+"\\src\\main\\webapp\\resources\\static\\upload\\"+realfname5);
 			
@@ -177,9 +181,10 @@ public class EstateVO {
 		
 		if(!file.isEmpty()) {
 			this.fname6 = file.getOriginalFilename();
+			String fileType = this.fname6.substring(this.fname6.indexOf("."));
 			
 			UUID uuid = UUID.randomUUID();
-			this.realfname6 = uuid.toString();
+			this.realfname6 = uuid.toString() + fileType;
 			
 			File f = new File(rootPath+"\\src\\main\\webapp\\resources\\static\\upload\\"+realfname6);
 			
