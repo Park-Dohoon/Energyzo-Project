@@ -97,11 +97,16 @@ $(function(){
       	// '기타' 텍스트를 hidden 필드에 추가
         $('#hiddenAdditionalText').val(additionalText);
 
-		// 팝업에서 선택된 게시글 ID를 저장
-        let reportBoard = $('#reportBoard').val();
+		// 	팝업에서 선택된 게시글 ID를 저장
+        let reportBoard = $('#free_num').val();
 
-		// 해당 게시글을 세션에 저장
-		sessionStorage.setItem('reportBoard', reportBoard);
+		// 팝업에서 선택된 게시글 작성자를 저장
+		let boardWriter = $('.userId').text();
+
+		// 해당 게시글 및 작성자를 세션에 저장
+		localStorage.setItem('reportBoard', reportBoard);
+		localStorage.setItem('boardWriter', boardWriter);
+		
 		alert("신고가 완료됬습니다.")
 		} else {
 		alert("신고 사유를 선택해주세요.");

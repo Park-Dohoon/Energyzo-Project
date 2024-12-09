@@ -20,7 +20,7 @@
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <link href="../resources/static/css/getBoardView.css"
 	rel="stylesheet">
-<% 
+<%
 	// 세션에서 로그인 사용자 정보 가져오기
     String loggedInUser = (String) session.getAttribute("loggedInUser");
 %>
@@ -41,7 +41,13 @@ $(function(){
 			// 로그인 상태일 때 hidden 클래스 제거
 			modifyBtn.removeClass('hidden');
 			deleteBtn.removeClass('hidden');
-			reportBtn.removeClass('hidden');
+			// 로그인한 사용자랑 작성자랑 같으면 신고 버튼 가리기
+			if(  boardWriter === "<%= loggedInUser %>") {
+				reportBtn.addClass('hidden');
+			}else {
+				// 다르면 hidden 클래스 제거
+				reportBtn.removeClass('hidden');
+			}
 		} else {
 			// 비로그인 상태일 때 hidden 클래스를 추가
 			modifyBtn.addClass('hidden');
