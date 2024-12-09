@@ -1,0 +1,166 @@
+@charset "UTF-8";
+
+html {
+	height: 100%;
+}
+
+body {
+	background-color: #F2F4F8;
+}
+
+th {
+	text-align: center;
+	vertical-align: middle;
+	width: 5%;
+}
+
+table {
+	width: 100%;
+	table-layout: auto;
+}
+#title {
+	background-color: #005555;
+	color: white;
+}
+
+.hidden {
+	display: none !important;
+}
+
+#cont {
+	width: 100%;
+}
+
+/* .datatable-bottom을 flex 컨테이너로 설정 */
+.datatable-bottom {
+    display: flex;
+}
+
+.datatable-pagination {
+	position: relative;
+	right: 10%;
+}
+
+#main-title {
+	font-size: 2rem;
+	margin-top: 5%; /* 화면 상단에서 5% 떨어지게 */
+	margin-bottom: 30px; /* 타이틀과 콘텐츠 간 간격을 충분히 확보 */
+	text-align: center; /* 가운데 정렬 */
+	font-size: 2rem;
+	margin-bottom: 30px; /* 타이틀과 콘텐츠 간 간격을 충분히 확보 */
+}
+
+#newBoard {
+	position: relative;
+	left: 95%;
+	width: 5%;
+	height: 5%;
+}
+
+/* 템플릿 버튼제외 모든 버튼들 */
+#submit, #newBoard, #reset, #back {
+	border: 2px  solid #005555;
+	background-color: #005555;
+	color: white;
+	position: relative;
+	border-radius: 10px;
+	text-align: center;
+}
+
+/* 수정완료버튼 */
+#submit {
+	left: 75%;
+	height: 5%;
+	width: 8%;
+	font-size: 125%;
+}
+
+#reset {
+	background-color: white;
+	color: #005555;
+	left: 74%;
+	height: 5%;
+	width: 8%;
+	font-size: 125%;
+}
+
+#content {
+	background-color: #005555;
+	color: white;
+}
+
+#user {
+	background-color: white;
+}
+
+#back {
+	position: relative;
+	height: 5%;
+	width: 8%;
+	font-size: 125%;
+}
+
+/* 전체 컨테이너 설정 */
+.container-fluid {
+	max-width: 100%;
+	padding: 15px;
+}
+
+.card {
+	max-width: 100%;
+}
+
+@media (max-width: 768px) {
+	.navbar {
+		padding: 10px 0;
+	}
+}
+
+#layoutSidenav {
+	display: flex;
+	height: 100%;
+	flex-direction: row;
+}
+
+.datatable-bottom {
+	align-items: center;
+}
+
+.datatable-pagination {
+	position: absolute;
+	left: 50%;
+}
+
+/* 사이드바 */
+#layoutSidenav_nav {
+	width: 250px; /* 사이드바 너비 */
+	background-color: #005555;
+	overflow-y: auto;
+}
+
+/* 메인 컨텐츠 */
+#layoutSidenav_content {
+	flex-grow: 1;
+	padding: 20px;
+	overflow: auto;
+}
+
+ .table {
+	width: 100%;
+	table-layout: auto;
+	max-width: 100%;  /* 테이블이 화면 너비를 넘지 않도록 제한 */
+	word-wrap: break-word;
+}
+
+.table th, .table td {
+	word-wrap: break-word;
+}
+
+@media (max-width: 768px) {
+	#layoutSidenav_nav {
+		width: 200px; /* 모바일에서 사이드바 크기 줄이기 */
+	}
+
+	.table {
+		width: 100%; /* 작은 화면에서 테이블 너비 조정 */
+	}

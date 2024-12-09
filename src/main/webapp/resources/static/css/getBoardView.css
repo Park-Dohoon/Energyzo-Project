@@ -1,0 +1,211 @@
+@charset "UTF-8";
+
+html {
+	height: 100%;
+}
+
+body {
+	background-color: #F2F4F8;
+}
+
+th {
+	text-align: center;
+	vertical-align: middle;
+	width: 10%;
+	height: 50px;
+}
+
+table {
+	width: 100%;
+	table-layout: auto;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* 테이블 위 페이지 명 */
+#main-title {
+	font-size: 2rem;
+	margin-top: 5%; /* 화면 상단에서 5% 떨어지게 */
+	margin-bottom: 30px; /* 타이틀과 콘텐츠 간 간격을 충분히 확보 */
+	text-align: center; /* 가운데 정렬 */
+	font-size: 2rem;
+	margin-bottom: 30px; /* 타이틀과 콘텐츠 간 간격을 충분히 확보 */
+}
+
+/* 전체 버튼 기본베이스 */
+button { 
+	border: 2px solid #005555;
+	position: fixed;
+	border-radius: 10px;
+	height: 5%;
+	width: 5%;
+}
+
+/* 수정완료버튼 */
+#submit {
+	background-color: white;
+	color: #005555;
+	left: 68.5%;
+}
+
+/* 삭제버튼 */
+#delete {
+	background-color: #005555;
+	color: white;
+	left: 68.5%;
+}
+
+#modify {
+	background-color: white;
+	color: #005555;
+	left: 63%;
+}
+
+#boardList {
+	background-color: #005555;
+	color: white;
+}
+
+/* 신고버튼 */
+#report {
+	background-color: #005555;
+	color: white;
+	top: 25%;
+	left: 68.5%;
+}
+
+/* 취소버튼 */
+#close {
+	background-color: white;
+	color: #005555;
+	position: absolute;
+	top: 83%;
+	left: 89%;
+	width: 8%;
+	height: 8%;
+}
+
+/* 신고확인버튼 */
+#reportConfirm {
+	background-color: #005555;
+	color: white;
+	position: absolute;
+	top: 83%;
+	width: 8%;
+	height: 8%;
+}
+
+#call {
+	background-color: white;
+}
+
+#cool {
+	background-color: #005555;
+	color: white;
+	vertical-align: middle;
+}
+
+#content {
+	background-color: white;
+	height: 271px;
+}
+
+#cnt {
+	background-color: white;
+}
+
+.center {
+	vertical-align: middle;
+}
+
+#popup_title {
+	text-align: center;
+}
+
+/* 전체 컨테이너 설정 */
+.container-fluid {
+	max-width: 100%;
+	padding: 15px;
+}
+
+label {
+    display: block;  /* 각 항목을 블록 형태로 나열 */
+    margin-bottom: 10px;  /* 항목 간의 간격 추가 */
+    font-size: 110%;  /* 폰트 크기 설정 (선택 사항) */
+}
+
+/* 체크박스와 텍스트 사이의 간격 */
+label .cbox {
+    margin-right: 2%;  /* 체크박스와 텍스트 간의 간격 */
+}
+
+#myModal {
+	display: none;
+	position: fixed;
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.4); /* 반투명 배경 */
+}
+
+.modal-content {
+	background-color: white;
+	margin: 15% auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 40%;
+	height: 70%;
+}
+
+.card {
+	max-width: 100%;
+}
+
+@media (max-width: 768px) {
+	.navbar {
+		padding: 10px 0;
+	}
+}
+
+#layoutSidenav {
+	display: flex;
+	height: 100%;
+	flex-direction: row;
+}
+
+/* 사이드바 */
+#layoutSidenav_nav {
+	width: 250px; /* 사이드바 너비 */
+	background-color: #005555;
+	overflow-y: auto;
+}
+
+/* 메인 컨텐츠 */
+#layoutSidenav_content {
+	flex-grow: 1;
+	padding: 20px;
+	overflow: auto;
+}
+
+ .table {
+	width: 100%;
+	table-layout: auto;
+	max-width: 100%;  /* 테이블이 화면 너비를 넘지 않도록 제한 */
+	word-wrap: break-word;
+}
+
+.table th, .table td {
+	word-wrap: break-word;
+}
+
+@media (max-width: 768px) {
+	#layoutSidenav_nav {
+		width: 200px; /* 모바일에서 사이드바 크기 줄이기 */
+	}
+
+	.table {
+		width: 100%; /* 작은 화면에서 테이블 너비 조정 */
+	}

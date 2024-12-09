@@ -16,5 +16,6 @@
 <br><br>
 <a href='seller/seller_productinsert.do'>물건입력하기</a>
 기영 연결 형님 연결 도훈 연결 서연 연결
+<a href='board/tabletest.do'>게시판 목록보기</a>
 </body>
 </html>
