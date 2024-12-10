@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.energyzo.javaproject.model.vo.Adm_SalesVO;
 import com.energyzo.javaproject.model.vo.EstSearchDTO;
 import com.energyzo.javaproject.model.vo.EstateVO;
 import com.energyzo.javaproject.service.SearchService;
@@ -40,8 +41,6 @@ public class SearchController {
 	@RequestMapping("searchPropertyByAddr.do")
 	public List<EstateVO> searchPropertyByAddr(EstSearchDTO temp) {
 		
-		System.out.println(temp.toString());
-		
 		EstateVO vo = new EstateVO();
 		
 		List<EstateVO> result = service.searchListByAddr(temp); 
@@ -50,8 +49,8 @@ public class SearchController {
 	}
 	
 	// 상세보기 페이지 이동
-	@RequestMapping("searchinfo")
-	public String searchInfo(EstateVO vo,Model m) {
+	@RequestMapping("searchinfo.do")
+	public String searchInfo(EstateVO vo, Model m) {
 		
 		EstateVO result = service.searchListById(vo);
 		m.addAttribute("item", result);
@@ -59,12 +58,28 @@ public class SearchController {
 		return "search/searchinfo";
 	}
 	
-	// 더미데이터 생성
-//	@RequestMapping("insertDummy")
-//	public String insertDummy(){
-//		
-//		return "search/searchinfo";
-//	}
+	// 체크리스트 페이지 이동
+	@RequestMapping("searchCheckList.do")
+	public String searchCheckList(Adm_SalesVO vo, Model m){
+		
+		m.addAttribute("agent", vo);
+		
+		return "search/searchCheckList";
+	}
+	
+	// 판매자 상세정보 보기 페이지 이동
+	@RequestMapping("searchSellerInfo.do")
+	public String searchSellerInfo(Adm_SalesVO vo, Model m){
+		
+		vo = service.getAgentInfoById(vo);
+		System.out.println( vo.toString() );
+		m.addAttribute("agent", vo);
+		
+		List<Adm_SalesVO> estate = service.searchListByAgentId(vo);
+		m.addAttribute("estate", estate);
+		
+		return "search/searchSellerInfo";
+	}
 	
 	// 서울시 부동산 api
 	@ResponseBody

@@ -111,7 +111,7 @@ $(function(){
         <div class="container container-fluid px-4">
             <span>
             	<div class="btn-section">
-                    <button id="btn_contact" class="btn btn-primary" onclick="history.back()" >이전으로</button>
+                    <button class="btn btn-primary" onclick="history.back()" >이전으로</button>
                 </div>
                 <br>
             </span>
@@ -120,8 +120,10 @@ $(function(){
                 
                 <!-- 버튼 섹션 -->
                     <div class="btn-section">
-                        <button id="btn_contact" class="btn btn-primary" style='width:100%;' >판매자연결</button>
-                        
+                    	<form action='searchCheckList.do' method='post'>
+	                    	<input name='agent_num' type="hidden" value='${item.agent_num }'>
+	                        <button id="btn_contact" class="btn btn-primary" style='width:100%;' >판매자연결</button>
+                        </form>
                     </div>
                 
                     <div class="row">

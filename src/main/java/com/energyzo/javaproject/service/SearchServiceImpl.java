@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.energyzo.javaproject.model.SearchRepository;
+import com.energyzo.javaproject.model.vo.Adm_SalesVO;
 import com.energyzo.javaproject.model.vo.EstOptionVO;
 import com.energyzo.javaproject.model.vo.EstSearchDTO;
 import com.energyzo.javaproject.model.vo.EstateImgDTO;
@@ -25,13 +26,11 @@ public class SearchServiceImpl implements SearchService {
 		
 		// 이미지 정보 얻어오기
 		List<EstateImgDTO> imgVO = repo.searchImgListById(result);
-		
 		// vo에 이미지 정보 세팅
 		result = setImg4EstateVO(imgVO, result);
 		
 		// 옵션 정보 얻어오기
 		List<EstOptionVO> optionVO = repo.searchOptionListById(result);
-		
 		// 옵션정보를 뽑아내 한 스트링으로 합치기
 		result = setTag4EstateVO(optionVO, result);
 		
@@ -48,17 +47,14 @@ public class SearchServiceImpl implements SearchService {
 			
 			// 이미지 정보 얻오오기
 			List<EstateImgDTO> imgVO = repo.searchImgListById(temp);
-			
 			// vo에 이미지 정보 세팅
 			temp = setImg4EstateVO(imgVO, temp);
 			
 			
 			// 옵션 정보 얻어오기
 			List<EstOptionVO> optionVO = repo.searchOptionListById(temp);
-			
 			// 옵션정보를 뽑아내 한 스트링으로 합치기
 			temp = setTag4EstateVO(optionVO, temp);
-			
 			
 			
 			// 세팅된 vo를 list에 할당
@@ -69,7 +65,15 @@ public class SearchServiceImpl implements SearchService {
 		
 		return returnList;
 	}
-	
+	// 판매자 정보 검색
+	public Adm_SalesVO getAgentInfoById(Adm_SalesVO vo) {
+		return repo.getAgentInfoById(vo);
+	}
+	// 판매자 id로 매물 검색
+	public List<Adm_SalesVO> searchListByAgentId(Adm_SalesVO vo) {
+		return repo.searchListByAgentId(vo);
+	}
+
 	private EstateVO setImg4EstateVO (List<EstateImgDTO> imgVO, EstateVO temp) {
 		
 		// vo에 이미지 정보 세팅

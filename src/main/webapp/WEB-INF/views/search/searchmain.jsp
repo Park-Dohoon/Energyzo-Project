@@ -32,7 +32,6 @@
 <!-- jquery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-
 <!-- custom css -->
 <link rel="stylesheet" href="../resources/static/css/searchmain.css" />
 <!-- custom js -->
@@ -159,48 +158,6 @@ $(function(){
 	// 마커와 인포윈도우를 저장할 객체를 지정합니다
 	let markers = [];
 	let infowindows = [];
-	
-	// 지도에 마커 표시
-	for (let i= 0; i < addrList.length; i++) {
-		
-		let innerTag_head 	= '<div style="width:150px;height:100%;text-align:center;padding:6px 0;" align="center">'
-		let innerTag_rear 	= '</div>'
-		
-		let aTag			= '<a href="/javaproject/search/searchinfo.do" style="color:black">상세정보'+(i+1)+'</a>'
-		let imgTag 			= '<div style="padding:5%;"><img src="../resources/static/base_template/logo/방잇다로고_최종_누끼.png" style="width:100% height:150px"></div>' 
-		
-		let innerTag 		= innerTag_head + aTag + imgTag + innerTag_rear;
-		
-		
-		// 지도 작성
-		geocoder.addressSearch(addrList[i], function(result, status) {
-
-		    // 정상적으로 검색이 완료됐으면 
-		     if (status === kakao.maps.services.Status.OK) {
-
-		        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
-		        // 결과값으로 받은 위치를 마커로 표시합니다
-		        var marker = new kakao.maps.Marker({
-		            map: map,
-		            position: coords
-		        });
-
-		        // 인포윈도우로 장소에 대한 설명을 표시합니다
-		        var infowindow = new kakao.maps.InfoWindow({
-		            content: innerTag
-		        });
-		        infowindow.open(map, marker);
-		        
-		        markers.push(marker);
-		        infowindows.push(infowindow);
-
-		        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-		        map.setCenter(coords);
-		    } 
-		});
-		
-	}
 	
 	
 	//command-tab setting
@@ -418,15 +375,8 @@ $(function(){
 		for(let i=0; i<area1.length; i++){
 			$('#area1').append($('<option>').text(area1[i][0]));
 		}
+		setAreas2(0);
 		
-		for(let i=0; i<area2.length; i++){
-			$('#area2').append($('<option>').text(area2[i][0]));
-		}
-		
-		for(let i=0; i<area3.length; i++){
-			$('#area3').append($('<option areacode="'+area3[i][0]+'">').text(area3[i][0]));
-		}
-		$('#area3').attr("areacode", $('#area3 option:selected').attr("areacode") );
 		
 		// 조건2 초기화
 		// 버튼 초기화
@@ -552,18 +502,6 @@ $(function(){
 						,tagArray			: tagArray
 						}; 
 		
-		// api
-		/* $.ajax({
-			type : "GET"
-			,url : "seoulProperty"
-			,data: {cgg_cd : $('#area3').attr('areacode').toString()}
-			,dataType : "json"
-			,async: false
-			,success : searchProperty
-			,error : function(e){
-				console.log(e);
-			}
-		}) */
 		// DB검색
 		$.ajax({
 			type : "GET"
@@ -580,7 +518,7 @@ $(function(){
 	
 	// 검색 클릭 시 실행되는 함수
 	// api
-		function searchProperty(result2){
+	function searchProperty(result2){
 			
 			// 표시할 매물 리스트 객체
 			addrList = result2["tbLnOpendataRtmsV"]["row"];
@@ -619,7 +557,7 @@ $(function(){
 				let innerTag_head 	= '<div style="width:150px;height:100%;text-align:center;padding:6px 0;" align="center">'
 				let innerTag_rear 	= '</div>'
 							
-				let aTag			= '<a href="/javaproject/search/searchinfo.do" style="color:black">'+addrList[i].BLDG_NM+'</a>'
+				let aTag			= '<a href="/javaproject2/search/searchinfo.do" style="color:black">'+addrList[i].BLDG_NM+'</a>'
 				let imgTag 			= '<div style="padding:2%"><img src="../resources/static/base_template/logo/방잇다로고_최종_누끼.png" style="width:100%"></div>' 
 							
 				let innerTag 		= innerTag_head + aTag + imgTag + innerTag_rear;
@@ -742,6 +680,8 @@ $(function(){
 			
 		} // end of function
 		
+		
+		
 		// DB 검색
 		function searchPropertyByAddr(result2){
 			
@@ -759,10 +699,10 @@ $(function(){
 			// 지도에 새 마커 표시
 			for (let i= 0; i < result2.length; i++) {
 				
-				//console.log(addrList[i].CGG_NM + " " + addrList[i].STDG_NM + " " + addrList[i].BLDG_NM);
+				// 선택한 주소정보 얻어오기
 				let searchKeyword = result2[i].est_addr;
 				
-				// 정확한 주소로 태그를 만들어 맵에 붙이기
+				// 맵에 붙일 태그 만들기(infowindow)
 				let innerTag_head 	= '<div style="width:150px;height:100%;text-align:center;padding:6px 0;" align="center">'
 				let innerTag_rear 	= '</div>'
 							
@@ -836,7 +776,7 @@ $(function(){
 				// image container
 				itemImgRealPath = ((result2[i].realfname1 == undefined)	? '../resources/static/base_template/logo/Re_방잇다로고_최종_누끼.png'
 																		: '../resources/static/upload/'+result2[i].realfname1) 
-				let itemImg = $('<div  style="height:300px;">').append($('<a href="searchinfo?est_id='+result2[i].est_id+'" class="img" style="width:100%" />')
+				let itemImg = $('<div  style="height:300px;">').append($('<a href="searchinfo.do?est_id='+result2[i].est_id+'" class="img" style="width:100%" />')
 							.append( $('<img src="'+itemImgRealPath+'" alt="property image" class="img-fluid" />') ));
 				
 				// content container
@@ -873,7 +813,7 @@ $(function(){
 				
 				// attatch
 				itemInnerContainer.append(itemInfoRow);
-				itemInnerContainer.append($('<a href="searchinfo?est_id='+result2[i].est_id+'" class="btn btn-primary py-2 px-3">자세히 보기</a>'));
+				itemInnerContainer.append($('<a href="searchinfo.do?est_id='+result2[i].est_id+'" class="btn btn-primary py-2 px-3">자세히 보기</a>'));
 				
 				itemContentContainer.append(itemPriceContainer);
 				itemContentContainer.append(itemInnerContainer);

@@ -8,6 +8,7 @@
 	resultType="com.energyzo.javaproject.model.vo.BoardVO">
 		SELECT	*
 		FROM	free_tb
+		ORDER BY FREE_RECENT DESC
 	</select>
 
 	<!-- 게시글 상세보기 -->

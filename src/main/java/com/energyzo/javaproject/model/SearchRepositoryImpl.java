@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.energyzo.javaproject.model.vo.Adm_SalesVO;
 import com.energyzo.javaproject.model.vo.EstOptionVO;
 import com.energyzo.javaproject.model.vo.EstSearchDTO;
 import com.energyzo.javaproject.model.vo.EstateImgDTO;
@@ -37,5 +38,14 @@ public class SearchRepositoryImpl implements SearchRepository{
 		
 		return sqlsession.selectList("com.energyzo.javaproject.model.SearchRepository.searchImgListById",vo);
 	}
-	
+	// 판매자 정보 검색
+	public Adm_SalesVO getAgentInfoById(Adm_SalesVO vo) {
+		
+		return sqlsession.selectOne("com.energyzo.javaproject.model.SearchRepository.getAgentInfoById",vo);
+	}
+	// 판매자 id로 매물 검색
+	public List<Adm_SalesVO> searchListByAgentId(Adm_SalesVO vo){
+		
+		return sqlsession.selectList("com.energyzo.javaproject.model.SearchRepository.searchListByAgentId",vo);
+	}
 }
