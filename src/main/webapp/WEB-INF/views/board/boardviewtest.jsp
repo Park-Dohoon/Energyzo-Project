@@ -15,12 +15,8 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css"
 	rel="stylesheet" />
-<link href="../resources/static/css/styles.css" rel="stylesheet" />
-<link href="../resources/static/css/board.css" rel="stylesheet">
-
-<!-- favicon -->
-<link rel="shortcut icon" href="../resources/static/base_template/favicon.png" type="image/x-icon" />
-
+<link href="resources/static/css/styles.css" rel="stylesheet" />
+<link href="resources/static/css/board.css" rel="stylesheet">
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
 	crossorigin="anonymous"></script>
 <script src="https://api.jquery.com/jquery.ajax/"></script>
@@ -36,10 +32,10 @@ $(function() {
 	let reportBoard = localStorage.getItem('reportBoard');
  	let boardWriter = localStorage.getItem('boardWriter');
 	// 브라우저 콘솔에 찍기
- 	console.log('저장된 게시글: ' + reportBoard);
+	console.log('저장된 게시글: ' + reportBoard);
  	console.log('저장된 작성자: ' + boardWriter);
 	
- 	// 신고 후 가리기
+ // 신고 후 가리기
     if (reportBoard && loggedInUser !== boardWriter) {
         // 신고된 게시글이 있다면, 해당 게시글을 가리기
         $("tr").each(function() {
@@ -63,7 +59,7 @@ $(function() {
 
 		//글쓰기 버튼 이벤트
 		$('#newBoard').on('click', function() {
-			window.location = 'insertBoard.do';
+			window.location = 'insertBoard';
 		});
 	});
 </script>
@@ -71,7 +67,7 @@ $(function() {
 <body class="sb-nav-fixed">
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
 		<!-- Navbar Brand-->
-		<a class="navbar-brand ps-3" href="../resources/static/index.html">방잇다</a>
+		<a class="navbar-brand ps-3" href="resources/static/table/index.html">방잇다</a>
 		<!-- Sidebar Toggle-->
 		<button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
 			id="sidebarToggle" href="#!">
@@ -110,7 +106,7 @@ $(function() {
 				<div class="sb-sidenav-menu">
 					<div class="nav">
 						<div class="sb-sidenav-menu-heading">Core</div>
-						<a class="nav-link" href="../resources/static/index.html">
+						<a class="nav-link" href="index.html">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-tachometer-alt"></i>
 							</div> 메인페이지
@@ -129,8 +125,8 @@ $(function() {
 						<div class="collapse" id="collapseLayouts"
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" href="layout-static.html">Static
-									Navigation</a> <a class="nav-link" href="../resources/static/layout-sidenav-light.html">Light
+								<a class="nav-link" href="resources/static/table/layout-static.html">Static
+									Navigation</a> <a class="nav-link" href="resources/static/table/layout-sidenav-light.html">Light
 									Sidenav</a>
 							</nav>
 						</div>
@@ -162,11 +158,11 @@ $(function() {
 							</nav>
 						</div>
 						<div class="sb-sidenav-menu-heading">Addons</div>
-						<a class="nav-link" href="../resources/static/charts.html">
+						<a class="nav-link" href="charts.html">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-chart-area"></i>
 							</div> Charts
-						</a> <a class="nav-link" href="../resources/static/tables.html">
+						</a> <a class="nav-link" href="resources/static/table/tables.html">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-table"></i>
 							</div> 자유게시판
@@ -197,7 +193,7 @@ $(function() {
 						</c:if>
 						<c:if test="${empty loggedInUser}">
 							<p>
-								로그인하지 않았습니다.<a href="login">로그인</a>
+								로그인하지 않았습니다.<a href="login.do">로그인</a>
 							</p>
 						</c:if>
 						<div class="card-body">
@@ -216,7 +212,7 @@ $(function() {
 									<c:forEach items='${boardList}' var='board'>
 										<tr id='reportBoard'>
 											<td id='free_num'>${board.free_num }</td>
-											<td><a href='getBoard?free_num=${board.free_num }'>${board.free_title }</a></td>
+											<td><a href='getBoard.do?free_num=${board.free_num }'>${board.free_title }</a></td>
 								 			<td>${board.user_id }</td>
 											<td><fmt:formatDate value='${board.free_date }'
 													pattern='yyyy-MM-dd HH:mm:ss' /></td>
@@ -248,9 +244,9 @@ $(function() {
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 		crossorigin="anonymous"></script>
-	<script src="../resources/static/js/scripts.js"></script>
-	<script src="../resources/static/js/button.js"></script>
-	<script src="../resources/static/js/datatables-simple-demo.js"></script>
+	<script src="resources/static/js/scripts.js"></script>
+	<script src="resources/static/js/button.js"></script>
+	<script src="resources/static/js/datatables-simple-demo.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
 		crossorigin="anonymous"></script>

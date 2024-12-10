@@ -14,15 +14,15 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css"
 	rel="stylesheet" />
-<link href="../resources/static/css/styles.css" rel="stylesheet" />
+<link href="resources/static/css/styles.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
 	crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<link href="../resources/static/css/getBoardView.css"
+<link href="resources/static/css/getBoardView.css"
 	rel="stylesheet">
-<%
+<% 
 	// 세션에서 로그인 사용자 정보 가져오기
-    String loggedInUser = (String) session.getAttribute("loggedInUser");
+    String loggedInUser = (String)session.getAttribute("loggedInUser");
 %>
 
 <script>
@@ -35,7 +35,8 @@ $(function(){
 	let modifyBtn	= $('#modify');
 	let deleteBtn	= $('#delete' );
 	let reportBtn	= $('#report' );
-		
+	let boardWriter = $('.userId').text();
+	
 		// 버튼가리기
 		if (isLoggedIn) {
 			// 로그인 상태일 때 hidden 클래스 제거
@@ -86,12 +87,12 @@ $(function(){
 							<td id='cool' class='center'>${board.free_title }</td>
 						</tr>
 						<tr>
-							<th id='call'  style="font-size: 90%" valign="middle">조회수</th>
+							<th id='call' style="font-size: 90%" valign="middle">조회수</th>
 							<td id='call' class='center'>${board.free_count }</td>
 						</tr>
 						<tr>
 							<th id='cool' style="font-size: 90%" valign="middle">작성자</th>
-							<td id='cool'>${board.user_id }</td>
+							<td id='cool' class='userId'>${board.user_id }</td>
 						</tr>
 						<tr>
 							<th id='cnt' style="font-size: 90%">내용</th>
@@ -111,28 +112,28 @@ $(function(){
 			</main>
 		</div>
 	</div>
-	
+
 	<!-- 팝업 모달 -->
 	<div id="myModal" class="modal">
 		<div class="modal-content">
 			<h3 id='popup_title'>신고사유를 선택해주세요</h3>
 			<form action='reportBoard.do' method="post">
 				<label><input id='cbox1' name='comp_bull_reason' value='욕설/부적절한 표현'
-				class='cbox' type="checkbox">욕설/부적절한 표현</label><br>
-				
+					class='cbox' type="checkbox">욕설/부적절한 표현</label><br>
+
 				<label><input id='cbox2' name='comp_bull_reason' value='스팸홍보/도배'
-				class='cbox' type="checkbox">스팸홍보/도배		</label><br>
-				
+					class='cbox' type="checkbox">스팸홍보/도배		</label><br>
+
 				<label><input id='cbox3' name='comp_bull_reason' value='불쾌한 표현'
-				class='cbox' type="checkbox">불쾌한 표현			</label><br> 
-				
+					class='cbox' type="checkbox">불쾌한 표현			</label><br>
+
 				<label><input id='cbox4' name='comp_bull_reason' value='거짓매물 홍보'
-				class='cbox' type="checkbox">거짓매물 홍보		</label><br> 
-				
-				<label><input id='cbox5' name='comp_bull_reason' value='기타'
-				class='cbox' type="checkbox">기타						</label><br>
-					<textarea id='text' rows="5" cols="126"></textarea><br>
-				<span>
+					class='cbox' type="checkbox">거짓매물 홍보		</label><br>
+
+				<label><input id='cbox5' value='기타' 
+					class='cbox' type="checkbox">기타 					</label><br>
+				<textarea name='comp_bull_reason' id='text' rows="5" cols=""></textarea>
+				<br> <span>
 					<button type="submit" id='reportConfirm'>신고</button>
 					<button id='close'>닫기</button>
 				</span>
@@ -142,10 +143,10 @@ $(function(){
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 		crossorigin="anonymous"></script>
-	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-	<script src="../resources/static/js/scripts.js"></script>
-	<script src="../resources/static/js/button.js"></script>
-	<script src="../resources/static/js/datatables-simple-demo.js"></script>
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"				></script>
+	<script src="resources/static/js/scripts.js"></script>
+	<script src="resources/static/js/button.js"></script>
+	<script src="resources/static/js/datatables-simple-demo.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
 		crossorigin="anonymous"></script>

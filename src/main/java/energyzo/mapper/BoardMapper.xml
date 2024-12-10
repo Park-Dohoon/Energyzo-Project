@@ -1,38 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.energyzo.javaproject.model.BoardMapper">
+<mapper namespace="BoardMapper">
 
 	<!-- 게시글 목록보기 -->
-	<select id="getBoardList" resultType="com.energyzo.javaproject.model.vo.BoardVO">
+	<select id="getBoardList" 
+	resultType="com.energyzo.javaproject.model.vo.BoardVO">
 		SELECT	*
 		FROM	free_tb
 	</select>
 
 	<!-- 게시글 상세보기 -->
-	<select id="getBoard" parameterType="com.energyzo.javaproject.model.vo.BoardVO" resultType="com.energyzo.javaproject.model.vo.BoardVO">
+	<select id="getBoard" 
+	parameterType="com.energyzo.javaproject.model.vo.BoardVO" resultType="com.energyzo.javaproject.model.vo.BoardVO">
 		SELECT		*
 		FROM		free_tb
 		WHERE		free_num = #{free_num}
 	</select>
 
 	<!-- 게시글 조회수 증가 -->
-	<update id="getBoardCount" parameterType="com.energyzo.javaproject.model.vo.BoardVO">
+	<update id="getBoardCount" 
+	parameterType="com.energyzo.javaproject.model.vo.BoardVO">
 		UPDATE	free_tb
 		SET			free_count = free_count + 1
 		WHERE		free_num	= #{free_num}
 	</update>
 
 	<!-- 게시글 등록 -->
-	<insert id="insertBoard" parameterType="com.energyzo.javaproject.model.vo.BoardVO">
-
+	<insert id="insertBoard" 
+	parameterType="com.energyzo.javaproject.model.vo.BoardVO">
 		INSERT INTO free_tb(free_num, free_title, user_id, free_cont, free_date, free_recent, free_count)
 		VALUES(SEQ_FREE_TB.nextval,
 			#{free_title}, #{user_id}, #{free_cont}, sysdate, sysdate, 0)
 	</insert>
 
 	<!-- 게시글 수정 -->
-	<update id="updateBoard" parameterType="com.energyzo.javaproject.model.vo.BoardVO">
+	<update id="updateBoard" 
+	parameterType="com.energyzo.javaproject.model.vo.BoardVO">
 		UPDATE free_tb
 		SET		  free_title = #{free_title},
 					  free_cont = #{free_cont},
@@ -41,24 +45,27 @@
 	</update>
 
 	<!-- 게시글 삭제 -->
- 	<delete id="deleteBoard" parameterType="com.energyzo.javaproject.model.vo.BoardVO">
+ 	<delete id="deleteBoard" 
+ 	parameterType="com.energyzo.javaproject.model.vo.BoardVO">
 		DELETE
 		FROM		free_tb
 		WHERE 	free_num = #{free_num}
 	</delete>
 	
 	<!-- 로그인용 아이디 검색 -->
-	<select id='selectId' parameterType="com.energyzo.javaproject.model.vo.UserVO" resultType="com.energyzo.javaproject.model.vo.UserVO">
+	<select id='selectId' 
+		parameterType="com.energyzo.javaproject.model.vo.UserVO" 
+		resultType="com.energyzo.javaproject.model.vo.UserVO">
 		SELECT  user_id, nick_name
 		FROM	 user_tb
 		WHERE user_id = #{user_id}
 	</select>
 	
 	<!-- 게시글 신고 -->
-	<insert id="reportBoard" parameterType="com.energyzo.javaproject.model.vo.CompBullVO">
+	<insert id="reportBoard" 
+	parameterType="com.energyzo.javaproject.model.vo.ComBullVO">
 		INSERT INTO comp_bull_tb(comp_bull_num, user_id, free_num,
 							comp_bull_date, comp_bull_reason)
-
 		VALUES(seq_comp_bull_tb.nextval, #{user_id}, #{free_num}, sysdate, #{comp_bull_reason})
 	</insert>
 	

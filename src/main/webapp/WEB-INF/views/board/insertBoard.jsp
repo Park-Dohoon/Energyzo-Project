@@ -13,8 +13,8 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css"
 	rel="stylesheet" />
-<link href="resources/static/table/css/styles.css"	rel="stylesheet" />
-<link href="resources/static/table/css/board.css"	rel="stylesheet">
+<link href="resources/static/css/styles.css"	rel="stylesheet" />
+<link href="resources/static/css/board.css"	rel="stylesheet">
 </head>
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
 	crossorigin="anonymous"></script>
@@ -32,7 +32,7 @@
 					<div class="card mb-4"></div>
 					<h1 id='main-title' class="mt-4">새글쓰기</h1>
 					
-						<form id='insertBoard' action='insertBoardSave' method="post" class="form-horizontal">
+						<form id='insertBoard' action='insertBoardSave.do' method="post" class="form-horizontal">
 							<table class="table table-striped table-bordered" id='insertBoardTable'>
 								<tr>
 									<th id='title' style="font-size: 90%">제목</th>
@@ -62,9 +62,9 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 		crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-	<script src="resources/static/table/js/scripts.js"></script>
-	<script src="resources/static/table/js/button.js"></script>
-	<script src="resources/static/table/js/datatables-simple-demo.js"></script>
+	<script src="resources/static/js/scripts.js"></script>
+	<script src="resources/static/js/button.js"></script>
+	<script src="resources/static/js/datatables-simple-demo.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
 		crossorigin="anonymous"></script>
