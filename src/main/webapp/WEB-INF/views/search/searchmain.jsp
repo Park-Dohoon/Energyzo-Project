@@ -166,7 +166,7 @@ $(function(){
 		let innerTag_head 	= '<div style="width:150px;height:100%;text-align:center;padding:6px 0;" align="center">'
 		let innerTag_rear 	= '</div>'
 		
-		let aTag			= '<a href="/javaproject2/search/searchinfo.do" style="color:black">상세정보'+(i+1)+'</a>'
+		let aTag			= '<a href="/javaproject/search/searchinfo.do" style="color:black">상세정보'+(i+1)+'</a>'
 		let imgTag 			= '<div style="padding:5%;"><img src="../resources/static/base_template/logo/방잇다로고_최종_누끼.png" style="width:100% height:150px"></div>' 
 		
 		let innerTag 		= innerTag_head + aTag + imgTag + innerTag_rear;
@@ -619,7 +619,7 @@ $(function(){
 				let innerTag_head 	= '<div style="width:150px;height:100%;text-align:center;padding:6px 0;" align="center">'
 				let innerTag_rear 	= '</div>'
 							
-				let aTag			= '<a href="/javaproject2/search/searchinfo.do" style="color:black">'+addrList[i].BLDG_NM+'</a>'
+				let aTag			= '<a href="/javaproject/search/searchinfo.do" style="color:black">'+addrList[i].BLDG_NM+'</a>'
 				let imgTag 			= '<div style="padding:2%"><img src="../resources/static/base_template/logo/방잇다로고_최종_누끼.png" style="width:100%"></div>' 
 							
 				let innerTag 		= innerTag_head + aTag + imgTag + innerTag_rear;
