@@ -13,7 +13,7 @@ import com.energyzo.javaproject.model.vo.*;
 import com.energyzo.javaproject.service.*;
 
 @Controller
-@RequestMapping("/board")
+//@RequestMapping("/board")
 public class BoardController {
 
 	@Autowired
@@ -50,7 +50,7 @@ public class BoardController {
 		List<BoardVO> list = service.getBoardList();
 		m.addAttribute("boardList", list);
 		
-		return "board/boardviewtest";
+		return "boardviewtest";
 	}
 	
 	// 게시글 상세보기
@@ -70,14 +70,14 @@ public class BoardController {
 		BoardVO testbvo = service.getBoard(bvo);
 		m.addAttribute("board", testbvo);
 		
-		return "board/getBoardView";
+		return "getBoardView";
 	}
 	
 	// 게시글 입력창
 	@RequestMapping("insertBoard.do")
 	public String insertBoard() {
 		
-		return "board/insertBoard";
+		return "insertBoard";
 	}
 	
 	// 게시글 입력
@@ -97,7 +97,7 @@ public class BoardController {
 		}
 		service.insertBoard(bvo);
 		
-		return "redirect:board/tabletest.do";
+		return "redirect:tabletest.do";
 	}
 	
 	// 게시글 수정 페이지로 이동
@@ -106,7 +106,7 @@ public class BoardController {
 		BoardVO bvo2 = service.getBoard(bvo);
 		m.addAttribute("board", bvo2);
 		
-		return "board/updateBoard";
+		return "updateBoard";
 	}
 	
 	// 게시글 수정
@@ -114,7 +114,7 @@ public class BoardController {
 	public String updateBoard(BoardVO bvo) {
 		service.updateBoard(bvo);
 		
-		return "redirect:board/tabletest.do";
+		return "redirect:tabletest.do";
 	}
 	
 	// 게시글 삭제
@@ -135,7 +135,7 @@ public class BoardController {
 			Integer fnum = (Integer)session.getAttribute("FreeNum"); 
 			// 유저 ID가 세션에 있는지 확인 (추가 검증)
 			if (id == null || id.isEmpty()) {
-				return "redirect:board/login.do";
+				return "redirect:login.do";
 			}
 			
 	        // UserVO에 세션값 설정
@@ -154,8 +154,8 @@ public class BoardController {
 	        
 		} catch (Exception e) {
 			e.printStackTrace();
-			return "redirect:board/tabletest.do";
+			return "redirect:tabletest.do";
 	    }
-		return "redirect:board/tabletest.do";
+		return "redirect:tabletest.do";
 	}
 }
