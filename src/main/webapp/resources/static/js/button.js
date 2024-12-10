@@ -1,12 +1,12 @@
 $(function(){
 	// 뒤로가기 버튼
 	$('#back').click(function(){
-		window.location.href = 'tabletest';
+		window.location.href = 'tabletest.do';
 });
 
 	// 목록보기 버튼
 	$('#boardList').click(function(){
-		window.location.href = 'tabletest';
+		window.location.href = 'tabletest.do';
 });
 	
 	// 상세보기 페이지의 수정하기 버튼
@@ -25,10 +25,10 @@ $(function(){
 		if (isConfirmed) {
 			$.ajax({
 				type : 'post',
-				url	: 'deleteBoard',
+				url	: 'deleteBoard.do',
 				data : param,
 				success : function(){
-					 window.location.href = 'tabletest';
+					 window.location.href = 'tabletest.do';
 				},
 				error : function(){
 				alert('삭제실패');

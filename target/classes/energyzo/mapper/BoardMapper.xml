@@ -17,14 +17,14 @@
 	</select>
 
 	<!-- 게시글 조회수 증가 -->
-	<update id="getBoardCount" parameterType="BoardVO">
+	<update id="getBoardCount" parameterType="com.energyzo.javaproject.BoardVO">
 		UPDATE	free_tb
 		SET			free_count = free_count + 1
 		WHERE		free_num	= #{free_num}
 	</update>
 
 	<!-- 게시글 등록 -->
-	<insert id="insertBoard" parameterType="BoardVO">
+	<insert id="insertBoard" parameterType="com.energyzo.javaproject.BoardVO">
 		INSERT INTO free_tb(free_num, free_title, user_id, free_cont, free_date, free_recent, free_count)
 		VALUES(SEQ_FREE_TB.nextval,
 			#{free_title}, #{user_id}, #{free_cont}, sysdate, sysdate, 0)
@@ -55,8 +55,8 @@
 	
 	<!-- 게시글 신고 -->
 	<insert id="reportBoard" parameterType="ComBullVO">
-		INSERT INTO comp_bull_tb(comp_bull_num, user_id, free_num,
-							comp_bull_date, comp_bull_reason)
+		INSERT INTO	comp_bull_tb(comp_bull_num, user_id, free_num,
+								comp_bull_date, comp_bull_reason)
 		VALUES(seq_comp_bull_tb.nextval, #{user_id}, #{free_num}, sysdate, #{comp_bull_reason})
 	</insert>
 	
