@@ -33,4 +33,9 @@ public class SellerRepositoryImpl implements SellerRepository{
 		sqlsession.insert("com.energyzo.javaproject.model.SellerRepository.insertOption", vo);
 	}
 	
+	public EstateVO updateItem(EstateVO vo) {
+		return sqlsession.selectOne("com.energyzo.javaproject.model.SellerRepository.updateItem", vo);
+ 
+	}
+	
 }

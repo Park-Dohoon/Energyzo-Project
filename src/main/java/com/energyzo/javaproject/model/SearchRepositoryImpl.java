@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.energyzo.javaproject.model.vo.EstOptionVO;
+import com.energyzo.javaproject.model.vo.EstSearchDTO;
 import com.energyzo.javaproject.model.vo.EstateImgDTO;
 import com.energyzo.javaproject.model.vo.EstateVO;
 
@@ -17,7 +18,7 @@ public class SearchRepositoryImpl implements SearchRepository{
 	SqlSessionTemplate sqlsession;
 	
 	// 주소로 부동산 매물 리스트 검색
-	public List<EstateVO> searchListByAddr(EstateVO vo){
+	public List<EstateVO> searchListByAddr(EstSearchDTO vo){
 		
 		return sqlsession.selectList("com.energyzo.javaproject.model.SearchRepository.searchListByAddr",vo);
 	}

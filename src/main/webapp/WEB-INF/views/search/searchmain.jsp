@@ -166,7 +166,7 @@ $(function(){
 		let innerTag_head 	= '<div style="width:150px;height:100%;text-align:center;padding:6px 0;" align="center">'
 		let innerTag_rear 	= '</div>'
 		
-		let aTag			= '<a href="/search/searchinfo.do" style="color:black">상세정보'+(i+1)+'</a>'
+		let aTag			= '<a href="/javaproject/search/searchinfo.do" style="color:black">상세정보'+(i+1)+'</a>'
 		let imgTag 			= '<div style="padding:5%;"><img src="../resources/static/base_template/logo/방잇다로고_최종_누끼.png" style="width:100% height:150px"></div>' 
 		
 		let innerTag 		= innerTag_head + aTag + imgTag + innerTag_rear;
@@ -251,9 +251,9 @@ $(function(){
 				 $('.btn-type').css({"background-color" : "white"});
 				 $('.btn-type').css({"color" : "black"});
 				 
-				 $('.btn-type[value="전세"]').attr("onoff", "true");
-				 $('.btn-type[value="전세"]').css({"background-color" : "#055"});
-				 $('.btn-type[value="전세"]').css({"color" : "white"});
+				 $('#btn-type-1').attr("onoff", "true");
+				 $('#btn-type-1').css({"background-color" : "#055"});
+				 $('#btn-type-1').css({"color" : "white"});
 				 
 			 } else {
 				 
@@ -337,7 +337,7 @@ $(function(){
 				}
 			}
 			
-			if(cnt < 3){
+			if(cnt < 2){
 				$(this).css({"background-color":"white", "color":"black"})
 				$(this).attr("onoff", "false")
 			}
@@ -360,8 +360,8 @@ $(function(){
 		
 		if(typeOfRange == "min") {
 			// max 슬라이더보다 값이 커지지 않도록 유지
-			if( $(this).val() >= rangeInput[1].value-rangeGap){
-				$(this).val(parseInt(rangeInput[1].value) - rangeGap);
+			if( $(this).val() > rangeInput[1].value){
+				$(this).val(parseInt(rangeInput[1].value));
 			}
 			// 변경한 값 입력
 			priceField[0].value 
@@ -369,8 +369,8 @@ $(function(){
 			
 		} else if (typeOfRange == "max") {
 			// min 슬라이더보다 값이 작아지지 않도록 유지
-			if( $(this).val() <= rangeInput[0].value+rangeGap){
-				$(this).val(parseInt(rangeInput[0].value) + rangeGap);
+			if( $(this).val() < rangeInput[0].value){
+				$(this).val(parseInt(rangeInput[0].value));
 			}
 			// 변경한 값 입력
 			priceField[1].value 
@@ -434,30 +434,25 @@ $(function(){
 		$('.btn-type').css({"background-color":"#055"
 							, "color":"white"})
 		// 슬라이더 초기화
-		$('.min-range-price').val("100000000");
-		$('.max-range-price').val("1000000000");
-		$('.price-slider-price').css({"left":"3%", "right":"79%"});
-		$('.min-input-price').val("1억원")
-		$('.max-input-price').val("10억원")
+		$('.min-range-price').val("0");
+		$('.max-range-price').val("5000000000");
+		$('.price-slider-price').css({"left":"0%", "right":"0%"});
+		$('.min-input-price').val("0원")
+		$('.max-input-price').val("무제한")
 		
 		
 		// 조건3 초기화
-		// 방수 버튼 초기화
-		$('.btn-config-room').attr("onoff", "false")
-		$('.btn-config-room').css({"background-color":"white", "color":"black"});
-		$('#config-container-room button:nth-of-type(1)').attr("onoff","true")
-		$('#config-container-room button:nth-of-type(1)').css({"background-color":"#055", "color":"white"});
 		// 슬라이더 초기화
-		$('.min-range-size').val("20");
-		$('.max-range-size').val("40");
-		$('.price-slider-size').css({"left":"20%", "right":"40%"});
-		$('.min-input-size').val("20평")
-		$('.max-input-size').val("40평")
+		$('.min-range-size').val("10");
+		$('.max-range-size').val("60");
+		$('.price-slider-size').css({"left":"0%", "right":"0%"});
+		$('.min-input-size').val("10평 이하")
+		$('.max-input-size').val("60평 이상")
 		// 사용 승인일 버튼 초기화
 		$('.btn-config-date').attr("onoff","false");
 		$('.btn-config-date').css({"background-color":"white", "color":"black"})
-		$('.btn-config-date[value="전체"]').attr("onoff","false");
-		$('.btn-config-date[value="전체"]').css({"background-color":"#055", "color":"white"})
+		$('.btn-config-date[value="0"]').attr("onoff","true");
+		$('.btn-config-date[value="0"]').css({"background-color":"#055", "color":"white"})
 		// 층수 버튼 초기화
 		$('.btn-config-floor').attr("onoff","true");
 		$('.btn-config-floor').css({"background-color":"#055", "color":"white"})
@@ -503,6 +498,60 @@ $(function(){
 	// ajax
 	$('button[name="getSearchInfo"]').click(function(){
 		
+		// 검색조건 세팅
+		// 주소 값 가져오기
+		let addr 	= $('#area2').val() + ' ' + $('#area3').attr('areacode');
+		// 건물종류 값 가져오기
+		let btnType= $('.btn-type[onoff="true"]')
+		let type	= "" 
+		for(let i=0; i<btnType.length; i++){
+			if(btnType[i].value == "모두"){
+				continue;
+			} else if(type == ""){
+				type = btnType[i].value;
+			} else {
+				type += "," + btnType[i].value;
+			}
+		}
+		// 최대금액, 최소금액 값 가져오기
+		let priceMax= parseInt($('.max-range-price').val())/10000;
+		let priceMin= parseInt($('.min-range-price').val())/10000;
+		// 방 최대크기, 최소크기 값 가져오기
+		let areaMax	= parseInt($('.max-range-size').val())*3.3;
+		let areaMin	= parseInt($('.min-range-size').val())*3.3;
+		// 사용승인일 값 가져오기
+		let sungin	= $('.btn-config-date[onoff="true"]').val();
+		// 층 수 가져오기
+		let floor = 0;
+		let btnFloor = $('.btn-config-floor[onoff="true"]');
+		for(let i=0; i<btnFloor.length; i++){
+			floor += parseInt( $('.btn-config-floor[onoff="true"]')[i].value );
+		}
+		// 입력한 태그 값 가져오기
+		let tagArray= "";
+		let tag		= $('#tagListTable .btn-tag[onoff="true"]');
+		for(let i=0; i < tag.length; i++){
+			
+			if(i == 0){
+				tagArray = tag[i].value;
+			} else {
+				tagArray += ","+tag[i].value;
+			}
+		}
+		
+		
+		// 보낼 데이터 세팅
+		searchData = {	est_addr 			: addr
+						,est_type			: type
+						,est_tra_cond_max 	: priceMax
+						,est_tra_cond_min	: priceMin
+						,est_m_area_max		: areaMax
+						,est_m_area_min		: areaMin
+						,est_sungin			: sungin
+						,est_m_floor		: floor
+						,tagArray			: tagArray
+						}; 
+		
 		// api
 		/* $.ajax({
 			type : "GET"
@@ -519,7 +568,7 @@ $(function(){
 		$.ajax({
 			type : "GET"
 			,url : "searchPropertyByAddr.do"
-			,data: {est_addr : $('#area2').val() + ' ' + $('#area3').attr('areacode')}
+			,data: searchData
 			,dataType : "json"
 			,success : searchPropertyByAddr
 			,error : function(e){
@@ -570,7 +619,7 @@ $(function(){
 				let innerTag_head 	= '<div style="width:150px;height:100%;text-align:center;padding:6px 0;" align="center">'
 				let innerTag_rear 	= '</div>'
 							
-				let aTag			= '<a href="/searchinfo.do" style="color:black">'+addrList[i].BLDG_NM+'</a>'
+				let aTag			= '<a href="/javaproject/search/searchinfo.do" style="color:black">'+addrList[i].BLDG_NM+'</a>'
 				let imgTag 			= '<div style="padding:2%"><img src="../resources/static/base_template/logo/방잇다로고_최종_누끼.png" style="width:100%"></div>' 
 							
 				let innerTag 		= innerTag_head + aTag + imgTag + innerTag_rear;
@@ -641,7 +690,7 @@ $(function(){
 				let itemContainer2 	= $('<div class="property-item mb-30"/>');
 				
 				// image container
-				let itemImg = $('<a href="/searchinfo.do" class="img"/>')
+				let itemImg = $('<a href="searchinfo" class="img"/>')
 							.append( $('<img src="../resources/static/base_template/images/img_1.jpg" alt="Image" class="img-fluid" />') );
 				
 				// content container
@@ -678,7 +727,7 @@ $(function(){
 				
 				// attatch
 				itemInnerContainer.append(itemInfoRow);
-				itemInnerContainer.append($('<a href="searchinfo.do" class="btn btn-primary py-2 px-3">자세히 보기</a>'));
+				itemInnerContainer.append($('<a href="searchinfo" class="btn btn-primary py-2 px-3">자세히 보기</a>'));
 				
 				itemContentContainer.append(itemPriceContainer);
 				itemContentContainer.append(itemInnerContainer);
@@ -717,7 +766,7 @@ $(function(){
 				let innerTag_head 	= '<div style="width:150px;height:100%;text-align:center;padding:6px 0;" align="center">'
 				let innerTag_rear 	= '</div>'
 							
-				let aTag			= '<a href="/javaproject/search/searchinfo.do?est_id='+result2[i].est_id+'" style="color:black">'+result2[i].est_type+'</a>'
+				let aTag			= '<a href="searchinfo.do?est_id='+result2[i].est_id+'" style="color:black">'+result2[i].est_type+'</a>'
 				let imgTag 			= ((result2[i].realfname1 == undefined)	? '<div style="padding:2%"><img src="../resources/static/base_template/logo/방잇다로고_최종_누끼.png" style="width:100%"></div>'
 																			: '<div style="padding:2%"><img src="../resources/static/upload/'+result2[i].realfname1+'" style="width:100%"></div>');
 							
@@ -786,8 +835,8 @@ $(function(){
 				
 				// image container
 				itemImgRealPath = ((result2[i].realfname1 == undefined)	? '../resources/static/base_template/logo/Re_방잇다로고_최종_누끼.png'
-																		: '../resources/static/upload/'+result2[i].realfname1)
-				let itemImg = $('<div  style="height:300px;">').append($('<a href="/javaproject/search/searchinfo.do?est_id='+result2[i].est_id+'" class="img" style="width:100%" />')
+																		: '../resources/static/upload/'+result2[i].realfname1) 
+				let itemImg = $('<div  style="height:300px;">').append($('<a href="searchinfo?est_id='+result2[i].est_id+'" class="img" style="width:100%" />')
 							.append( $('<img src="'+itemImgRealPath+'" alt="property image" class="img-fluid" />') ));
 				
 				// content container
@@ -824,7 +873,7 @@ $(function(){
 				
 				// attatch
 				itemInnerContainer.append(itemInfoRow);
-				itemInnerContainer.append($('<a href="/javaproject/search/searchinfo.do?est_id='+result2[i].est_id+'" class="btn btn-primary py-2 px-3">자세히 보기</a>'));
+				itemInnerContainer.append($('<a href="searchinfo?est_id='+result2[i].est_id+'" class="btn btn-primary py-2 px-3">자세히 보기</a>'));
 				
 				itemContentContainer.append(itemPriceContainer);
 				itemContentContainer.append(itemInnerContainer);
@@ -1015,10 +1064,10 @@ window.onload = function(){
 				<tr>
 					<td>
 						<button id='btn-type-all' 	class='btn btn-primary btn-type btn-type-all' onoff='true' value='모두'>모두</button>
-						<button id='btn-type-1' 	class='btn btn-primary btn-type' onoff='true' value='아파트'>아파트</button>
-						<button id='btn-type-2' 	class='btn btn-primary btn-type' onoff='true' value='단독다가구'>단독다가구</button>
-						<button id='btn-type-3' 	class='btn btn-primary btn-type' onoff='true' value='연립대세대'>연립대세대</button>
-						<button id='btn-type-4' 	class='btn btn-primary btn-type' onoff='true' value='오피스텔'	>오피스텔</button>
+						<button id='btn-type-1' 	class='btn btn-primary btn-type' onoff='true' value="'아파트'"	>아파트</button>
+						<button id='btn-type-2' 	class='btn btn-primary btn-type' onoff='true' value="'단독다가구'"	>단독다가구</button>
+						<button id='btn-type-3' 	class='btn btn-primary btn-type' onoff='true' value="'연립다세대'"	>연립다세대</button>
+						<button id='btn-type-4' 	class='btn btn-primary btn-type' onoff='true' value="'오피스텔'"	>오피스텔</button>
 					</td>
 					<td style="width:50%">
 						
@@ -1113,18 +1162,18 @@ window.onload = function(){
 						<div>
 							<p>사용승인일</p>
 							<div id='config-container-date'>
-								<button class='btn btn-primary btn-config-date' onoff='true' value='전체'>전체</button>
-								<button class='btn btn-primary btn-config-date' onoff='false' value='5년이내'>5년이내</button>
-								<button class='btn btn-primary btn-config-date' onoff='false' value='10년이내'>10년이내</button>
-								<button class='btn btn-primary btn-config-date' onoff='false' value='15년이내'>15년이내</button>
-								<button class='btn btn-primary btn-config-date' onoff='false' value='15년이상'>15년이상</button>
+								<button class='btn btn-primary btn-config-date' onoff='true' value='0'>전체</button>
+								<button class='btn btn-primary btn-config-date' onoff='false' value='5'>5년이내</button>
+								<button class='btn btn-primary btn-config-date' onoff='false' value='10'>10년이내</button>
+								<button class='btn btn-primary btn-config-date' onoff='false' value='15'>15년이내</button>
+								<button class='btn btn-primary btn-config-date' onoff='false' value='150'>15년이상</button>
 							</div>
 							<br>
 							<div id='config-container-floor'>
 								<p>층 수</p>
-								<button class='btn btn-primary btn-config-floor' onoff='true' value='층'>1층</button>
-								<button class='btn btn-primary btn-config-floor' onoff='true' value='2층이상'>2층이상</button>
-								<button class='btn btn-primary btn-config-floor' onoff='true' value='반지하'>반지하</button>
+								<button class='btn btn-primary btn-config-floor' onoff='true' value='1'>1층</button>
+								<button class='btn btn-primary btn-config-floor' onoff='true' value='4'>2층이상</button>
+								<button class='btn btn-primary btn-config-floor' onoff='true' value='2'>반지하</button>
 								
 							</div>
 							
@@ -1139,20 +1188,20 @@ window.onload = function(){
 			<p>태그선택</p>
 			<span id='tagListTable'>
 				
-						<button class='btn btn-primary btn-tag' onoff='false' value='보안'		>보안		</button>
-						<button class='btn btn-primary btn-tag' onoff='false' value='세탁기'		>세탁기	</button>
-						<button class='btn btn-primary btn-tag' onoff='false' value='침대'		>침대		</button>
-						<button class='btn btn-primary btn-tag' onoff='false' value='제습기'		>제습기	</button>
-						<button class='btn btn-primary btn-tag' onoff='false' value='전자레인지'	>전자레인지</button>
-						<button class='btn btn-primary btn-tag' onoff='false' value='가스레인지'	>가스레인지</button>
-						<button class='btn btn-primary btn-tag' onoff='false' value='인덕션'		>인덕션	</button>
-						<button class='btn btn-primary btn-tag' onoff='false' value='건조기'		>건조기	</button>
-						<button class='btn btn-primary btn-tag' onoff='false' value='난방종류'		>난방종류	</button>
-						<button class='btn btn-primary btn-tag' onoff='false' value='책상'		>책상		</button>
-						<button class='btn btn-primary btn-tag' onoff='false' value='냉장고'		>냉장고	</button>
-						<button class='btn btn-primary btn-tag' onoff='false' value='신발장'		>신발장	</button>
-						<button class='btn btn-primary btn-tag' onoff='false' value='싱크대'		>싱크대	</button>
-						<button class='btn btn-primary btn-tag' onoff='false' value='옷장'		>옷장		</button>
+						<button class='btn btn-primary btn-tag' onoff='false' value="'보안'"		>보안		</button>
+						<button class='btn btn-primary btn-tag' onoff='false' value="'세탁기'"		>세탁기	</button>
+						<button class='btn btn-primary btn-tag' onoff='false' value="'침대'"		>침대		</button>
+						<button class='btn btn-primary btn-tag' onoff='false' value="'제습기'"		>제습기	</button>
+						<button class='btn btn-primary btn-tag' onoff='false' value="'전자레인지'"	>전자레인지</button>
+						<button class='btn btn-primary btn-tag' onoff='false' value="'가스레인지'"	>가스레인지</button>
+						<button class='btn btn-primary btn-tag' onoff='false' value="'인덕션'"		>인덕션	</button>
+						<button class='btn btn-primary btn-tag' onoff='false' value="'건조기'"		>건조기	</button>
+						<button class='btn btn-primary btn-tag' onoff='false' value="'난방종류'"		>난방종류	</button>
+						<button class='btn btn-primary btn-tag' onoff='false' value="'책상'"		>책상		</button>
+						<button class='btn btn-primary btn-tag' onoff='false' value="'냉장고'"		>냉장고	</button>
+						<button class='btn btn-primary btn-tag' onoff='false' value="'신발장'"		>신발장	</button>
+						<button class='btn btn-primary btn-tag' onoff='false' value="'싱크대'"		>싱크대	</button>
+						<button class='btn btn-primary btn-tag' onoff='false' value="'옷장'"		>옷장		</button>
 					
 			</span>
 		</div>

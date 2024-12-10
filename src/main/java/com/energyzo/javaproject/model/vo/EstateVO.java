@@ -37,7 +37,8 @@ public class EstateVO {
     private Date 	est_gumsa;       	// 검사일자
     private Date 	est_sungin;      	// 성인날짜
     private Integer est_jungong;     	// 준공일자 		- 사용 o	
-	
+	private String user_id;
+	private String agent_name;
     
     // 태그관련
     private String tagArray;			// 태그 정보를 저장, 공백으로 구분
@@ -68,7 +69,7 @@ public class EstateVO {
 	private MultipartFile file6;		// 6번 파일
 	
 	public void setRootPath(String rootPath) {
-		this.rootPath = rootPath.substring(0, rootPath.indexOf("."))+"Energyzo-Project_copy";
+		this.rootPath = rootPath.substring(0, rootPath.indexOf("."))+"Energyzo-Project-MyPage";
 	}
 	
 	public void setFile1(MultipartFile file) {

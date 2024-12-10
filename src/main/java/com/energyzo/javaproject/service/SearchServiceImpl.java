@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.energyzo.javaproject.model.SearchRepository;
 import com.energyzo.javaproject.model.vo.EstOptionVO;
+import com.energyzo.javaproject.model.vo.EstSearchDTO;
 import com.energyzo.javaproject.model.vo.EstateImgDTO;
 import com.energyzo.javaproject.model.vo.EstateVO;
 
@@ -38,7 +39,7 @@ public class SearchServiceImpl implements SearchService {
 		return result;
 	}
 	// 주소로 검색
-	public List<EstateVO> searchListByAddr(EstateVO vo){
+	public List<EstateVO> searchListByAddr(EstSearchDTO vo){
 		
 		List<EstateVO> result = repo.searchListByAddr(vo);
 		List<EstateVO> returnList = new ArrayList<EstateVO>();

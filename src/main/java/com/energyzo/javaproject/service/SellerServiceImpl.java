@@ -105,4 +105,8 @@ public class SellerServiceImpl implements SellerService{
 		return vo;
 	}
 	
+	public EstateVO updateItem(EstateVO vo) {
+		return repo.updateItem(vo); 
+	}
+	
 }

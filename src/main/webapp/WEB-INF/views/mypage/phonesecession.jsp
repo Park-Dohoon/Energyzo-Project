@@ -97,11 +97,11 @@
 							</div> 내 정보
 						</a> 
 						<!-- <div class="sb-sidenav-menu-heading">Interface</div>
- -->						<a class="nav-link" href="wishlist.do">
+ -->			<!-- 			<a class="nav-link" href="wishlist.do">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-tachometer-alt"></i>
 							</div> 찜목록
-						</a>
+						</a> -->
 						<a class="nav-link" href="point.do">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-tachometer-alt"></i>
@@ -139,6 +139,26 @@
 			            <li class="breadcrumb-item active">회원가입시 등록한 전화번호로 인증하기</li>
 			        </ol>
 			        <hr>
+			        
+			        
+
+						<div class="container-head">
+							<div class="headmenu">
+							                        
+		                        <ul class="nav nav-tabs">
+								  <li class="nav-item">
+								    <a class="nav-link hover-box "  aria-current="adm_item_all.do" href="emailsecession.do">이메일</a>
+								  </li>
+								  <li class="nav-item">
+								    <a class="nav-link hover-box active" href="phonesecession.do">전화번호</a>
+								  </li>
+								</ul>
+								
+							</div>
+
+
+							<div class="headsearch">
+			        
 			        <div style="border: 1px solid #ddd; border-radius: 5px; padding: 20px; background-color: #f8f9fa; line-height: 1.6; color: #6c757d;">								            
 			            <form id="smsForm" method="post"> 
 			                <label for="to" style="margin-bottom: 10px">전화번호 인증요청</label>
@@ -162,7 +182,29 @@
 			            
 			        </div>
 			    </div>
-
+	
+			<!-- Modal -->
+			<div class="modal fade" id="unregisterModal" tabindex="-1" aria-labelledby="unregisterModalLabel" aria-hidden="true">
+			    <div class="modal-dialog">
+			        <div class="modal-content">
+			            <!-- 모달 헤더 -->
+			            <div class="modal-header">
+			                <h5 class="modal-title" id="unregisterModalLabel">탈퇴가 완료</h5>
+			                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			            </div>
+			            <!-- 모달 바디 -->
+			            <div class="modal-body">
+			                탈퇴가 완료되었습니다. 홈 화면으로 이동합니다. 
+			            </div>
+			            <!-- 모달 푸터 -->
+			            <div class="modal-footer">
+			                <!-- 확인 버튼: 폼 제출 -->
+			                <button type="submit" class="btn btn-primary" form="sellerForm">확인</button>
+			            </div>
+			        </div>
+			    </div>
+			</div>
+          
 
 			
 			</main>

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.energyzo.javaproject.model.vo.EstSearchDTO;
 import com.energyzo.javaproject.model.vo.EstateVO;
 import com.energyzo.javaproject.service.SearchService;
 
@@ -26,7 +27,7 @@ public class SearchController {
 	
 	// 검색 메인페이지 이동
 	@RequestMapping("searchmain.do")
-	public String searchMain(EstateVO vo, Model m) {
+	public String searchMain(EstSearchDTO vo, Model m) {
 		
 		// 지역별 상품목록 받아오기
 		m.addAttribute("itemList", service.searchListByAddr(vo) );
@@ -37,15 +38,19 @@ public class SearchController {
 	// 검색 메인 ajax : 매물 목록 검색
 	@ResponseBody
 	@RequestMapping("searchPropertyByAddr.do")
-	public List<EstateVO> searchPropertyByAddr(EstateVO vo) {
+	public List<EstateVO> searchPropertyByAddr(EstSearchDTO temp) {
 		
-		List<EstateVO> result = service.searchListByAddr(vo); 
+		System.out.println(temp.toString());
+		
+		EstateVO vo = new EstateVO();
+		
+		List<EstateVO> result = service.searchListByAddr(temp); 
 		
 		return result;
 	}
 	
 	// 상세보기 페이지 이동
-	@RequestMapping("searchinfo.do")
+	@RequestMapping("searchinfo")
 	public String searchInfo(EstateVO vo,Model m) {
 		
 		EstateVO result = service.searchListById(vo);
