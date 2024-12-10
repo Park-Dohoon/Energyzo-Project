@@ -1189,7 +1189,8 @@ progress {
     -webkit-box-flex: 0;
     -ms-flex: 0 0 auto;
     flex: 0 0 auto;
-    width: 75%; }
+    width: 55%;
+     }
   .col-lg-10 {
     -webkit-box-flex: 0;
     -ms-flex: 0 0 auto;
@@ -1201,6 +1202,7 @@ progress {
     flex: 0 0 auto;
     width: 91.66667%; }
   .col-lg-12 {
+  	text-align: center;
     -webkit-box-flex: 0;
     -ms-flex: 0 0 auto;
     flex: 0 0 auto;
@@ -9690,13 +9692,17 @@ textarea {
     z-index: 2; }
   .hero .heading {
     color: #fff;
-    font-size: clamp(2rem, 2.5vw, 2.5rem);
+    font-size: clamp(2rem, 3vw, 3rem);
     margin-bottom: 30px;
-    font-weight: 600; }
+    font-weight: 600; 
+    text-align: left;
+    margin-left:50px;
+    }
+    
     
    .hedding-sub2{
     color: #fff;
-    font-size: clamp(0.5rem, 2.5vw, 2.5rem);
+    font-size: clamp(0.5rem, 1.5vw, 1.5rem);
    } 
     
   .hero .lead {
@@ -9712,7 +9718,11 @@ textarea {
     padding-left: 20px;
     padding-right: 20px;
     border: none;
-    border-radius: 30px; }
+    border-radius: 30px; 
+    width: 100%; /* 원하는 크기로 설정 */
+    
+    }
+    
     .hero .form-search .form-control:hover, .hero .form-search .form-control:focus {
       outline: none;
       -webkit-box-shadow: none;
@@ -10587,4 +10597,6 @@ body{
 .agent .agent-content .social-icons li a {
     padding: 8px 15px
 }
+
+
 

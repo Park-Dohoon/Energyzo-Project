@@ -14,4 +14,7 @@ public interface SellerRepository {
 	
 	public void insertOption(EstOptionVO vo);
 	
+	public EstateVO updateItem(EstateVO vo);
+
+	
 }

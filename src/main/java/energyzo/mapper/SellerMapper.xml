@@ -71,4 +71,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 	</insert>
 
+
+<!-- 부동산 매물 정보 수정 -->
+<update id="updateItem" parameterType="com.energyzo.javaproject.model.vo.EstateVO">
+    UPDATE ESTATE_TB
+    SET 
+        agent_num = #{agent_num},
+        est_type = #{est_type},
+        est_tra_type = #{est_tra_type},
+        est_tra_cond = #{est_tra_cond},
+        est_addr = #{est_addr},
+        est_m_area = #{est_m_area},
+        est_m_floor = #{est_m_floor},
+        est_jungong = #{est_jungong}
+    WHERE 
+        est_id = #{est_id}
+</update>
+
+
 </mapper>

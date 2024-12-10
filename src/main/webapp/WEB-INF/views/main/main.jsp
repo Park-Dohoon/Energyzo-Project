@@ -47,7 +47,7 @@
       <div class="site-navigation">
         <!-- 왼쪽 메뉴 -->
         <ul class="menu-left js-clone-nav d-none d-lg-inline-block text-start site-menu">
-          <li class="active"><a href="index.html">매물 검색</a></li>
+          <li class="#"><a href="index.html">매물 검색</a></li>
           <li><a href="properties.html">추천매물</a></li>
           <li>
             <a href="about.html">자유게시판</a>
@@ -143,8 +143,8 @@
     <div class="section">
       <div class="container">
         <div class="row mb-5 align-items-center">
-          <div class="col-lg-6">
-          	<h8>서초동 | 월세 무제한 | 전세무제한 검색 조건으로 추천된 매물입니다.</h8>
+		  <div class="col-lg-12"> <!-- col-lg-6을 col-lg-12로 변경 -->
+          	<h5>서초동 | 월세 무제한 | 전세무제한 검색 조건으로 추천된 매물입니다.</h5>
             <h2 class="font-weight-bold text-primary heading">
               방 잇다가 딱 맞는 서초동 매물을 추천했어요
             </h2>
@@ -567,13 +567,14 @@
 <h6 class="mb-4" style="margin-bottom:20px">아래의 버튼을 통해 계약서 양식과 정부24 링크로 이동할 수 있습니다</h6>
           <p>
             <a
-              href="#"
+              href="resources/static/file/주택임대차 표준계약서(사용용).hwp"
+               download="주택임대차 표준계약서(사용용).hwp"
               target="_blank"
               class="btn btn-primary text-white py-3 px-4"
               >계약서 양식 다운로드</a
             >
       		   <a
-              href="#"
+              href="https://www.gov.kr/portal/main/nologin"
               target="_blank"
               class="btn2 btn-primary2 py-3 px-4"
               >정부24로 이동</a
