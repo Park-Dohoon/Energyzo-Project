@@ -162,7 +162,7 @@ $(function() {
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-chart-area"></i>
 							</div> Charts
-						</a> <a class="nav-link" href="resources/static/table/tables.html">
+						</a> <a class="nav-link" href="tabletest.do">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-table"></i>
 							</div> 자유게시판
@@ -180,13 +180,13 @@ $(function() {
 				<div class="container-fluid px-4">
 					<h1 class="mt-4">자유게시판</h1>
 					<ol class="breadcrumb mb-4">
-						<li class="breadcrumb-item"><a href=''>메인페이지</a></li>
+						<li class="breadcrumb-item"><a href='/main.do'>메인페이지</a></li>
 						<li class="breadcrumb-item active">자유게시판</li>
 					</ol>
 					<div class="card mb-4"></div>
 					<div class="card mb-4">
 						<div class="card-header">
-							<i class="fas fa-table me-1"></i> 전체목록
+							<i class="fas fa-table me-1"></i>전체목록
 						</div>
 						<c:if test="${not empty loggedInUser}">
 							<p>로그인한 사용자: ${loggedInUser}</p>
