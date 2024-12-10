@@ -59,7 +59,7 @@ $(function() {
 
 		//글쓰기 버튼 이벤트
 		$('#newBoard').on('click', function() {
-			window.location = 'insertBoard';
+			window.location = 'insertBoard.do';
 		});
 	});
 </script>

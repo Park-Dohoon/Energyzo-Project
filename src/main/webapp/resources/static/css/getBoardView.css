@@ -68,7 +68,7 @@ button {
 	color: white;
 }
 
-/* 신고버튼 */
+/* 신고하기 버튼 */
 #report {
 	background-color: #005555;
 	color: white;
@@ -87,7 +87,7 @@ button {
 	height: 8%;
 }
 
-/* 신고확인버튼 */
+/* 신고 버튼 */
 #reportConfirm {
 	background-color: #005555;
 	color: white;
@@ -110,6 +110,11 @@ button {
 #content {
 	background-color: white;
 	height: 271px;
+}
+
+#text {
+	position: relative;
+	width: 99%;
 }
 
 #cnt {

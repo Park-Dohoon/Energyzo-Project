@@ -45,9 +45,15 @@ $(function(){
 			// 로그인한 사용자랑 작성자랑 같으면 신고 버튼 가리기
 			if(  boardWriter === "<%= loggedInUser %>") {
 				reportBtn.addClass('hidden');
+				// 사용자랑 작성자랑 같으면 hidden 클래스 제거
+				modifyBtn.removeClass('hidden');
+				deleteBtn.removeClass('hidden');
 			}else {
 				// 다르면 hidden 클래스 제거
 				reportBtn.removeClass('hidden');
+				// 다르면 hidden 클래스 추가
+				modifyBtn.addClass('hidden');
+				deleteBtn.addClass('hidden');
 			}
 		} else {
 			// 비로그인 상태일 때 hidden 클래스를 추가

@@ -18,6 +18,22 @@
 </head>
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
 	crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+    $(function() {
+        $('#submit').click(function(event) {
+            // 제목과 내용이 비어있는지 확인
+            let title = $('#free_title').val().trim();
+            let content = $('#free_cont').val().trim();
+            
+            // 제목과 내용이 비어 있으면 경고 메시지
+            if (title === "" || content === "") {
+                event.preventDefault(); // 폼 제출 막기
+                alert("제목과 내용을 모두 입력해주세요.");
+            }
+        });
+    });
+</script>
 </head>
 <body id='insertbody' class="sb-nav-fixed">
 	<div class='container'>
@@ -31,12 +47,11 @@
 					</ol>
 					<div class="card mb-4"></div>
 					<h1 id='main-title' class="mt-4">새글쓰기</h1>
-					
 						<form id='insertBoard' action='insertBoardSave.do' method="post" class="form-horizontal">
 							<table class="table table-striped table-bordered" id='insertBoardTable'>
 								<tr>
 									<th id='title' style="font-size: 90%">제목</th>
-									<td id='title'><input class="form-control"  type='text' name='free_title'></td>
+									<td id='title'><input id='free_title' class="form-control"  type='text' name='free_title'></td>
 								</tr>
 								<tr>
 									<th id='user' style="font-size: 90%">작성자</th>
@@ -45,7 +60,7 @@
 								</tr>
 								<tr>
 									<th id='content' style="font-size: 90%">내용</th>
-									<td id='content'><textarea class="form-control" id='cont' rows="15" cols="120" name='free_cont'></textarea></td>
+									<td id='content'><textarea id='free_cont' class="form-control" id='cont' rows="15" cols="120" name='free_cont'></textarea></td>
 								</tr>
 							</table>
 							<span>
@@ -61,7 +76,6 @@
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 		crossorigin="anonymous"></script>
-	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 	<script src="resources/static/js/scripts.js"></script>
 	<script src="resources/static/js/button.js"></script>
 	<script src="resources/static/js/datatables-simple-demo.js"></script>

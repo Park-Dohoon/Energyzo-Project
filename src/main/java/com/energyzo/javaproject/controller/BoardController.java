@@ -27,15 +27,18 @@ public class BoardController {
 	
     // 로그인 폼 제출 후 처리하는 메서드
     @PostMapping("loginPage.do")
-    public String login(@ModelAttribute UserVO uvo, HttpServletRequest request) {
+    public String login(@ModelAttribute UserVO uvo, HttpServletRequest request, @RequestParam(required = false) String redirectUrl) {
     	UserVO user = service.login(uvo);
         if(user != null) {
         	// 로그인 성공 시, 세션에 사용자 정보를 저장
         	HttpSession session = request.getSession();
         	session.setAttribute("loggedInUser", uvo.getUser_id());  // 세션에 사용자 정보 저장
-        	return "redirect:/tabletest.do";  // 로그인 후 게시판 목록 페이지로 이동
+        	
+            // 로그인 후 게시판 목록 페이지로 이동
+        	return "redirect:/tabletest.do";
         }
-        return "redirect:/login.do";  // 로그인 실패 시 다시 로그인 페이지로 이동
+        // 로그인 실패 시 다시 로그인 페이지로 이동
+        return "redirect:/login.do";  
     }
 	
 	// 게시글 목록보기
@@ -83,15 +86,10 @@ public class BoardController {
 	// 게시글 입력
 	@RequestMapping("insertBoardSave.do")
 	public String insertBoardSave(@ModelAttribute BoardVO bvo, HttpSession session) {
-		if (bvo.getFree_title() == null || bvo.getFree_title().isEmpty() || 
-				bvo.getFree_cont() == null || bvo.getFree_cont().isEmpty()) {
-	            // 입력값이 없다면 목록 화면으로 리다이렉트
-	            return "redirect:/tabletest.do";
-	        }
-		
+		// 세션에 저장된 유저id가져오기
 		String userId = (String)session.getAttribute("loggedInUser");
 		
-		
+		// 게시글 작성자 처리
 		if (userId != null) {
 			bvo.setUser_id(userId);
 		}
