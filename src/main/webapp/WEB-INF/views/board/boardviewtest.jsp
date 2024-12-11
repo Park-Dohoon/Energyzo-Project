@@ -17,6 +17,10 @@
 	rel="stylesheet" />
 <link href="resources/static/css/styles.css" rel="stylesheet" />
 <link href="resources/static/css/board.css" rel="stylesheet">
+
+<!-- favicon -->
+<link rel="shortcut icon" href="../resources/static/base_template/favicon.png" type="image/x-icon" />
+
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
 	crossorigin="anonymous"></script>
 <script src="https://api.jquery.com/jquery.ajax/"></script>
@@ -28,46 +32,56 @@ $(function() {
 	let loggedInUser = "${loggedInUser}";
 	console.log("loggedInUser: ", loggedInUser); 
 	
+//	let reported = $(reported);
+	
 	// 세션에 저장된 게시글번호랑 작성자 값 가져오기 및 확인
-	let reportBoard = localStorage.getItem('reportBoard');
- 	let boardWriter = localStorage.getItem('boardWriter');
+ 	let reportBoard = localStorage.getItem('reportBoard');
+	let boardWriter = localStorage.getItem('boardWriter');
+	
 	// 브라우저 콘솔에 찍기
 	console.log('저장된 게시글: ' + reportBoard);
- 	console.log('저장된 작성자: ' + boardWriter);
+
 	
- // 신고 후 가리기
-    if (reportBoard && loggedInUser !== boardWriter) {
+	// 신고 후 가리기
+     if (reportBoard && loggedInUser === boardWriter) {
         // 신고된 게시글이 있다면, 해당 게시글을 가리기
         $("tr").each(function() {
             // 게시글 번호와 일치하는 행을 찾아서 숨기기
             if ($(this).find("td:first").text() === reportBoard) {
 				$(this).addClass('hidden'); // 게시글 숨기기
             }
-        });
+        }); 
     }
 		
-		// 로그인시 글쓰기 버튼추가, 아닐시 버튼 지우기
-		if (loggedInUser && loggedInUser.trim() !== "") {
-			// datatable-info 앞에 동적으로 버튼 추가 및 버튼 있을때 클래스 위치 조정
-			$('.datatable-info').before('<button id="newBoard">글쓰기</button>');
-			$('.datatable-info').css({'position': 'relative', 'right': '5%', 'left': 'auto'});
-		} else {
-			// 버튼 지우기 및 버튼없을때 datatable-info 클래스 위치조정
-			$('#newBoard').remove();
-			$('.datatable-info').css({'position': 'relative'});
-		}
+	// 로그인시 글쓰기 버튼추가, 아닐시 버튼 지우기
+	if (loggedInUser && loggedInUser.trim() !== "") {
+		// datatable-info 앞에 동적으로 버튼 추가 및 버튼 있을때 클래스 위치 조정
+		$('.datatable-info').before('<button id="newBoard">글쓰기</button>');
+		$('.datatable-info').css({'position': 'relative', 'right': '5%', 'left': 'auto'});
+	} else {
+		// 버튼 지우기 및 버튼없을때 datatable-info 클래스 위치조정
+		$('#newBoard').remove();
+		$('.datatable-info').css({'position': 'relative'});
+	}
 
-		//글쓰기 버튼 이벤트
-		$('#newBoard').on('click', function() {
-			window.location = 'insertBoard.do';
-		});
+	//글쓰기 버튼 이벤트
+	$('#newBoard').on('click', function() {
+		window.location = 'insertBoard.do';
 	});
+	// 게시글 갯수 보여주는 템플릿 div의 글씨만 지우기
+	$('.datatable-info').remove();
+	// 셀렉트 태그 옆에 글씨만 지우기
+ 	$('.datatable-dropdown label').contents().filter(function() {
+	// 텍스트 노드만 선택
+	return this.nodeType === 3;
+	}).remove();
+});
 </script>
 </head>
 <body class="sb-nav-fixed">
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
 		<!-- Navbar Brand-->
-		<a class="navbar-brand ps-3" href="resources/static/table/index.html">방잇다</a>
+		<a class="navbar-brand ps-3" href="resources/static/index.html">방잇다</a>
 		<!-- Sidebar Toggle-->
 		<button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
 			id="sidebarToggle" href="#!">
@@ -99,14 +113,14 @@ $(function() {
 				</ul></li>
 		</ul>
 	</nav>
-	<div id="layoutSidenav" class='container'>
+	<div id="layoutSidenav">
 		<div id="layoutSidenav_nav">
 			<nav class="sb-sidenav accordion sb-sidenav-dark"
 				id="sidenavAccordion">
 				<div class="sb-sidenav-menu">
 					<div class="nav">
 						<div class="sb-sidenav-menu-heading">Core</div>
-						<a class="nav-link" href="index.html">
+						<a class="nav-link" href="resources/static/index.html">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-tachometer-alt"></i>
 							</div> 메인페이지
@@ -170,8 +184,16 @@ $(function() {
 					</div>
 				</div>
 				<div class="sb-sidenav-footer">
+				<c:if test="${not empty loggedInUser}">
 					<div class="small">Logged in as:</div>
-					방잇다
+					${loggedInUser}
+				</c:if>
+					<c:if test="${empty loggedInUser}">
+						<p>
+							로그인하지 않았습니다.<br>
+							<a href="login.do">로그인</a>
+						</p>
+					</c:if>
 				</div>
 			</nav>
 		</div>
@@ -180,7 +202,7 @@ $(function() {
 				<div class="container-fluid px-4">
 					<h1 class="mt-4">자유게시판</h1>
 					<ol class="breadcrumb mb-4">
-						<li class="breadcrumb-item"><a href='/main.do'>메인페이지</a></li>
+						<li class="breadcrumb-item"><a href=''>메인페이지</a></li>
 						<li class="breadcrumb-item active">자유게시판</li>
 					</ol>
 					<div class="card mb-4"></div>
@@ -188,14 +210,6 @@ $(function() {
 						<div class="card-header">
 							<i class="fas fa-table me-1"></i>전체목록
 						</div>
-						<c:if test="${not empty loggedInUser}">
-							<p>로그인한 사용자: ${loggedInUser}</p>
-						</c:if>
-						<c:if test="${empty loggedInUser}">
-							<p>
-								로그인하지 않았습니다.<a href="login.do">로그인</a>
-							</p>
-						</c:if>
 						<div class="card-body">
 							<table id="datatablesSimple">
 								<thead>

@@ -11,7 +11,7 @@ body {
 th {
 	text-align: center;
 	vertical-align: middle;
-	width: 5%;
+	width: 70px;
 }
 
 table {
@@ -43,21 +43,12 @@ table {
 	right: 10%;
 }
 
-#main-title {
-	font-size: 2rem;
-	margin-top: 5%; /* 화면 상단에서 5% 떨어지게 */
-	margin-bottom: 30px; /* 타이틀과 콘텐츠 간 간격을 충분히 확보 */
-	text-align: center; /* 가운데 정렬 */
-	font-size: 2rem;
-	margin-bottom: 30px; /* 타이틀과 콘텐츠 간 간격을 충분히 확보 */
-}
-
 /* 템플릿 버튼제외 모든 버튼들 */
 #submit, #newBoard, #reset, #back {
 	border: 2px  solid #005555;
 	background-color: #005555;
 	color: white;
-	position: fixed;
+	position: relative;
 	border-radius: 10px;
 	text-align: center;
 }
@@ -66,33 +57,30 @@ table {
 #newBoard {
 	position: relative;
 	left: 95%;
-	width: 5%;
-	height: 5%;
+	width: 110px;
+	height: 50px;
 }
 
-/* 작성완료 버튼 */
+/* 등록하기 버튼 */
 #submit {
-	left: 68.5%;
-	height: 5%;
-	width: 5%;
-	font-size: 125%;
+	left: 78.3%;
+	height: 50px;
+	width: 90px;
 }
 
 /* 작성취소 버튼 */
 #reset {
 	background-color: white;
 	color: #005555;
-	left: 63%;
-	height: 5%;
-	width: 5%;
-	font-size: 125%;
+	left: 77%;
+	height: 50px;
+	width: 90px;
 }
 
 /* 돌아가기 버튼 */
 #back {
-	height: 5%;
-	width: 5%;
-	font-size: 125%;
+	height: 50px;
+	width: 90px;
 }
 #content {
 	background-color: #005555;

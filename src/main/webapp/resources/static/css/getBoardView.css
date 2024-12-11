@@ -38,32 +38,34 @@ table {
 #submit, #delete, #modify, #boardList,
 #report, #close , #reportConfirm  { 
 	border: 2px solid #005555;
-	position: fixed;
+	position: relative;
 	border-radius: 10px;
-	height: 47px;
-	width: 89px;
+	height: 52px;
+	width: 90px;
 }
 
 /* 수정완료버튼 */
 #submit {
 	background-color: white;
 	color: #005555;
-	left: 70%;
+	left: 85.5%;
 }
 
 /* 삭제버튼 */
 #delete {
 	background-color: #005555;
 	color: white;
-	left: 68.5%;
+	left: 78.3%;
 }
 
+/* 수정하기 버튼 */
 #modify {
 	background-color: white;
 	color: #005555;
-	left: 63%;
+	left: 77%;
 }
 
+/* 목록보기 버튼 */
 #boardList {
 	background-color: #005555;
 	color: white;
@@ -73,17 +75,17 @@ table {
 #report {
 	background-color: #005555;
 	color: white;
-	top: 25%;
-	left: 68.5%;
+	margin-bottom: 15px;
+	left: 93%;
 }
 
 /* 취소버튼 */
 #close {
 	background-color: white;
 	color: #005555;
-	position: absolute;
-	top: 83%;
-	left: 89%;
+	position: relative;
+	top: 16%;
+	left: 80%;
 	width: 89px;
 	height: 47px;
 }
@@ -92,10 +94,14 @@ table {
 #reportConfirm {
 	background-color: #005555;
 	color: white;
-	position: absolute;
-	top: 83%;
+	position: relative;
+	top: 16%;
 	width: 89px;
 	height: 47px;
+}
+
+.py-4bg-lightmt-auto {
+
 }
 
 #call {
@@ -115,7 +121,7 @@ table {
 
 #text {
 	position: relative;
-	width: 99%;
+	width: 100%;
 }
 
 #cnt {
