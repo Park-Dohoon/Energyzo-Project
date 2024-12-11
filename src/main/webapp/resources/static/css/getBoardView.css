@@ -35,19 +35,20 @@ table {
 }
 
 /* 전체 버튼 기본베이스 */
-button { 
+#submit, #delete, #modify, #boardList,
+#report, #close , #reportConfirm  { 
 	border: 2px solid #005555;
 	position: fixed;
 	border-radius: 10px;
-	height: 5%;
-	width: 5%;
+	height: 47px;
+	width: 89px;
 }
 
 /* 수정완료버튼 */
 #submit {
 	background-color: white;
 	color: #005555;
-	left: 68.5%;
+	left: 70%;
 }
 
 /* 삭제버튼 */
@@ -83,8 +84,8 @@ button {
 	position: absolute;
 	top: 83%;
 	left: 89%;
-	width: 8%;
-	height: 8%;
+	width: 89px;
+	height: 47px;
 }
 
 /* 신고 버튼 */
@@ -93,8 +94,8 @@ button {
 	color: white;
 	position: absolute;
 	top: 83%;
-	width: 8%;
-	height: 8%;
+	width: 89px;
+	height: 47px;
 }
 
 #call {
