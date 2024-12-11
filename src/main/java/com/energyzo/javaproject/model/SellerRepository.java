@@ -16,5 +16,8 @@ public interface SellerRepository {
 	
 	public EstateVO updateItem(EstateVO vo);
 
+	public void deleteOptions(Integer est_id);
+	
+	public void updateCompletionDate(Integer est_id);
 	
 }

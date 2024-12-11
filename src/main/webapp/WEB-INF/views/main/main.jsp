@@ -25,7 +25,11 @@
     <link rel="stylesheet" href="resources/static/css/aos.css" />
     <link rel="stylesheet" href="resources/static/css/stylemain.css" />
     <link rel="stylesheet" href="resources/static/css/nev.css" />
-    <script src="resources/static/js/loginheader.js"></script>
+	
+	<!-- Bootstrap JS 추가 (헤드 섹션 또는 바디 끝에 추가) 건들지말것!!!-->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+
 
     <title>
       Property &mdash; Free Bootstrap 5 Website Template by Untree.co
@@ -64,19 +68,29 @@
 		  class="menu-right js-clone-nav d-none d-lg-inline-block text-end site-menu"
 		>
   <!-- 로그인 상태 -->
-		  <li class="logged-in d-none"><a href="#">판매자 전환</a></li>
-		  <li class="logged-in d-none">
-		    <a href="#">
-		      <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-		        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-		        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
-		      </svg>
-		    </a>
-		  </li>
+		<li class="logged-in d-none">
+		  <a href="#">판매자 전환</a>
+		</li>
+		<li class="logged-in d-none">
+		  <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+		    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+		      <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+		      <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+		    </svg>
+		    <!-- SVG 아래에 사용자 이름을 표시 -->
+		    <span id="username" style="display: inline-block; margin-top: 5px;">${sessionScope.showNewLoginPage}</span>
+		  </a>
+		  <!-- 드롭다운 메뉴 -->
+		  <ul class="dropdown-menu">
+		    <li><a class="dropdown-item" href="#">마이페이지</a></li>
+			<li><a class="dropdown-item" href="logout.do">로그아웃</a></li>
+		  </ul>
+		</li>
+
 		
 		  <!-- 비로그인 상태 -->
-		  <li class="logged-out d-none"><a href="signup.html">회원가입</a></li>
-		  <li class="logged-out d-none"><a href="login.html">로그인</a></li>
+		  <li class="logged-out d-none"><a href="user/policy.do">회원가입</a></li>
+		  <li class="logged-out d-none"><a href="user/newlogin2.do">로그인</a></li>
 		</ul>
 
 
@@ -532,39 +546,39 @@
     </div>
     
     
-  <div class="fixed-box">
-  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
-  <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/>
-</svg>
-    <a href="https://www.gov.kr/portal/main/nologin">정부24</a>
-    <hr>
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
-  <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/>
-  <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"/>
-</svg>
-    <a href="resources/static/file/주택임대차 표준계약서(사용용).hwp" download="주택임대차 표준계약서(사용용).hwp">계약서 양식</a>
- 	<hr>
- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat" viewBox="0 0 16 16">
-  <path d="M2.678 11.894a1 1 0 0 1 .287.801 11 11 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8 8 0 0 0 8 14c3.996 0 7-2.807 7-6s-3.004-6-7-6-7 2.808-7 6c0 1.468.617 2.83 1.678 3.894m-.493 3.905a22 22 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a10 10 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9 9 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105"/>
-</svg> 
-    <a href="http://pf.kakao.com/_XEwMn">챗봇</a>
- <hr>
- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-qr-code" viewBox="0 0 16 16">
-  <path d="M2 2h2v2H2z"/>
-  <path d="M6 0v6H0V0zM5 1H1v4h4zM4 12H2v2h2z"/>
-  <path d="M6 10v6H0v-6zm-5 1v4h4v-4zm11-9h2v2h-2z"/>
-  <path d="M10 0v6h6V0zm5 1v4h-4V1zM8 1V0h1v2H8v2H7V1zm0 5V4h1v2zM6 8V7h1V6h1v2h1V7h5v1h-4v1H7V8zm0 0v1H2V8H1v1H0V7h3v1zm10 1h-1V7h1zm-1 0h-1v2h2v-1h-1zm-4 0h2v1h-1v1h-1zm2 3v-1h-1v1h-1v1H9v1h3v-2zm0 0h3v1h-2v1h-1zm-4-1v1h1v-2H7v1z"/>
-  <path d="M7 12h1v3h4v1H7zm9 2v2h-3v-1h2v-1z"/>
-</svg>
-    <a href="resources/static/images/QR.png">챗봇QR</a>
-  </div>
+	  <div class="fixed-box">
+	  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+	  <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/>
+	</svg>
+	    <a href="https://www.gov.kr/portal/main/nologin">정부24</a>
+	    <hr>
+	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+	  <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/>
+	  <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"/>
+	</svg>
+	    <a href="resources/static/file/주택임대차 표준계약서(사용용).hwp" download="주택임대차 표준계약서(사용용).hwp">계약서 양식</a>
+	 	<hr>
+	 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat" viewBox="0 0 16 16">
+	  <path d="M2.678 11.894a1 1 0 0 1 .287.801 11 11 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8 8 0 0 0 8 14c3.996 0 7-2.807 7-6s-3.004-6-7-6-7 2.808-7 6c0 1.468.617 2.83 1.678 3.894m-.493 3.905a22 22 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a10 10 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9 9 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105"/>
+	</svg> 
+	    <a href="http://pf.kakao.com/_XEwMn">챗봇</a>
+	 <hr>
+	 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-qr-code" viewBox="0 0 16 16">
+	  <path d="M2 2h2v2H2z"/>
+	  <path d="M6 0v6H0V0zM5 1H1v4h4zM4 12H2v2h2z"/>
+	  <path d="M6 10v6H0v-6zm-5 1v4h4v-4zm11-9h2v2h-2z"/>
+	  <path d="M10 0v6h6V0zm5 1v4h-4V1zM8 1V0h1v2H8v2H7V1zm0 5V4h1v2zM6 8V7h1V6h1v2h1V7h5v1h-4v1H7V8zm0 0v1H2V8H1v1H0V7h3v1zm10 1h-1V7h1zm-1 0h-1v2h2v-1h-1zm-4 0h2v1h-1v1h-1zm2 3v-1h-1v1h-1v1H9v1h3v-2zm0 0h3v1h-2v1h-1zm-4-1v1h1v-2H7v1z"/>
+	  <path d="M7 12h1v3h4v1H7zm9 2v2h-3v-1h2v-1z"/>
+	</svg>
+	    <a href="resources/static/images/QR.png">챗봇QR</a>
+	  </div>
 
 
     <div class="section"  style="background-color: white;">
       <div class="row justify-content-center footer-cta" data-aos="fade-up">
         <div class="col-lg-7 mx-auto text-center">
           <h2 class="mb-4">방 잇다는 고객과의 신뢰의 약속입니다</h2>
-<h6 class="mb-4" style="margin-bottom:20px">아래의 버튼을 통해 계약서 양식과 정부24 링크로 이동할 수 있습니다</h6>
+			<h6 class="mb-4" style="margin-bottom:20px">아래의 버튼을 통해 계약서 양식과 정부24 링크로 이동할 수 있습니다</h6>
           <p>
             <a
               href="resources/static/file/주택임대차 표준계약서(사용용).hwp"
@@ -699,6 +713,30 @@
     <script src="resources/static/js/navbar.js"></script>
     <script src="resources/static/js/counter.js"></script>
     <script src="resources/static/js/custom.js"></script>
+
+<!-- 지우지 말것!!!!!! js로 빼지도 말것 못 가지고 옴 -->
+	<script type="text/javascript">
+	
+    document.addEventListener("DOMContentLoaded", () => {
+        const userId = "${sessionScope.showNewLoginPage}";  
+        console.log(userId);
+
+        const loggedInElements = document.querySelectorAll(".logged-in");
+        const loggedOutElements = document.querySelectorAll(".logged-out");
+
+        if (userId) {  // userId가 있으면 로그인 상태
+            loggedInElements.forEach((el) => el.classList.remove("d-none"));
+            loggedOutElements.forEach((el) => el.classList.add("d-none"));
+        } else {  // userId가 없으면 비로그인 상태
+            loggedInElements.forEach((el) => el.classList.add("d-none"));
+            loggedOutElements.forEach((el) => el.classList.remove("d-none"));
+        }
+    });
+	
+	
+	
+	</script>
+
 
 
 </body>

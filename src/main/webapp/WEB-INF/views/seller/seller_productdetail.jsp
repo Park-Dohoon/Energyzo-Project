@@ -90,6 +90,17 @@ $(function(){
 		$('.btn-tag[value="'+tagArr[i]+'"]').css({"background-color":"#055", "color":"white"});
 	}
 	
+	//***********************************************
+	//폼에 넘기기 전에 무조건 옵션 먼저 업데이트를 시켜줘야 함
+	$('form').on('submit', function(e) {
+	    let selectedTags = [];
+	    $('.btn-tag[onoff="true"]').each(function() {
+	        selectedTags.push($(this).val());
+	    });
+	    $('#tagArray').val(selectedTags.join(" "));  // 선택된 태그 값을 hidden input에 설정
+	});
+
+	
 })
 
 </script>
@@ -124,9 +135,7 @@ $(function(){
 					class="fas fa-user fa-fw"></i></a>
 				<ul class="dropdown-menu dropdown-menu-end"
 					aria-labelledby="navbarDropdown">
-					<li><a class="dropdown-item" href="#!">Settings</a></li>
-					<li><a class="dropdown-item" href="#!">Activity Log</a></li>
-					<li><hr class="dropdown-divider" /></li>
+
 					<li><a class="dropdown-item" href="#!">Logout</a></li>
 				</ul></li>
 		</ul>
@@ -138,7 +147,7 @@ $(function(){
 				<div class="sb-sidenav-menu">
 					<div class="nav">
 						<div class="sb-sidenav-menu-heading">판매자 페이지</div>
-						<a class="nav-link" href="seller.do">
+						<a class="nav-link" href="../seller.do">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-tachometer-alt"></i>
 							</div> 판매자 정보
@@ -148,12 +157,12 @@ $(function(){
 								<i class="fas fa-tachometer-alt"></i>
 							</div> 파워링크 등급
 						</a> -->
-						<a class="nav-link" href="productmanagement.do">
+						<a class="nav-link" href="../productmanagement.do">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-chart-area"></i>
 							</div> 상품 관리
 						</a> 
-						<a class="nav-link" href="paymenthistory.do">
+						<a class="nav-link" href="../paymenthistory.do">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-table"></i>
 							</div> 결제 내역
@@ -277,34 +286,35 @@ $(function(){
                     </div>
                     
                     <input id='tagArray' name='tagArray' type='hidden' value='${item.tagArray}'>
-                    
+                   
                     <label for="btn-tag" class="form-label">태그선택</label><br>
                     <div style="border: solid lightgray 1px; border-radius: 0.375rem; padding: 2%;">
                     <span id='tagListTable'>
-						<button class='btn btn-primary btn-tag' onoff='false' value='보안'		>보안		</button>
-						<button class='btn btn-primary btn-tag' onoff='false' value='세탁기'		>세탁기	</button>
-						<button class='btn btn-primary btn-tag' onoff='false' value='침대'		>침대		</button>
-						<button class='btn btn-primary btn-tag' onoff='false' value='제습기'		>제습기	</button>
-						<button class='btn btn-primary btn-tag' onoff='false' value='전자레인지'	>전자레인지</button>
-						<button class='btn btn-primary btn-tag' onoff='false' value='가스레인지'	>가스레인지</button>
-						<button class='btn btn-primary btn-tag' onoff='false' value='인덕션'		>인덕션	</button>
-						<button class='btn btn-primary btn-tag' onoff='false' value='건조기'		>건조기	</button>
-						<button class='btn btn-primary btn-tag' onoff='false' value='난방종류'		>난방종류	</button>
-						<button class='btn btn-primary btn-tag' onoff='false' value='책상'		>책상		</button>
-						<button class='btn btn-primary btn-tag' onoff='false' value='냉장고'		>냉장고	</button>
-						<button class='btn btn-primary btn-tag' onoff='false' value='신발장'		>신발장	</button>
-						<button class='btn btn-primary btn-tag' onoff='false' value='싱크대'		>싱크대	</button>
-						<button class='btn btn-primary btn-tag' onoff='false' value='옷장'		>옷장		</button>
+						<button  type="button"  class='btn btn-primary btn-tag' onoff='false' value='보안'		>보안		</button>
+						<button  type="button" class='btn btn-primary btn-tag' onoff='false' value='세탁기'		>세탁기	</button>
+						<button  type="button" class='btn btn-primary btn-tag' onoff='false' value='침대'		>침대		</button>
+						<button type="button" class='btn btn-primary btn-tag' onoff='false' value='제습기'		>제습기	</button>
+						<button type="button" class='btn btn-primary btn-tag' onoff='false' value='전자레인지'	>전자레인지</button>
+						<button type="button" class='btn btn-primary btn-tag' onoff='false' value='가스레인지'	>가스레인지</button>
+						<button type="button" class='btn btn-primary btn-tag' onoff='false' value='인덕션'		>인덕션	</button>
+						<button type="button" class='btn btn-primary btn-tag' onoff='false' value='건조기'		>건조기	</button>
+						<button type="button" class='btn btn-primary btn-tag' onoff='false' value='난방종류'		>난방종류	</button>
+						<button type="button" class='btn btn-primary btn-tag' onoff='false' value='책상'		>책상		</button>
+						<button type="button" class='btn btn-primary btn-tag' onoff='false' value='냉장고'		>냉장고	</button>
+						<button type="button" class='btn btn-primary btn-tag' onoff='false' value='신발장'		>신발장	</button>
+						<button type="button" class='btn btn-primary btn-tag' onoff='false' value='싱크대'		>싱크대	</button>
+						<button type="button" class='btn btn-primary btn-tag' onoff='false' value='옷장'		>옷장		</button>
 					</span>
                     </div>
                     
                     <!-- 버튼 섹션 -->
                     <div class="btn-section">
 					    <button type="submit" class="btn btn-primary">수정</button>
+						<button type="submit" class="btn btn-primary" name="isSold" value="true">판매완료</button>
                         <button id="btn_cancel" class="btn btn-primary">등록취소</button>
                     </div>
-                   
-                   </form>
+                    </form>
+                  
                     
                 </div>
             </div>
@@ -360,7 +370,7 @@ $(function(){
                 }
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById('sample4_postcode').value = data.zonecode;
+               /*  document.getElementById('sample4_postcode').value = data.zonecode;
                 document.getElementById("sample4_roadAddress").value = roadAddr;
                 document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
                 
@@ -385,7 +395,50 @@ $(function(){
                 } else {
                     guideTextBox.innerHTML = '';
                     guideTextBox.style.display = 'none';
+                } */
+                
+                // 각 요소를 확인 후 값을 넣어준다.
+                var postcodeElement = document.getElementById('sample4_postcode');
+                if (postcodeElement) {
+                    postcodeElement.value = data.zonecode;
                 }
+
+                var roadAddressElement = document.getElementById("sample4_roadAddress");
+                if (roadAddressElement) {
+                    roadAddressElement.value = roadAddr;
+                }
+
+                var jibunAddressElement = document.getElementById("sample4_jibunAddress");
+                if (jibunAddressElement) {
+                    jibunAddressElement.value = data.jibunAddress;
+                }
+
+                var extraAddressElement = document.getElementById("sample4_extraAddress");
+                if (extraAddressElement) {
+                    if (roadAddr !== '') {
+                        extraAddressElement.value = extraRoadAddr;
+                    } else {
+                        extraAddressElement.value = '';
+                    }
+                }
+
+                // guide 요소도 확인 후 값을 설정
+                var guideTextBox = document.getElementById("guide");
+                if (guideTextBox) {
+                    if (data.autoRoadAddress) {
+                        var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+                        guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+                        guideTextBox.style.display = 'block';
+                    } else if (data.autoJibunAddress) {
+                        var expJibunAddr = data.autoJibunAddress;
+                        guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+                        guideTextBox.style.display = 'block';
+                    } else {
+                        guideTextBox.innerHTML = '';
+                        guideTextBox.style.display = 'none';
+                    }
+                }
+
             }
         }).open();
     }

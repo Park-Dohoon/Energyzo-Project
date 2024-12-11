@@ -109,4 +109,24 @@ public class SellerServiceImpl implements SellerService{
 		return repo.updateItem(vo); 
 	}
 	
+	
+	public void updateOpt(EstateVO vo) {
+	    // 기존 옵션 삭제
+	    repo.deleteOptions(vo.getEst_id());
+
+	    // 새로운 옵션 추가
+	    StringTokenizer st = new StringTokenizer(vo.getTagArray());
+	    while(st.hasMoreTokens()) {
+	        EstOptionVO taginput = new EstOptionVO();
+	        taginput.setEst_id(vo.getEst_id());
+	        taginput.setEst_opt_name(st.nextToken());  // 새로운 태그를 하나씩 처리
+	        repo.insertOption(taginput);  // 새 옵션 DB에 추가
+	    }
+	}
+	
+	public void updateCompletionDate(Integer est_id) {
+
+		repo.updateCompletionDate(est_id);
+	}
+
 }

@@ -360,7 +360,7 @@ public class MyPageController {
 	public String productmanagement(Model model) {
 		
 
-		System.out.println("서연이 바보");
+		//System.out.println("서연이 바보");
 		
 		String user_id = "psbbsp303"; 
 		

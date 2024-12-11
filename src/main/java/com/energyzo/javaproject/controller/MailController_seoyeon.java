@@ -25,7 +25,7 @@ public class MailController_seoyeon {
    
 
     @ResponseBody
-    @GetMapping("/emailCheck.do") // 이 부분은 각자 바꿔주시면 됩니다. @RequestBody MailDTO mailDTO    
+    @GetMapping("/emailCheck_seoyeon.do") // 이 부분은 각자 바꿔주시면 됩니다. @RequestBody MailDTO mailDTO    
     public String emailCheck(String email, HttpServletRequest request) throws MessagingException, UnsupportedEncodingException {
        //String email = mailDTO.getEmail();
        //세션 객체 요청 가져오기
@@ -39,7 +39,7 @@ public class MailController_seoyeon {
     
    
     
-    @RequestMapping("verifyAuthCode2.do")
+    @RequestMapping("verifyAuthCode2_seoyeon.do")
     public String verifyAuthCode(HttpServletRequest request, @RequestParam("authCode") String userInputCode,  Model model) {
         // 세션에서 저장된 인증코드를 가져옴
         System.out.println("verifyAuthCode.do 요청 처리 중...");

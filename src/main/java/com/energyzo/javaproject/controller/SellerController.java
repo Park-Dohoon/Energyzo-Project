@@ -70,6 +70,7 @@ public class SellerController {
            @RequestParam(required = false) String file4,
            @RequestParam(required = false) String file5,
            @RequestParam(required = false) String file6,
+           @RequestParam(required = false, defaultValue = "false") Boolean isSold, // 판매완료 값
            @RequestParam String tagArray, Model m) {
 
        // EstateVO 객체 생성
@@ -84,15 +85,23 @@ public class SellerController {
        vo.setEst_m_floor(est_m_floor); // 관리층 설정
        vo.setEst_jungong(est_jungong); // 준공일자 설정
        vo.setTagArray(tagArray);       // 태그 정보 설정
-
-       // 업데이트 서비스 호출
+      // System.out.println("tagArray 값: " + tagArray); 
+       
+       //estate테이블로 업데이트
        service.updateItem(vo);
-       System.out.println("컨트롤러 진입");
+       service.updateOpt(vo);
+       
+       
+       if (isSold) {
+           service.updateCompletionDate(est_id); // 판매완료 처리
+       }
+       
+       
+       System.out.println("업데이트된 데이터: " + vo); // 확인용
        
        
        return "redirect:/productmanagement.do";
    }
-
 
 
    

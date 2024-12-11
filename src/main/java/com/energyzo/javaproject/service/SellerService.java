@@ -9,4 +9,8 @@ public interface SellerService {
 	
 	public EstateVO updateItem(EstateVO VO);
 	
+	public void updateOpt(EstateVO vo);
+	
+	public void updateCompletionDate(Integer est_id);
+	
 }

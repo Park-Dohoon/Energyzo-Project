@@ -72,6 +72,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 
 
+
+
 <!-- 부동산 매물 정보 수정 -->
 <update id="updateItem" parameterType="com.energyzo.javaproject.model.vo.EstateVO">
     UPDATE ESTATE_TB
@@ -87,6 +89,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     WHERE 
         est_id = #{est_id}
 </update>
+
+
+<!-- 기존 옵션을 삭제하는 쿼리 -->
+<delete id="deleteOptions" parameterType="java.lang.Integer">
+    DELETE FROM EST_OPT_TB
+    WHERE EST_ID = #{est_id}
+</delete>
+
+<update id="updateCompletionDate" parameterType="int">
+    UPDATE ESTATE_TB
+    SET est_tra_com_date = sysdate
+    WHERE est_id = #{est_id}
+</update>
+
+
+
 
 
 </mapper>

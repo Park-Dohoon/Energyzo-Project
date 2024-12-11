@@ -38,4 +38,11 @@ public class SellerRepositoryImpl implements SellerRepository{
  
 	}
 	
+	public void deleteOptions(Integer est_id) {
+	    sqlsession.delete("com.energyzo.javaproject.model.SellerRepository.deleteOptions", est_id);
+	}
+	
+	public void updateCompletionDate(Integer est_id) {
+		sqlsession.update("com.energyzo.javaproject.model.SellerRepository.updateCompletionDate", est_id);
+	}
 }

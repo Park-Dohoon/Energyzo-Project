@@ -5,76 +5,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.energyzo.javaproject.model.SearchRepository">
 	
-	<!-- 조건별 부동산 매물 검색 -->
+	<!-- 지역별 부동산 매물 검색 -->
 	<select id="searchListByAddr" 
-	parameterType	="com.energyzo.javaproject.model.vo.EstSearchDTO"
+	parameterType	="com.energyzo.javaproject.model.vo.EstateVO"
 	resultType		="com.energyzo.javaproject.model.vo.EstateVO">
-		SELECT 	DISTINCT et.est_id 	AS est_id
-				,et.agent_num		AS agent_num
-				,et.est_reg_date	AS est_reg_date
-				,et.est_type		AS est_type
-				,et.est_tra_type	AS est_tra_type
-				,et.est_tra_cond	AS est_tra_cond
-				,et.est_addr		AS est_addr
-				,et.est_m_area		AS est_m_area
-				,et.est_m_floor		AS est_m_floor
-				,et.est_jungong		AS est_jungong
-		FROM 	ESTATE_TB et
-				INNER JOIN EST_OPT_TB ot 
-				ON et.EST_ID = ot.EST_ID
-				INNER JOIN EST_OPT_LIST_TB olt
-				ON ot.EST_OPT_NUM = OLT.EST_OPT_NUM
+		SELECT 	*
+		FROM 	estate_tb
 		<where>
 			EST_ADDR LIKE '%${est_addr}%'
-			AND et.est_tra_com_date IS NULL
-			<!-- 조건2 - 종류 -->
-			<!-- 부동산 유형(아파트,단독다가구,연립다세대 ) -->
-			<if test='est_type != null and est_type != ""'>
-				AND et.est_type IN (${est_type})
-			</if>
-			<!-- 조건2 - 가격 -->
-			<!-- 상한가 적용 -->
-			<if test='est_tra_cond_max != null and est_tra_cond_max != 500000'>
-				AND et.est_tra_cond <![CDATA[ <= ]]> ${est_tra_cond_max}
-			</if>
-			<!-- 하한가 적용 -->
-			<if test='est_tra_cond_min != null and est_tra_cond_min != 0'>
-				AND et.est_tra_cond <![CDATA[ >= ]]> ${est_tra_cond_min}
-			</if>
-			<!-- 조건3 - 방 크기 -->
-			<!-- 상한 크기 적용 -->
-			<if test='est_m_area_max != null and est_m_area_max != 198'>
-				AND et.est_m_area <![CDATA[ <= ]]> ${est_m_area_max}
-			</if>
-			<!-- 하한크기 적용 -->
-			<if test='est_m_area_min != null and est_m_area_min != 33'>
-				AND et.est_m_area <![CDATA[ >= ]]> ${est_m_area_min}
-			</if>
-			<!-- 조건3 사용승인일 -->
-			<if test='est_sungin != null and est_sungin != 0 '>
-				<!-- 15년 이내 -->
-				<if test="est_sungin lte 15">
-					AND <![CDATA[ ( TO_CHAR(SYSDATE, 'yyyy') - et.EST_JUNGONG ) < ]]> ${est_sungin}
-				</if>
-				<!-- 15년 이상 -->
-				<if test="est_sungin eq 150">
-					AND <![CDATA[ ( TO_CHAR(SYSDATE, 'yyyy') - et.EST_JUNGONG ) >= 15 ]]>
-				</if>
-			</if>
-			<!-- 조건3 층 수 -->
-			<if test='est_m_floor != null and est_m_floor != 0 '>
-				AND et.EST_M_FLOOR IN (	SELECT 	e2.EST_M_FLOOR 
-										FROM 	ESTATE_TB e2 
-										WHERE 	e2.EST_M_FLOOR 		= DECODE(BITAND( ${est_m_floor}, 1),1,1,0)
-												OR e2.EST_M_FLOOR 	= DECODE(BITAND( ${est_m_floor}, 2),2,-1,0)
-												OR e2.EST_M_FLOOR 	>=DECODE(BITAND( ${est_m_floor}, 4),4,2,9999999999999999999999999999)
-										)
-			</if>
-			<!-- 조건4 - 태그 -->
-			<!-- 옵션별 검색 -->
-			<if test='tagArray != null and tagArray != ""'>
-				AND olt.EST_OPT_NAME IN (${tagArray})
-			</if>
 		</where>
 	</select> 
 	
@@ -105,7 +43,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</where>
 	</select>
 	
-	<!-- 매물에 부여된 이미지 검색 -->
+	<!-- 매물에 부여된 옵션 검색 -->
 	<select id="searchImgListById"
 	parameterType	="com.energyzo.javaproject.model.vo.EstateVO"
 	resultType		="com.energyzo.javaproject.model.vo.EstateImgDTO">
@@ -114,29 +52,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<where>
 			EST_ID = ${est_id}
 		</where>
-	</select>
-	
-	<!-- 판매자 ID로 판매자 검색 -->
-	<select id="getAgentInfoById"
-	parameterType	="com.energyzo.javaproject.model.vo.Adm_SalesVO"
-	resultType		="com.energyzo.javaproject.model.vo.Adm_SalesVO">
-		SELECT 	*
-		FROM 	AGENT_TB
-		<where>
-			AGENT_NUM = ${agent_num}
-		</where>
-	</select>
-	
-	<!-- 판매자 ID로 매물 검색 -->
-	<select id="searchListByAgentId"
-	parameterType	="com.energyzo.javaproject.model.vo.Adm_SalesVO"
-	resultType		="com.energyzo.javaproject.model.vo.EstateVO">
-		SELECT 	*
-		FROM 	ESTATE_TB
-		<where>
-			AGENT_NUM = ${agent_num}
-		</where>
-		ORDER BY EST_REG_DATE DESC
 	</select>
 	
 </mapper>

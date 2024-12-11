@@ -136,9 +136,7 @@ $(function(){
 					class="fas fa-user fa-fw"></i></a>
 				<ul class="dropdown-menu dropdown-menu-end"
 					aria-labelledby="navbarDropdown">
-					<li><a class="dropdown-item" href="#!">Settings</a></li>
-					<li><a class="dropdown-item" href="#!">Activity Log</a></li>
-					<li><hr class="dropdown-divider" /></li>
+
 					<li><a class="dropdown-item" href="#!">Logout</a></li>
 				</ul></li>
 		</ul>
@@ -150,7 +148,7 @@ $(function(){
 				<div class="sb-sidenav-menu">
 					<div class="nav">
 						<div class="sb-sidenav-menu-heading">판매자 페이지</div>
-						<a class="nav-link" href="seller.do">
+						<a class="nav-link" href="../seller.do">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-tachometer-alt"></i>
 							</div> 판매자 정보
@@ -160,12 +158,12 @@ $(function(){
 								<i class="fas fa-tachometer-alt"></i>
 							</div> 파워링크 등급
 						</a> -->
-						<a class="nav-link" href="productmanagement.do">
+						<a class="nav-link" href="../productmanagement.do">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-chart-area"></i>
 							</div> 상품 관리
 						</a> 
-						<a class="nav-link" href="paymenthistory.do">
+						<a class="nav-link" href="../paymenthistory.do">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-table"></i>
 							</div> 결제 내역

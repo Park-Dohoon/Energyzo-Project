@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="user">
+
+
+<insert id="memberInsert" parameterType="com.energyzo.javaproject.model.vo.MemberVO">
+
+    INSERT INTO USER_TB (USER_ID, NICK_NAME, PASSWORD, NAME, BIRTH, MOBILE, EMAIL, ADDRESS)
+    VALUES (
+        #{userId, jdbcType=VARCHAR}, 
+        #{nickName}, 
+        #{password}, 
+        #{name}, 
+        #{birth}, 
+        #{to}, 
+        #{email}, 
+        #{address}
+    )
+</insert>
+
+<select id="idcheck_Login" parameterType="com.energyzo.javaproject.model.vo.MemberVO" 
+							resultType="com.energyzo.javaproject.model.vo.MemberVO">
+		SELECT 
+			user_id userId
+			, password password
+			
+		FROM USER_TB
+		WHERE 
+			USER_ID=#{userId} 
+			<if test="password != null">
+			AND PASSWORD=#{password}
+			</if>
+</select>
+
+<select id="idcheck" parameterType="com.energyzo.javaproject.model.vo.MemberVO" 
+						resultType="com.energyzo.javaproject.model.vo.MemberVO">
+
+		SELECT * FROM USER_TB 
+		WHERE USER_ID=#{userId} 
+</select>
+
+
+<!-- 아이디 중복확인 -->
+<select id="isUserIdExist" 	resultType="Integer">
+
+		SELECT COUNT(*)  
+		FROM USER_TB 
+		WHERE USER_ID=#{userId} 
+</select>
+
+<!-- 닉네임 중복확인 -->
+<select id="isUserNickExist" resultType="Integer">
+
+		SELECT COUNT(*)  
+		FROM USER_TB 
+		WHERE NICK_NAME=#{nickName} 
+</select>
+
+<!-- 아이디 찾기에서 찾은 아이디 알려줌 -->
+<select id="findByEmail" resultType="com.energyzo.javaproject.model.vo.MemberVO">
+
+		SELECT user_id userId, 
+				PASSWORD password 
+		FROM USER_TB 
+		WHERE email=#{email}
+</select>
+
+
+</mapper>
+
