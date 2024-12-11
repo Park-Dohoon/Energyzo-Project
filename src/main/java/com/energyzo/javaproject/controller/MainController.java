@@ -1,20 +1,35 @@
 package com.energyzo.javaproject.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.energyzo.javaproject.model.vo.EstSearchDTO;
+import com.energyzo.javaproject.model.vo.EstateVO;
+import com.energyzo.javaproject.service.SearchService;
 
 
 @Controller
 public class MainController {
 
-	@RequestMapping("/main.do")
-	public String getUsers(Model model) {
+	@Autowired
+	SearchService service;
+	
+	@RequestMapping("main.do")
+	public String startMain(Model model) {
 
+		EstSearchDTO data = new EstSearchDTO();
+		data.setEst_addr("서울 강남구");
+		
+		List<EstateVO> result = service.searchListByAddr(data);
+		model.addAttribute("itemList", result);
+		
 		return "main/main";
-
 	}
 	
 	

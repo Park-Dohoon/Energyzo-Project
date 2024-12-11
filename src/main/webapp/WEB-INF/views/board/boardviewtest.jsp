@@ -81,7 +81,7 @@ $(function() {
 <body class="sb-nav-fixed">
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
 		<!-- Navbar Brand-->
-		<a class="navbar-brand ps-3" href="resources/static/index.html">방잇다</a>
+		<a class="navbar-brand ps-3" href="main.do">방잇다</a>
 		<!-- Sidebar Toggle-->
 		<button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
 			id="sidebarToggle" href="#!">
@@ -120,7 +120,7 @@ $(function() {
 				<div class="sb-sidenav-menu">
 					<div class="nav">
 						<div class="sb-sidenav-menu-heading">Core</div>
-						<a class="nav-link" href="resources/static/index.html">
+						<a class="nav-link" href="main.do">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-tachometer-alt"></i>
 							</div> 메인페이지
