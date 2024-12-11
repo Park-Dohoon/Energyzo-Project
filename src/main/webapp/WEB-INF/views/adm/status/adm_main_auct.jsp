@@ -28,19 +28,15 @@
                         <h1 class="mt-4">사업현황</h1>
                         <ol class="breadcrumb mb-4">
                             현재위치 :&nbsp; <a href="adm_main.do"><li class="breadcrumb-item">관리자</li></a> >&nbsp;사업현황 >&nbsp;<a href="adm_main_auct.do"><li class="breadcrumb-item active">경매</li></a>
-                        </ol>              
+                        </ol>   
+                                 
+						
+
+						            
 
 						<div class="container-head">
-							<div class="headmenu">
-								<ul class="nav nav-tabs">
-									<li class="nav-item"><a class="nav-link hover-box"
-										aria-current="page" href="adm_main.do">포인트</a></li>
-									<li class="nav-item"><a class="nav-link hover-box"
-										href="adm_main_attend.do">출석체크</a></li>
-									<li class="nav-item"><a class="nav-link hover-act active"
-										href="adm_main_auct.do">경매</a></li>
-								</ul>
-							</div>
+						
+						<%@ include file="../include/main_sub_menu.jsp" %> <!-- 서브 메뉴 -->
 
 
 						<!-- 기간조회 -->

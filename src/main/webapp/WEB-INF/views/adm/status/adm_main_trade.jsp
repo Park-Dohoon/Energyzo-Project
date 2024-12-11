@@ -27,7 +27,7 @@
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">사업현황</h1>
                         <ol class="breadcrumb mb-4">
-                            현재위치 :&nbsp; <a href="adm_main.do"><li class="breadcrumb-item">관리자</li></a> >&nbsp;사업현황 >&nbsp;<a href="adm_main.do"><li class="breadcrumb-item active">포인트</li></a>
+                            현재위치 :&nbsp; <a href="adm_main.do"><li class="breadcrumb-item">관리자</li></a> >&nbsp;사업현황 >&nbsp;<a href="adm_main_auct.do"><li class="breadcrumb-item active">거래</li></a>
                         </ol>   
                                  
 						
@@ -47,7 +47,7 @@
                
                						
 						<!-- 경매 조회 테이블 -->
-         				<%@ include file="../include/status/adm_main_point_main.jsp" %> <!-- 메인 -->
+         				<%@ include file="../include/status/adm_main_trade_main.jsp" %> <!-- 메인 -->
          				
 
                 	</div>
