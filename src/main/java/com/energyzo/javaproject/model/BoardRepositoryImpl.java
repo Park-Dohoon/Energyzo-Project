@@ -42,7 +42,7 @@ public class BoardRepositoryImpl implements BoardRepository{
 	
 	// 조회수 증가
 	@Override
-	public void countBoard(BoardVO bvo) {
+	public void CountBoard(BoardVO bvo) {
 		session.update("BoardMapper.getBoardCount", bvo);
 	}
 	
@@ -53,17 +53,9 @@ public class BoardRepositoryImpl implements BoardRepository{
 		return list;
 	}
 
-	//로그인
-	@Override
-	public UserVO login(UserVO uvo) {
-		
-		return session.selectOne("BoardMapper.selectId", uvo);
-	}
-
 	// 게시글 신고
 	@Override
 	public void reportBoard(ComBullVO cbvo) {
-		
 		session.insert("BoardMapper.reportBoard", cbvo);
-	}
+	}	
 }

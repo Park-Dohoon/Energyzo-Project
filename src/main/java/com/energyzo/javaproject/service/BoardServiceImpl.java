@@ -35,7 +35,7 @@ public class BoardServiceImpl implements BoardService{
 
 	// 조회수 증가
 	public void CountBoard(BoardVO bvo) {
-        repo.countBoard(bvo); // 조회수 증가
+        repo.CountBoard(bvo); // 조회수 증가
     }
 	
 	// 게시글 상세보기
@@ -48,13 +48,6 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public List<BoardVO> getBoardList() {
 		return repo.getBoardList();
-	}
-	
-	// 로그인
-	@Override
-	public UserVO login(UserVO uvo) {
-		
-		return repo.login(uvo);
 	}
 
 	// 게시글 신고

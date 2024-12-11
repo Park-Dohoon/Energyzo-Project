@@ -19,13 +19,10 @@ public interface BoardRepository {
 	public BoardVO getBoard(BoardVO bvo);
 	
 	// 게시글 조회수 증가
-	public void countBoard(BoardVO bvo);
+	public void CountBoard(BoardVO bvo);
 	
 	// 게시글 목록
 	public List<BoardVO> getBoardList();
-	
-	// 로그인
-	public UserVO login(UserVO uvo);
 	
 	// 게시글 신고
 	public void reportBoard(ComBullVO cbvo);

@@ -23,10 +23,8 @@ public interface BoardService {
 	
 	// 게시글 목록보기
 	public List<BoardVO> getBoardList();
-	
-	// 로그인
-	public UserVO login(UserVO uvo);
 
 	// 게시글 신고
 	public void reportBoard(ComBullVO cbvo);
+	
 }
