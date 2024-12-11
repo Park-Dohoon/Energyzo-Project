@@ -6,13 +6,13 @@
 							                        
 		                        <ul class="nav nav-tabs">
 								  <li class="nav-item">
-								    <a class="nav-link hover-box navi" href="adm_user_alluser.do">전체회원</a>
+								    <a class="nav-link hover-act" href="adm_user_alluser.do">전체회원</a>
 								  </li>
 								  <li class="nav-item">
-								    <a class="nav-link hover-box navi" href="adm_user_sales.do">판매자</a>
+								    <a class="nav-link hover-act " href="adm_user_sales.do">판매자</a>
 								  </li>
 								  <li class="nav-item">
-								    <a class="nav-link hover-box navi" href="adm_user_sales_apply.do">판매자 신청</a>
+								    <a class="nav-link hover-act " href="adm_user_sales_apply.do">판매자 신청</a>
 								  </li>
 								</ul>
 								

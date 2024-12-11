@@ -1,6 +1,7 @@
 package com.energyzo.javaproject.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,6 +64,18 @@ public class Adm_ItemsDaoImpl implements Adm_ItemsDao{
 		System.out.println("itemsDaoimpl detailItems 도착");
 		
 		List<Adm_ItemsVO> list = sqlSession.selectList("dao.ItemsDao.getItempic", id);
+		System.out.println("Received ID : "+list);
+				
+		System.out.println("itemsDaoimpl detailItems 출발");
+		return list;
+		
+	}
+	
+	
+	public List<Adm_ItemsVO> getTotal_item_list(Map<String, String> dateItem){
+		System.out.println("itemsDaoimpl detailItems 도착");
+		
+		List<Adm_ItemsVO> list = sqlSession.selectList("dao.ItemsDao.getTotal_item", dateItem);
 		System.out.println("Received ID : "+list);
 				
 		System.out.println("itemsDaoimpl detailItems 출발");

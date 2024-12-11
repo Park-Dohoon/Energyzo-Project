@@ -21,8 +21,8 @@
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
     <script src="resources/adm/js/datatables-simple-demo.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="resources/adm/js/admbasic.js"></script>
-    <script src="resources/adm/js/adm_script.js"></script>
+    <script src="resources/adm/js/adm_when_load.js"></script>
+    <script src="resources/adm/js/adm_after_load.js"></script>
     <link href="resources/adm/css/admcss.css" rel="stylesheet" />
  
 </head>

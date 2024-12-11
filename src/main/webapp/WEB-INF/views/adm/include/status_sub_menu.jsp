@@ -13,6 +13,10 @@
 									<li class="nav-item">
 										<a class="nav-link hover-box" href="adm_main_auct.do">경매</a>
 									</li>
+									
+									<li class="nav-item">
+										<a class="nav-link hover-box" href="adm_main_trade.do">거래</a>
+									</li>
 								</ul>
 								
 								

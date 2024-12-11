@@ -40,13 +40,14 @@ public String adm_popup(Adm_ManageVO vo, Model model) {
 @GetMapping("adm_option.do")
 public String adm_option(Adm_ManageVO vo, Model model) {
 	System.out.println("controller adm_option 도착");
+	/*
 	//관리 - 팝업관리
-	//List<Adm_ManageVO> list = manageService.listoptionAll(vo);
+	List<Adm_ManageVO> list = manageService.listoptionAll(vo);
 	
-	//model.addAttribute("listalloption", list);
-
+	model.addAttribute("listalloption", list);
+*/
 	System.out.println("controller adm_option 출발");
-	return ("/adm/manage/adm_option");
+	return ("redirect:adm_main.do");
 }
 
 
@@ -73,6 +74,7 @@ public String adm_pw_change() {
 // 옵션 목록 (페이징)
 @GetMapping("/options")
 public String listOptions(@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
+	/*
     int pageSize = 10;
     int totalOptions = manageService.getTotalOptions();
     int totalPages = (int) Math.ceil((double) totalOptions / pageSize);
@@ -89,18 +91,19 @@ public String listOptions(@RequestParam(value = "page", defaultValue = "1") int 
     model.addAttribute("currentPage", page);
     model.addAttribute("prevPage", prevPage);
     model.addAttribute("nextPage", nextPage);
+    */
     return "est_opt_list";
 }
 
 // 옵션 추가 처리
-@PostMapping("/addOptionAction")
+@PostMapping("addOptionAction")
 public String addOption(@RequestParam("est_opt_name") String estOptName) {
 	manageService.addOption(estOptName);
     return "redirect:/options";
 }
 
 // 옵션 삭제 처리
-@GetMapping("/deleteOption")
+@GetMapping("deleteOption")
 public String deleteOption(@RequestParam("optNum") int optNum) {
     manageService.deleteOption(optNum);
     return "redirect:/options";

@@ -1,6 +1,7 @@
 package com.energyzo.javaproject.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,6 +56,16 @@ public class Adm_ItemsServiceImpl implements Adm_ItemsService{
 		List<Adm_ItemsVO> list = itemsDAO.itemPic(id);
 		System.out.println("service list : "+list);
 		System.out.println("itemsService itempic 출발");
+		return list;
+	}
+	
+	
+	
+	public List<Adm_ItemsVO> getTotal_item_list(Map<String, String> dateItem) {
+		System.out.println("itemsService gettotal_item_list 도착");
+		List<Adm_ItemsVO> list = itemsDAO.getTotal_item_list(dateItem);
+		System.out.println("service list : "+list);
+		System.out.println("itemsService gettotal_item_list 출발");
 		return list;
 	}
 	

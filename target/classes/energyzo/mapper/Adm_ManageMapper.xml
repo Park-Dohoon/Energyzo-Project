@@ -11,7 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	    <!-- 페이징 처리된 옵션 목록 조회 -->
-    <select id="findOptionsWithPagination" resultType="com.energyzo.javaproject.model.vo.Adm_ManageVO">
+    <select id="pagingOption" resultType="com.energyzo.javaproject.model.vo.Adm_ManageVO">
         SELECT * 
         FROM est_opt_list_tb 
         ORDER BY est_opt_num ASC
@@ -33,5 +33,58 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <delete id="deleteOption">
         DELETE FROM est_opt_list_tb WHERE est_opt_num = #{estOptNum}
     </delete>
+    
+    <!-- 포인트 종합 조회 -->
+    <select id="getTotalPoint" resultType="com.energyzo.javaproject.model.vo.Adm_ManageVO">
+		SELECT 
+		    SUM(CASE WHEN point_source IN ('충전', '출석') THEN point_pt ELSE 0 END) AS point_deposit,
+		    SUM(CASE WHEN point_source IN ('경매', '결제', '소멸') THEN point_pt ELSE 0 END) AS point_withdraw,
+		    SUM(CASE WHEN point_source = '충전' THEN point_pt ELSE 0 END) AS recharge_point,
+		    SUM(CASE WHEN point_source = '출석' THEN point_pt ELSE 0 END) AS attend_point,
+		    SUM(CASE WHEN point_source = '소멸' THEN point_pt ELSE 0 END) AS expired_point,
+		    SUM(CASE WHEN point_source = '결제' THEN point_pt ELSE 0 END) AS pay_point,
+		    SUM(CASE WHEN point_source = '경매' THEN point_pt ELSE 0 END) AS auct_point,
+		    -- point_deposit에서 point_withdraw를 차감한 값
+		    SUM(CASE WHEN point_source IN ('충전', '출석') THEN point_pt ELSE 0 END) - 
+		    SUM(CASE WHEN point_source IN ('경매', '결제', '소멸') THEN point_pt ELSE 0 END) AS remain_point,
+		    -- 판매율 : recharge_point / (recharge_point + attend_point), 0으로 나누는 경우
+		    CASE 
+		        WHEN (SUM(CASE WHEN point_source = '충전' THEN point_pt ELSE 0 END) + 
+		              SUM(CASE WHEN point_source = '출석' THEN point_pt ELSE 0 END)) = 0 
+		        THEN 0
+		        ELSE 
+		            SUM(CASE WHEN point_source = '충전' THEN point_pt ELSE 0 END)*100 / 
+		            (SUM(CASE WHEN point_source = '충전' THEN point_pt ELSE 0 END) + 
+		             SUM(CASE WHEN point_source = '출석' THEN point_pt ELSE 0 END))
+		    END AS sales_rate
+		FROM 
+		    point
+		WHERE 
+		    point_date BETWEEN TO_DATE(#{sdate}, 'YYYY-MM-DD') AND TO_DATE(#{fdate}, 'YYYY-MM-DD')
+    </select>
+    
+        <!-- 포인트 전체 목록 -->
+    <select id="getPoint_list" resultType="com.energyzo.javaproject.model.vo.Adm_ManageVO">
+		SELECT * FROM   point
+    </select>
+    
+<select id="getItemStatus" resultType="com.energyzo.javaproject.model.vo.Adm_ManageVO">
+	SELECT 
+	    TO_CHAR(est_tra_com_date, 'YYYY-MM') AS month,
+	    ROUND(AVG(CASE WHEN est_tra_type = '매매' THEN est_tra_cond ELSE NULL END)) AS sale_price,
+	    COUNT(CASE WHEN est_tra_type = '매매' THEN 1 END) AS sale_count,
+	    ROUND(AVG(CASE WHEN est_tra_type = '전세' THEN est_tra_cond ELSE NULL END)) AS whole_rent_price,
+	    COUNT(CASE WHEN est_tra_type = '전세' THEN 1 END) AS whole_rent_count,
+	    ROUND(AVG(CASE WHEN est_tra_type = '월세' THEN est_monthpay ELSE NULL END)) AS monthly_rent_price,
+	    COUNT(CASE WHEN est_tra_type = '월세' THEN 1 END) AS monthly_rent_count
+	FROM estate_tb
+	WHERE 
+	    TO_CHAR(est_tra_com_date, 'YYYY-MM-DD') >= '2024-01-01'
+	GROUP BY TO_CHAR(est_tra_com_date, 'YYYY-MM')
+	ORDER BY TO_CHAR(est_tra_com_date, 'YYYY-MM')
+
+
+</select>
+    
 
 </mapper>
