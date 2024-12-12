@@ -128,7 +128,11 @@
 								<tr>
 									<th id='user' style="font-size: 90%">작성자</th>
 									<!-- 세션 속 유저id값 -->
-									<td id='user'>${loggedInUser}</td>
+									<td id='user'>
+										<input type='hidden' name='user_id' value='${sessionScope.showNewLoginPage}'>
+										${sessionScope.showNewLoginPage}
+									</td>
+									
 								</tr>
 								<tr>
 									<th id='content' style="font-size: 90%">내용</th>

@@ -28,8 +28,12 @@
 <script type="text/javascript">
 $(function() {
 	
+	let loggedInUser = "";
 	// 세션 값 확인
-	let loggedInUser = "${loggedInUser}";
+	if($('#isLogined').val()){
+		loggedInUser = $('#loginedId').val();
+	}
+	
 	console.log("loggedInUser: ", loggedInUser); 
 	
 //	let reported = $(reported);
@@ -132,10 +136,13 @@ $(function() {
 					</div>
 				</div>
 				<div class="sb-sidenav-footer">
-				<c:if test="${not empty sessionScope.showNewLoginPage}">
-					<div class="small">Logged in as:</div>
-					${sessionScope.showNewLoginPage}
-				</c:if>
+					<input id='isLogined' type='hidden' value='${not empty sessionScope.showNewLoginPage}'>
+					<c:if test="${not empty sessionScope.showNewLoginPage}">
+						<input id='loginedId' type='hidden' value='${sessionScope.showNewLoginPage}'>
+						<div class="small">Logged in as:</div>
+						${sessionScope.showNewLoginPage}
+					</c:if>
+					
 					<c:if test="${empty sessionScope.showNewLoginPage}">
 						<p>
 							로그인하지 않았습니다.<br>

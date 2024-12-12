@@ -25,14 +25,18 @@
 
 <% 
 	// 세션에서 로그인 사용자 정보 가져오기
-    String loggedInUser = (String)session.getAttribute("loggedInUser");
+    String loggedInUser = (String)session.getAttribute("showNewLoginPage");
 %>
 
+
+<!-- jquery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
 <script>
-	// 세션 값에 따라 로그인 여부 판단
-	let isLoggedIn = <%= (loggedInUser != null ? "true" : "false") %>;
 	
 $(function(){
+	isLogined = $('#isLogined').val();
+	console.log(isLogined);
 	
 	// 가릴 버튼들 id통한 변수등록
 	let modifyBtn	= $('#modify');
@@ -43,9 +47,9 @@ $(function(){
 	let boardWriter = $('.userId').text();
 	
 		// 로그인 여부에 따른 버튼가리기
-		if (isLoggedIn) {
+		if (isLogined=='true') {
 			// 로그인한 사용자랑 작성자랑 같으면 신고 버튼 가리기
-			if(  boardWriter === "<%= loggedInUser %>") {
+			if(  boardWriter == $('#loginedId').val()) {
 				reportBtn.addClass('hidden');
 				// 사용자랑 작성자랑 같으면 hidden 클래스 제거
 				modifyBtn.removeClass('hidden');
@@ -120,10 +124,13 @@ $(function(){
 					</div>
 				</div>
 				<div class="sb-sidenav-footer">
-				<c:if test="${not empty sessionScope.showNewLoginPage}">
-					<div class="small">Logged in as:</div>
-					${sessionScope.showNewLoginPage}
-				</c:if>
+					<input id='isLogined' type='hidden' value='${not empty sessionScope.showNewLoginPage}'>
+					<c:if test="${not empty sessionScope.showNewLoginPage}">
+						<input id='loginedId' type='hidden' value='${sessionScope.showNewLoginPage}'>
+						<div class="small">Logged in as:</div>
+						${sessionScope.showNewLoginPage}
+					</c:if>
+					
 					<c:if test="${empty sessionScope.showNewLoginPage}">
 						<p>
 							로그인하지 않았습니다.<br>
