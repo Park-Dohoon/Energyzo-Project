@@ -4,7 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>가입정책 - 방잇다</title>
+
+<!-- favicon -->
+<link rel="shortcut icon" href="../resources/static/base_template/favicon.png" type="image/x-icon" />
 
 <!-- jQuery (최신 버전 3.6.0) -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

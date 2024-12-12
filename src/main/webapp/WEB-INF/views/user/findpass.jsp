@@ -9,6 +9,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>로그인 - 방잇다</title>
 
+<!-- favicon -->
+<link rel="shortcut icon" href="../resources/static/base_template/favicon.png" type="image/x-icon" />
+
 <!-- Bootstrap CSS -->
 <link
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"

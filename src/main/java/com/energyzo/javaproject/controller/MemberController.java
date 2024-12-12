@@ -92,8 +92,8 @@ public class MemberController {
 			
 		//로그인 실패시
 		if (result == null || result.getUserId() == null) { //로그인 못하면
-
-			return "user/check2";
+			model.addAttribute("loginfail", true);
+			return "redirect:newlogin2.do";
 		} else { 
 			System.out.println("here-----------------");
 			//성공시 => 세션에 아이디값 저장

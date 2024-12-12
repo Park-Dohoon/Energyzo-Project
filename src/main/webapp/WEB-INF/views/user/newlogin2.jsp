@@ -9,6 +9,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>로그인 - 방잇다</title>
 
+<!-- favicon -->
+<link rel="shortcut icon" href="../resources/static/base_template/favicon.png" type="image/x-icon" />
+
 <!-- Bootstrap CSS -->
 <link
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -57,8 +60,9 @@
 							<label for="userId" style="margin-right: 10px;">아이디</label>
 							<div class="form-group py-1 pb-2">
 								<div class="input-field">
+									
 									<input type="text" id="userId" name="userId"
-										placeholder="아이디를 입력하세요" required>
+											placeholder="아이디를 입력하세요" required>
 								</div>
 							</div>
 
@@ -92,15 +96,14 @@
 						</div>
 						
 							<!-- 로그인 메인 버튼 -->
-							<button type="submit" class="btn btn-primary btn-block mt-3"
-								onclick="login()">로그인</button>
-			
+							<button type="submit" class="btn btn-primary btn-block mt-3">로그인</button>
+							
+						</form>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-   </form>
    
 	<script type="text/javascript">
 	//비밀번호 숨기기/보이기 기능
