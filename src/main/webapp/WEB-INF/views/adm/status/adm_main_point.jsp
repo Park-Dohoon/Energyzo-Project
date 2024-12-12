@@ -35,7 +35,7 @@
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="adm_main.do">
+            <a class="navbar-brand ps-3" href="main.do">
             <img src="resources/adm/assets/img/favicon.jpg" alt="company-logo" class="company-logo">
             <span class="company-name">방잇다</span></a>
             <!-- Sidebar Toggle-->

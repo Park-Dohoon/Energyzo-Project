@@ -114,7 +114,10 @@ input.form-control[type="text"]{
 		>
   <!-- 로그인 상태 -->
 		<li class="logged-in d-none">
-		  <a href="../seller.do">판매자 전환</a>
+		  <a href="../adm_main.do">관리자 페이지</a>
+		</li>
+		<li class="logged-in d-none">
+		  <a href="../seller.do">판매자 페이지</a>
 		</li>
 		<li class="logged-in d-none">
 		  <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -386,6 +389,17 @@ input.form-control[type="text"]{
             loggedOutElements.forEach((el) => el.classList.remove("d-none"));
         }
         
+     // 관리자인지 검증
+        if(userId == "supervisor"){
+        	
+        	$('a[href="../adm_main.do"]').show();
+        	
+        } else{
+        	
+        	$('a[href="../adm_main.do"]').hide();
+        }
+        
+        // 판매자인지 검증
         $.ajax({
         	type: "POST"
         	,data: {user_id: userId}
