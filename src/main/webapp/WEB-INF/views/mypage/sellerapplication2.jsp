@@ -22,7 +22,7 @@
  <body class="sb-nav-fixed">
         	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
 		<!-- Navbar Brand-->
-		<a class="navbar-brand ps-3" href="index.html">방 잇다</a>
+		<a class="navbar-brand ps-3" href="mypages.do">방 잇다</a>
 		<!-- Sidebar Toggle-->
 		<button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
 			id="sidebarToggle" href="#!">
@@ -48,7 +48,7 @@
 				<ul class="dropdown-menu dropdown-menu-end"
 					aria-labelledby="navbarDropdown">
 	
-					<li><a class="dropdown-item" href="#!">Logout</a></li>
+					<li><a class="dropdown-item" href="logout.do">Logout</a></li>
 				</ul></li>
 		</ul>
 	</nav>
@@ -65,11 +65,11 @@
 							</div> 내 정보
 						</a> 
 						<!-- <div class="sb-sidenav-menu-heading">Interface</div>
- -->						<a class="nav-link" href="wishlist.do">
+ -->				<!-- 		<a class="nav-link" href="wishlist.do">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-tachometer-alt"></i>
 							</div> 찜목록
-						</a>
+						</a> -->
 						<a class="nav-link" href="point.do">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-tachometer-alt"></i>
@@ -105,24 +105,24 @@
 			        <h1>판매자 신청</h1>
 			        <p>판매자 자격을 신청하고 진행 상황을 확인합니다.</p>
 			        <div class="status-container">
+						<div class="status-step">
+						    <div class="step lighter">
+						        <i class="fas fa-pen"></i> 판매자 신청
+						    </div>
+						    <div class="arrow">
+						        <i class="fas fa-chevron-right"></i>
+						    </div>
+						    <div class="step">
+						        <i class="fas fa-file-alt"></i> 신청내역 검토
+						    </div>
+						    <div class="arrow">
+						        <i class="fas fa-chevron-right"></i>
+						    </div>
+						    <div class="step lighter">
+						        <i class="fas fa-award"></i> 판매자 승인
+						    </div>
+						</div>
 
-			            <div class="status-step">
-			                <div class="step">
-			                    <i class="fas fa-pen"></i> 판매자 신청
-			                </div>
-			                <div class="arrow">
-			                    <i class="fas fa-chevron-right"></i>
-			                </div>
-			                <div class="step">
-			                    <i class="fas fa-file-alt"></i> 신청내역 검토
-			                </div>
-			                <div class="arrow">
-			                    <i class="fas fa-chevron-right"></i>
-			                </div>
-			                <div class="step">
-			                    <i class="fas fa-award"></i> 판매자 승인
-			                </div>
-			            </div>
 			        </div>
 			    </div>
             </main>

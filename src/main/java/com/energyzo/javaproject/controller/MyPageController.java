@@ -42,10 +42,13 @@ public class MyPageController {
 
 	//마이페이지 프로필 변경에 user 정보 가지고 오기 
 	@GetMapping("review.do")
-	public String getUsers(Model model) {
+	public String getUsers(Model model, HttpSession session ) {
 
-		String user_id = "psbbsp303"; 
-		
+		//String user_id = "psbbsp303"; 
+	    String user_id = (String) session.getAttribute("showNewLoginPage");
+		System.out.println("확인!!!!!!!!!!!!!!!!!!!!"+ user_id);
+
+
 		UserVO users = mypageService.getUser(user_id);
 		model.addAttribute("users", users);
 			
@@ -60,8 +63,8 @@ public class MyPageController {
 	
 	//다른 탭에서 내 정보로 이동
 	@GetMapping("mypages.do")
-	public String getUsers2(Model model) {
-	    String user_id = "psbbsp303"; // user_id는 동적으로 설정될 수 있습니다.
+	public String getUsers2(Model model, HttpSession session ) {
+	    String user_id = (String) session.getAttribute("showNewLoginPage");
 	    UserVO users = mypageService.getUser(user_id);
 	    model.addAttribute("users", users);
 	    return "mypage/mypages"; // mypages.jsp로 돌아가도록 설정
@@ -70,9 +73,9 @@ public class MyPageController {
 
 	//다른 탭에서 판매자 정보 이동
 	@GetMapping("seller.do")
-	public String seller2(Model model) {
+	public String seller2(Model model, HttpSession session ) {
 
-        String user_id = "psbbsp303";  // 예시로 임의의 user_id 값
+	    String user_id = (String) session.getAttribute("showNewLoginPage");
 
         AgentVO agent = mypageService.getAgent(user_id);
         model.addAttribute("agent", agent);
@@ -84,9 +87,9 @@ public class MyPageController {
 	
 	//판매자 정보 가지고 오기 
 	@GetMapping("review2.do")
-	public String seller(Model model) {
+	public String seller(Model model, HttpSession session ) {
 
-        String user_id = "psbbsp303";  // 예시로 임의의 user_id 값
+	    String user_id = (String) session.getAttribute("showNewLoginPage");
 
         AgentVO agent = mypageService.getAgent(user_id);
         model.addAttribute("agent", agent);
@@ -223,9 +226,12 @@ public class MyPageController {
 
 	// 포인트 화면으로 이동 및 데이터 가지고 오기
 	@RequestMapping("point.do")
-	public String point(Model model) {
+	public String point(Model model, HttpSession session) {
+	    String user_id = (String) session.getAttribute("showNewLoginPage");
+		System.out.println(user_id);
 
-		List<PointVO> pointlist = mypageService.getPointlist();
+		
+		List<PointVO> pointlist = mypageService.getPointlist(user_id);
 		model.addAttribute("pointlist", pointlist);
 
 		return "mypage/point";
@@ -237,25 +243,83 @@ public class MyPageController {
 		return "mypage/pointrecharge";
 	}
 
-	//판매자 신청 화면으로 이동 1,2 
-	@RequestMapping("sellerapplication.do")
-	public String sellerapplication() {
-		return "mypage/sellerapplication";
-	}
-	
-	@RequestMapping("sellerapplication2.do")
-	public String sellerapplication2(@ModelAttribute AgentVO agentVO) {
-	    // agentVO 객체에 값 설정
-	    agentVO.setUser_id("psbbsp303"); //나중에 로그인 세션에서 가지고 와서 넣어줘야 함. 
-	    agentVO.setAgent_reg_state(1); //고정으로 넣어줌 
-	    
+//	//판매자 신청 화면으로 이동 1,2 
+//	@RequestMapping("sellerapplication.do")
+//	public String sellerapplication(HttpSession session) {
+//		
+//	    String user_id = (String) session.getAttribute("showNewLoginPage");
+//	    System.out.println("서연 2차 확인"+user_id);
+//
+//	 // DB에서 user_id로 판매자 신청 여부 확인
+//        AgentVO agent = mypageService.getAgent(user_id);
+//        System.out.println("agent가지고 온 값:" + agent.toString());
+//        String dbUser_id = agent.getUser_id();
+//        System.out.println("가지고온 아이값:!!!!!!" + dbUser_id);
+//        
+//	    if (user_id.equals(dbUser_id)) {
+//	        
+//	    	System.out.println("아이디가 같다!");
+//	    	// 이미 판매자 신청을 했다면 sellerapplication2로 리다이렉트
+//	        return "mypage/sellerapplication2";
+//	    } else {
+//	        // 판매자 신청 화면으로 이동
+//	        return "mypage/sellerapplication";
+//	    }
+//	    
+//		//return "mypage/sellerapplication";
+//	}
 
-	    // mypageService에 저장
-	    mypageService.saveAgent(agentVO);
+//	
+//	@RequestMapping("sellerapplication2.do")
+//	public String sellerapplication2(@ModelAttribute AgentVO agentVO, HttpSession session) {
+//	    // agentVO 객체에 값 설정
+//	    String user_id = (String) session.getAttribute("showNewLoginPage");
+//		
+//	    agentVO.setUser_id(user_id); //나중에 로그인 세션에서 가지고 와서 넣어줘야 함. 
+//	    agentVO.setAgent_reg_state(1); //고정으로 넣어줌 
+//	    
+//
+//	    // mypageService에 저장
+//	    mypageService.saveAgent(agentVO);
+//	    
+//	    return "mypage/sellerapplication2";
+//	}
+
+	@RequestMapping("sellerapplication.do")
+	public String sellerapplication(HttpSession session) {
+	    String user_id = (String) session.getAttribute("showNewLoginPage");
+	    System.out.println("서연 2차 확인: " + user_id);
+
+	    AgentVO agent = mypageService.getAgent(user_id);
+
+	    if (agent == null) {
+	        // user_id가 없으면 판매자 신청이 안 된 상태이므로, 판매자 신청 화면으로 이동
+	        return "mypage/sellerapplication";
+	    } else {
+	        // 이미 user_id가 존재하면 판매자 신청을 이미 했다면 sellerapplication2로 리다이렉트
+	        return "mypage/sellerapplication2";
+	    }
+	}
+
+	@RequestMapping("sellerapplication2.do")
+	public String sellerapplication2(@ModelAttribute AgentVO agentVO, HttpSession session) {
+	    // agentVO 객체에 값 설정
+	    String user_id = (String) session.getAttribute("showNewLoginPage");
 	    
+	    if (user_id == null) {
+	        return "redirect:/loginPage"; 
+	    }
+
+	    agentVO.setUser_id(user_id); 
+	    agentVO.setAgent_reg_state(1); 
+
+	    mypageService.saveAgent(agentVO);
+
 	    return "mypage/sellerapplication2";
 	}
 
+	
+	
 
 	//비밀번호 변경 화면으로 이동 (get), post get 같이 하려고 했으나 같은 화면이기 때문에 에러 발생
 	@RequestMapping("changepassword.do")
@@ -269,35 +333,16 @@ public class MyPageController {
 	    @RequestParam("currentPassword") String currentPassword,
 	    @RequestParam("newPassword") String newPassword,
 	    @RequestParam("registrationNumber") String registrationNumber,
+	    HttpSession session,
 	    Model model) {
 
-	    // 예제 데이터 임의로 설정
-	 //   UserVO user = new UserVO();
-	    String user_id = "psbbsp303"; 
-	   // user.setPassword("kjh1019228");
+	    String user_id = (String) session.getAttribute("showNewLoginPage");
 
+		
 		UserVO user = mypageService.getUser(user_id);
 		System.out.println("User password: " + user.getPassword());
 		System.out.println(currentPassword);
-		
-//		if(currentPassword == null || newPassword == null || registrationNumber==null) {
-//	        model.addAttribute("message", "현재 비밀번호를 입력해 주세요.");
-//
-//		}
-//		if (!currentPassword.equals(user.getPassword())) {
-//	        model.addAttribute("message", "현재 비밀번호가 올바르지 않습니다.");
-//	    } else {
-//	    	if (!newPassword.equals(registrationNumber)) {
-//		        model.addAttribute("message1", "새 비밀번호가 일치하지 않습니다.");
-//	    }else {
-//
-//	    	mypageService.updatePassword(user.getUser_id(), newPassword);
-//	        model.addAttribute("successMessage", "비밀번호가 성공적으로 변경되었습니다.");
-//
-//	    }
-//	    }
-		
-		
+			
 		  // 공백 체크 및 입력값 검증
 	    if (currentPassword == null || currentPassword.trim().isEmpty() ) {
 	        model.addAttribute("message", "현재 비밀번호가 공백입니다.");
@@ -355,14 +400,11 @@ public class MyPageController {
 	}
 	
 	
-	//등록상품목록으로 이동 productmanagement
+	//등록상품목록으로 이동
 	@RequestMapping("productmanagement.do")
-	public String productmanagement(Model model) {
-		
-
-		//System.out.println("서연이 바보");
-		
-		String user_id = "psbbsp303"; 
+	public String productmanagement(Model model, HttpSession session) {
+				
+		 String user_id = (String) session.getAttribute("showNewLoginPage");
 		
 		List<EstateVO> estate = mypageService.getEstate(user_id);
 		model.addAttribute("estate", estate);
@@ -378,71 +420,49 @@ public class MyPageController {
 
 	//결제내역으로 이동paymenthistory!!!!!!!!!!!!!!!!!!!!!!!!!
 	@RequestMapping("paymenthistory.do")
-	public String paymenthistory(Model model) {
+	public String paymenthistory(Model model, HttpSession session) {
 		
-		String user_id = "psbbsp303";  // 예시로 임의의 user_id 값
+		 String user_id = (String) session.getAttribute("showNewLoginPage");
 		
 		List<PointVO> paymentList = mypageService.getPaymentlist(user_id);
 		model.addAttribute("paymentList", paymentList);
 		
 		return "mypage/paymenthistory";
 	}
-	
-	//두번째 포인트 결제로 이동하기 
-//	@RequestMapping("pointrecharge2.do" )
-//	public String pointrecharge2( PointVO pointVO, Model model) {
-//	    pointVO.setUser_id("psbbsp303");  // 예시로 값 설정
-//	    System.out.println("point_pt: " + pointVO.getPoint_pt());
-//
-//	    int point = pointVO.getPoint_pt();
-//	    
-//	    if(point > 0) {
-//		  model.addAttribute("pointVO", pointVO);
-//		  mypageService.insertPayment(pointVO);
-//
-//	    }
-//
-//        String user_id = "psbbsp303";  
-//
-//     
-//        AgentVO agent = mypageService.getAgent(user_id);
-//        LocalDate today = LocalDate.now();
-//        LocalDate powerDate = LocalDate.parse(agent.getPower_date()); // power_date가 "yyyy-MM-dd" 형식이라고 가정
-//
-//	     if (powerDate.isBefore(today)) {
-//	         // power_date가 오늘 이전이면 오늘 날짜로 설정
-//	         agent.setPower_date(today.toString()); // yyyy-MM-dd 형식으로 변환
-//	     }
-//	        
-//        
-//        model.addAttribute("agent", agent);
-//
-//        
-//        
-//        //추가 구매후 만료일자 업데이트하기  
-//        //mypageService.updateAgent();
-//		
-//		return "mypage/pointrecharge2";
-//	}
-//	
+		
 
 	// 두 번째 포인트 결제 페이지로 이동(GET)
 	@GetMapping("pointrecharge2.do")
-	public String pointRechargePage(Model model) {
-	    String user_id = "psbbsp303";  
+	public String pointRechargePage(Model model, HttpSession session) {
+	    String user_id = (String) session.getAttribute("showNewLoginPage");
 	    AgentVO agent = mypageService.getAgent(user_id);
+
+	    // 현재 날짜 가져오기
+	    LocalDate today = LocalDate.now();
+
+	    // power_date가 null이거나 오늘 이전인지 확인
+	    LocalDate powerDate = (agent.getPower_date() == null || 
+	        LocalDate.parse(agent.getPower_date()).isBefore(today)) 
+	        ? today 
+	        : LocalDate.parse(agent.getPower_date());
+
+	    // 설정된 power_date를 JSP로 전달
+	    model.addAttribute("powerDate", powerDate); 
+	    agent.setPower_date(powerDate.toString()); // 업데이트된 날짜 저장
+
+	    // 기타 모델 설정
 	    model.addAttribute("agent", agent);
-
 	    PointVO pointVO = new PointVO();
-	    pointVO.setPoint_pt(0);  
+	    pointVO.setPoint_pt(0); 
 	    model.addAttribute("pointVO", pointVO);
-	    		
-		PointVO payment = mypageService.getPayment(user_id);
-		model.addAttribute("payment", payment);
-	    
 
-	    return "mypage/pointrecharge2"; 
+	    PointVO payment = mypageService.getPayment(user_id);
+	    model.addAttribute("payment", payment);
+
+	    return "mypage/pointrecharge2";
 	}
+
+
 
 	
 	// 포인트 충전 처리(POST)
@@ -450,8 +470,11 @@ public class MyPageController {
 	public String processPointRecharge(
 	        @RequestParam("power_date") String powerDateInput,
 	        @ModelAttribute("pointVO") PointVO pointVO,
+	        HttpSession session,
 	        Model model) {
-	    pointVO.setUser_id("psbbsp303");  // 예시로 사용자 ID 설정
+
+	    String user_id = (String) session.getAttribute("showNewLoginPage");
+	    pointVO.setUser_id(user_id);  // 예시로 사용자 ID 설정
 	    System.out.println("Received point_pt: " + pointVO.getPoint_pt());
 	    System.out.println("Received power_date: " + powerDateInput);
 
@@ -461,13 +484,12 @@ public class MyPageController {
 	    }
 
 	    // 만료일자 업데이트
-	    String user_id = "psbbsp303";
 	    AgentVO agent = mypageService.getAgent(user_id);
 
 	    LocalDate today = LocalDate.now();
-	    LocalDate powerDate = LocalDate.parse(agent.getPower_date());
+	    LocalDate powerDate = (agent.getPower_date() == null) ? today : LocalDate.parse(agent.getPower_date());
 
-	    // 만료일자가 오늘 이전이면 업데이트
+	    // 만료일자가 오늘 이전이면 오늘로 갱신
 	    if (powerDate.isBefore(today)) {
 	        agent.setPower_date(today.toString());
 	    }
@@ -484,7 +506,6 @@ public class MyPageController {
 	    return "mypage/pointrecharge2";  // 뷰 이름 반환
 	}
 
-
 	
 	
 	
@@ -497,8 +518,8 @@ public class MyPageController {
     }
     
     //판매자 정보로 이동하기 (DB에서 가지고 오는 작업X)
-	@RequestMapping("seller.do")
-	public String seller2() {
-		return "mypage/seller";
-	}
+//	@RequestMapping("seller.do")
+//	public String seller2() {
+//		return "mypage/seller";
+//	}
 }

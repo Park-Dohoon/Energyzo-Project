@@ -37,10 +37,7 @@ public class MemberServiceImpl implements MemberService {
         return memberDAO.findByEmail(email);  // 이메일로 사용자 정보 조회
     }
 
-  
-    
-    
-
+   
     
     
 }

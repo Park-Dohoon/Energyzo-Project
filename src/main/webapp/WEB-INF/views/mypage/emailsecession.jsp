@@ -44,7 +44,7 @@ function validateCheck2() {
 	let param = {'email': email};
 							 
 	$.ajax({
-		url: "/Energyzo-Project-MyPage/emailCheck_seoyeon.do",
+		url: "/zreivew/emailCheck_seoyeon.do",
 		type : "get" , 								
 		data : param,
 		success : function (response) {
@@ -79,7 +79,7 @@ function verifyAuthCode() {
 
     // 인증 코드를 서버로 전송
     $.ajax({
-        url: '/Energyzo-Project-MyPage/verifyAuthCode2_seoyeon.do', // 서버의 verifyAuthCode.do URL로 요청
+        url: '/zreivew/verifyAuthCode2_seoyeon.do', // 서버의 verifyAuthCode.do URL로 요청
         type: 'GET',
         data: param, // 입력한 인증 코드를 파라미터로 전송
         success: function(response) {
@@ -137,7 +137,7 @@ function verifyAuthCode() {
 				<ul class="dropdown-menu dropdown-menu-end"
 					aria-labelledby="navbarDropdown">
 
-					<li><a class="dropdown-item" href="#!">Logout</a></li>
+					<li><a class="dropdown-item" href="logout.do">Logout</a></li>
 				</ul></li>
 		</ul>
 	</nav>
@@ -254,7 +254,7 @@ function verifyAuthCode() {
 			            <!-- 모달 푸터 -->
 			            <div class="modal-footer">
 			                <!-- 확인 버튼: 폼 제출 -->
-			                <button type="submit" class="btn btn-primary" form="sellerForm">확인</button>
+			                   <button type="button" class="btn btn-primary" onclick="window.location.href='remain.do';">확인</button>
 			            </div>
 			        </div>
 			    </div>

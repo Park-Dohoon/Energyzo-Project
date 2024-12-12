@@ -72,14 +72,19 @@ public class MypageRepositoryImpl implements MypageRepository{
 		 */
 		
 		return WishList;
-
-		
 	}
 	
-	public List<PointVO> getPointlist(){
+	
+    public void addPoint(PointVO point) {
+		System.out.println("===> Mybatis addPoint() 호출");
+		sqlsession.insert("com.energyzo.javaproject.model.MypageRepository.addPoint", point);
+    }
+	
+	
+	public List<PointVO> getPointlist(String user_id){
 		
 		System.out.println("===> Mybatis getPointlist() 호출");
-		List<PointVO> PointList = sqlsession.selectList("com.energyzo.javaproject.model.MypageRepository.getPointlist");
+		List<PointVO> PointList = sqlsession.selectList("com.energyzo.javaproject.model.MypageRepository.getPointlist", user_id);
 		
 		//for로 확인
 		 for (PointVO point : PointList) {
@@ -205,5 +210,7 @@ public class MypageRepositoryImpl implements MypageRepository{
 		
 		return getEstate;
 	}
+	
+	
 	
 }

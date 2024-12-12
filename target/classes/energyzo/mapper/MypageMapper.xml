@@ -15,9 +15,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	    WHERE user_id = #{user_id}
 	</select>
 
-
-
-
     <update id="updateUserProfile" parameterType="com.energyzo.javaproject.model.vo.UserVO">
         UPDATE user_tb
         SET
@@ -46,18 +43,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<!-- as뒤 명칭도 vo와 일치시켜줘야한다.  -->
-		<select id="getPointlist" resultType="com.energyzo.javaproject.model.vo.PointVO">
-				SELECT
-			    p.POINT_NUM AS point_num,
-			    p.POINT_DATE AS point_date,
-			    p.POINT_SOURCE AS point_source,
-			    p.point_pt AS point_pt
-			FROM
-			    point p
-			JOIN
-			    user_tb u ON p.user_id = u.user_id
-
+	<select id="getPointlist" resultType="com.energyzo.javaproject.model.vo.PointVO" parameterType="string"> 
+	
+	SELECT p.POINT_NUM AS point_num, p.POINT_DATE AS point_date, p.POINT_SOURCE AS point_source, p.POINT_PT AS point_pt 
+	FROM point p 
+	WHERE p.USER_ID = #{user_id, jdbcType=VARCHAR} 
+	
 	</select>
+	
 
 	<select id="getEstatelist" resultType="com.energyzo.javaproject.model.vo.EstateVO">
 
@@ -129,11 +122,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 판매자 정보 가지고 오기 -->
 	<select id="getAgent" resultType="com.energyzo.javaproject.model.vo.AgentVO">
       SELECT 
+      		user_id,
             agent_office,
             agent_reg_num,
             agent_tel,
             agent_name,
             agent_addr,
+            agent_reg_state,
             agent_fname,
             TO_CHAR(power_date, 'YYYY-MM-DD') AS power_date
         FROM agent_tb
@@ -185,5 +180,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		INNER JOIN AGENT_TB at2 
 		ON et.AGENT_NUM = at2.AGENT_NUM
 	</select>
+
 
 </mapper>

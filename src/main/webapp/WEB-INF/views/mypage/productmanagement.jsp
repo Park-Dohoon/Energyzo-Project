@@ -44,7 +44,7 @@
 					class="fas fa-user fa-fw"></i></a>
 				<ul class="dropdown-menu dropdown-menu-end"
 					aria-labelledby="navbarDropdown">
-					<li><a class="dropdown-item" href="#!">Logout</a></li>
+					<li><a class="dropdown-item" href="logout.do">Logout</a></li>
 				</ul></li>
 		</ul>
 	</nav>
@@ -104,25 +104,24 @@
                                             <th>상품등록번호</th>
                                             <th>판매자명</th>
                                             <th>거래유형</th>
-                                            <th>월세</th>
-                                            <th>관리비</th>
+                                            <th>가격</th>
+                                            <th>주소</th>
                                             <th>등록일</th>
                                         </tr>
                                     </thead>
                              
                                     <tbody>
                                  		<c:forEach var='list' items='${estate}'>
-                                 			<c:set var="user_id" value="psbbsp303" />
-												<c:if test="${list.user_id == 'psbbsp303'}">
+												<c:if test="${list.user_id == sessionScope.showNewLoginPage}">
 										    <tr>
 										      <td>
 											    <a href="seller/seller_productdetail.do?est_id=${list.est_id}" class="link-class">${list.est_id}</a>
 											</td>
 
 										        <td>${list.agent_name}</td>
+										        <td>${list.est_type}</td>
 										        <td>${list.est_tra_cond}</td>
-										        <td>${list.est_monthpay}</td>
-										        <td>${list.est_manage}</td>
+										        <td>${list.est_addr}</td>
 										        <td>${list.est_reg_date}</td>
 										    </tr>
 										    </c:if>

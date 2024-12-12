@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,9 +18,6 @@
       rel="stylesheet"
     />
 
-	<!-- favicon -->
-	<link rel="shortcut icon" href="./resources/static/base_template/favicon.png" type="image/x-icon" />
-	
     <link rel="stylesheet" href="resources/static/fonts/icomoon/style.css" />
     <link rel="stylesheet" href="resources/static/fonts/flaticon/font/flaticon.css" />
 
@@ -32,42 +28,33 @@
 	
 	<!-- Bootstrap JS 추가 (헤드 섹션 또는 바디 끝에 추가) 건들지말것!!!-->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    
-	<!-- jquery -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-	<!-- user js -->
-	<script type="text/javascript">
-		$(function(){
-			
-			// 가격 세팅
-			for (let i= 0; i<$('#item-price-value').length; i++){
-				console.log( $('#item-price-value') );
-			}
-			
-			
-			
-		})
-	</script>
-	
+
+
     <title>
-      방잇다
+      Property &mdash; Free Bootstrap 5 Website Template by Untree.co
     </title>
 </head>
 <body>
- 	<div class="site-mobile-menu site-navbar-target">
+
+ <div class="site-mobile-menu site-navbar-target">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close">
+          <span class="icofont-close js-menu-toggle"></span>
+        </div>
+      </div>
       <div class="site-mobile-menu-body"></div>
     </div>   
-<nav class="site-nav">
+    <nav class="site-nav">
   <div class="container">
     <div class="menu-bg-wrap">
       <div class="site-navigation">
         <!-- 왼쪽 메뉴 -->
         <ul class="menu-left js-clone-nav d-none d-lg-inline-block text-start site-menu">
-          <li class="#"><a href="./search/searchmain.do?est_addr=서울+강남구">매물 검색</a></li>
-          <li><a href="./search/searchmain.do?est_addr=서울+강남구">추천매물</a></li>
+          <li class="#"><a href="index.html">매물 검색</a></li>
+          <li><a href="properties.html">추천매물</a></li>
           <li>
-            <a href="tabletest.do">자유게시판</a>
+            <a href="about.html">자유게시판</a>
           </li>
         </ul>
 
@@ -82,7 +69,7 @@
 		>
   <!-- 로그인 상태 -->
 		<li class="logged-in d-none">
-		  <a href="#">판매자 전환</a>
+		  <a href="agentchange.do">판매자 전환</a>
 		</li>
 		<li class="logged-in d-none">
 		  <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -95,7 +82,7 @@
 		  </a>
 		  <!-- 드롭다운 메뉴 -->
 		  <ul class="dropdown-menu">
-		    <li><a class="dropdown-item" href="#">마이페이지</a></li>
+		    <li><a class="dropdown-item" href="mypages.do">마이페이지</a></li>
 			<li><a class="dropdown-item" href="logout.do">로그아웃</a></li>
 		  </ul>
 		</li>
@@ -120,52 +107,46 @@
     </div>
   </div>
 </nav>
-	
+
     <div class="hero">
       <div class="hero-slide">
-      	<div
+<!--         <div
           class="img overlay"
-          style="background-image: url('resources/static/base_template/logo/방잇다로고_최종.png');
-          		width:50%;	"
-        ></div>
-		<div
-          class="img overlay"
-          style="background-image: url('resources/static/images/hero_bg_3.jpg')"
-        ></div>
+          style="background-image: url('images/hero_bg_3.jpg')"
+        ></div> -->
         <div
           class="img overlay"
-          style="background-image: url('resources/static/base_template/logo/방잇다로고_최종.png');
-          		width:50%;	"
-        ></div>
+          style="background-image: url('resources/static/images/부동산2.jpg')"
+        ></div> 
         <div
           class="img overlay"
-          style="background-image: url('resources/static/images/hero_bg_3.jpg')"
+          style="background-image: url('resources/static/images/부동산.jpg')"
         ></div>
-        
       </div>
 
       <div class="container">
         <div class="row justify-content-center align-items-center">
           <div class="col-lg-9 text-center">
             <h1 class="heading" data-aos="fade-up">
-            	<p>방과 사람을 잇다,</p>
-              	<p> 방 잇다</p>
-             	<p class="hedding-sub2" style='color:#FFCD4A'> 주택/빌라, 오피스텔, 아파트까지 모~든 부동산을 한번에!</p>
+              방과 사람을 잇다,
+              <p> 방 잇다
+             <p class="hedding-sub2"'> 주택/빌라, 오피스텔, 아파트까지 모~든 전월세 매물을 한번에!
             </h1>
              
             <form
-              action="search/searchmain.do"
+              action="#"
               class="narrow-w form-search d-flex align-items-stretch mb-3"
               data-aos="fade-up"
               data-aos-delay="200"
             >
-            	<input type='hidden' name='est_addr' value='서울 강남구'>
-			 	<button type="submit" class="btn btn-primary" style="left:50%">
-			 		부동산 매물 검색하기
-					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-						<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-					</svg>
-				</button>
+              <input
+                type="text"
+                class="form-control px-4"
+                placeholder="지역, 지하철, 대학, 단지명 또는 매물번호를 입력해 주세요"
+              />
+			 <button type="submit" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+			  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+			</svg></button>
             </form>
           </div>
         </div>
@@ -177,65 +158,364 @@
       <div class="container">
         <div class="row mb-5 align-items-center">
 		  <div class="col-lg-12"> <!-- col-lg-6을 col-lg-12로 변경 -->
-          	<h5 style='color:navy;font-weight: bold'>서울 강남구 검색 조건으로 추천된 매물입니다.</h5>
-            <h2 class="font-weight-bold text-primary heading" style='font-weight: bold'>
-              방 잇다가 딱 맞는 강남구 매물을 추천했어요
+          	<h5>서초동 | 월세 무제한 | 전세무제한 검색 조건으로 추천된 매물입니다.</h5>
+            <h2 class="font-weight-bold text-primary heading">
+              방 잇다가 딱 맞는 서초동 매물을 추천했어요
             </h2>
           </div>
+<!--           <div class="col-lg-6 text-lg-end">
+            <p>
+              <a
+                href="#"
+                target="_blank"
+                class="btn btn-primary text-white py-3 px-4"
+                >View all properties</a
+              >
+            </p>
+          </div> -->
         </div>
         <div class="row">
           <div class="col-12">
             <div class="property-slider-wrap">
               <div class="property-slider">
-              
-              
-              	<c:forEach var='list' items='${itemList}'>
-	                <div class="property-item">
-	                	<div style="height:295px; width:100%">
-		                  <a href="./search/searchinfo.do?est_id=${list.est_id}" class="img">
-		                  	<c:choose>
-		                  		<c:when test="${list.realfname1 != null }">
-		                  			<img src="resources/static/upload/${list.realfname1 }" alt="Image" class="img-fluid" style="width:100%"/>
-		                  		</c:when>
-		                  		<c:otherwise>
-		                  			<img src="resources/static/base_template/logo/Re_방잇다로고_최종_누끼.png" alt="Image" class="img-fluid" />
-		                  		</c:otherwise>
-		                  	</c:choose>
-		                    
-		                  </a>
-						</div>
-	                  <div class="property-content">
-	                    <div class="price mb-2"><span id='item-price-value'>${list.est_tra_cond}만원</span></div>
-	                    <div>
-	                      <span class="d-block mb-2 text-black-50"
-	                        >${list.est_addr }</span
-	                      >
-	                      <span class="city d-block mb-3">${list.est_type }</span>
-	
-	                      <div class="specs d-flex mb-4">
-	                      	<span class="d-block d-flex align-items-center">
-	                          <span class="caption">${list.est_tra_type }ㆍ</span>
-	                        </span>
-	                        <span class="d-block d-flex align-items-center">
-	                          <span class="caption"  id='item-floor-value'>${list.est_m_floor }층</span>
-	                        </span>
-	                        <span class="d-block d-flex align-items-center">
-	                          <span class="caption">ㆍ${list.est_m_area }㎡</span>
-	                        </span>
-	                      </div>
-	
-	                      <a
-	                        href="./search/searchinfo.do?est_id=${list.est_id}"
-	                        class="btn btn-primary py-2 px-3"
-	                        >자세히 보기
-	                      </a>
-	                    </div>
-	                  </div>
-	                </div>
-	                <!-- .item -->
-				</c:forEach>
+                <div class="property-item">
+                  <a href="property-single.html" class="img">
+                    <img src="resources/static/images/img_1.jpg" alt="Image" class="img-fluid" />
+                  </a>
 
+                  <div class="property-content">
+                    <div class="price mb-2"><span>월세 300/30</span></div>
+                    <div>
+                       <span class="d-block mb-2 text-black-50"
+                        >원룸</span
+                      >
+                      <span class="d-block mb-2 text-black-50"
+                        >10층, 49.44m2, 관리비없음 가성비 좋고 위치 좋은 아주 저렴한 집</span
+                      >
+               <!--        <span class="city d-block mb-3">월룸</span> -->
 
+                      <div class="specs d-flex mb-4">
+                        <span class="d-block d-flex align-items-center me-3">
+                          <span class="icon-bed me-2"></span>
+                          <span class="caption">2 beds</span>
+                        </span>
+                        <span class="d-block d-flex align-items-center">
+                          <span class="icon-bath me-2"></span>
+                          <span class="caption">2 baths</span>
+                        </span>
+                      </div>
+		
+				         <div class="action-buttons d-flex justify-content-between align-items-center">
+				        <a href="property-single.html" class="btn btn-primary py-2 px-3">자세히 보기</a>
+				        <button class="btn btn-heart">
+				          <svg
+				            xmlns="http://www.w3.org/2000/svg"
+				            width="16"
+				            height="16"
+				            fill="currentColor"
+				            class="bi bi-heart"
+				            viewBox="0 0 16 16"
+				          >
+				            <path
+				              d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"
+				            />
+				          </svg>
+				        </button>
+				      </div>
+
+                    </div>
+                  </div>
+                </div>
+                <!-- .item -->
+
+               <div class="property-item">
+                  <a href="property-single.html" class="img">
+                    <img src="resources/static/images/img_2.jpg" alt="Image" class="img-fluid" />
+                  </a>
+
+                  <div class="property-content">
+                    <div class="price mb-2"><span>전세 2억 5000</span></div>
+                    <div>
+                       <span class="d-block mb-2 text-black-50"
+                        >투룸</span
+                      >
+                      <span class="d-block mb-2 text-black-50"
+                        > 2층, 33.28m², 관리비 10만
+가성비최고 뚫려있는 뷰 2룸 +1화 +1거실 </span
+                      >
+               <!--        <span class="city d-block mb-3">월룸</span> -->
+
+                      <div class="specs d-flex mb-4">
+                        <span class="d-block d-flex align-items-center me-3">
+                          <span class="icon-bed me-2"></span>
+                          <span class="caption">2 beds</span>
+                        </span>
+                        <span class="d-block d-flex align-items-center">
+                          <span class="icon-bath me-2"></span>
+                          <span class="caption">2 baths</span>
+                        </span>
+                      </div>
+		
+				         <div class="action-buttons d-flex justify-content-between align-items-center">
+				        <a href="property-single.html" class="btn btn-primary py-2 px-3">자세히 보기</a>
+				        <button class="btn btn-heart">
+				          <svg
+				            xmlns="http://www.w3.org/2000/svg"
+				            width="16"
+				            height="16"
+				            fill="currentColor"
+				            class="bi bi-heart"
+				            viewBox="0 0 16 16"
+				          >
+				            <path
+				              d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"
+				            />
+				          </svg>
+				        </button>
+				      </div>
+
+                    </div>
+                  </div>
+                </div>
+                <!-- .item -->
+
+                <div class="property-item">
+                  <a href="property-single.html" class="img">
+                    <img src="resources/static/images/img_3.jpg" alt="Image" class="img-fluid" />
+                  </a>
+
+                  <div class="property-content">
+                    <div class="price mb-2"><span>$1,291,000</span></div>
+                    <div>
+                      <span class="d-block mb-2 text-black-50"
+                        >5232 California Fake, Ave. 21BC</span
+                      >
+                      <span class="city d-block mb-3">California, USA</span>
+
+                      <div class="specs d-flex mb-4">
+                        <span class="d-block d-flex align-items-center me-3">
+                          <span class="icon-bed me-2"></span>
+                          <span class="caption">2 beds</span>
+                        </span>
+                        <span class="d-block d-flex align-items-center">
+                          <span class="icon-bath me-2"></span>
+                          <span class="caption">2 baths</span>
+                        </span>
+                      </div>
+
+                      <a
+                        href="property-single.html"
+                        class="btn btn-primary py-2 px-3"
+                        >See details</a
+                      >
+                    </div>
+                  </div>
+                </div>
+                <!-- .item -->
+
+                <div class="property-item">
+                  <a href="property-single.html" class="img">
+                    <img src="resources/static/images/img_4.jpg" alt="Image" class="img-fluid" />
+                  </a>
+
+                  <div class="property-content">
+                    <div class="price mb-2"><span>$1,291,000</span></div>
+                    <div>
+                      <span class="d-block mb-2 text-black-50"
+                        >5232 California Fake, Ave. 21BC</span
+                      >
+                      <span class="city d-block mb-3">California, USA</span>
+
+                      <div class="specs d-flex mb-4">
+                        <span class="d-block d-flex align-items-center me-3">
+                          <span class="icon-bed me-2"></span>
+                          <span class="caption">2 beds</span>
+                        </span>
+                        <span class="d-block d-flex align-items-center">
+                          <span class="icon-bath me-2"></span>
+                          <span class="caption">2 baths</span>
+                        </span>
+                      </div>
+
+                      <a
+                        href="property-single.html"
+                        class="btn btn-primary py-2 px-3"
+                        >See details</a
+                      >
+                    </div>
+                  </div>
+                </div>
+                <!-- .item -->
+
+                <div class="property-item">
+                  <a href="property-single.html" class="img">
+                    <img src="resources/static/images/img_5.jpg" alt="Image" class="img-fluid" />
+                  </a>
+
+                  <div class="property-content">
+                    <div class="price mb-2"><span>$1,291,000</span></div>
+                    <div>
+                      <span class="d-block mb-2 text-black-50"
+                        >5232 California Fake, Ave. 21BC</span
+                      >
+                      <span class="city d-block mb-3">California, USA</span>
+
+                      <div class="specs d-flex mb-4">
+                        <span class="d-block d-flex align-items-center me-3">
+                          <span class="icon-bed me-2"></span>
+                          <span class="caption">2 beds</span>
+                        </span>
+                        <span class="d-block d-flex align-items-center">
+                          <span class="icon-bath me-2"></span>
+                          <span class="caption">2 baths</span>
+                        </span>
+                      </div>
+
+                      <a
+                        href="property-single.html"
+                        class="btn btn-primary py-2 px-3"
+                        >See details</a
+                      >
+                    </div>
+                  </div>
+                </div>
+                <!-- .item -->
+
+                <div class="property-item">
+                  <a href="property-single.html" class="img">
+                    <img src="resources/static/images/img_6.jpg" alt="Image" class="img-fluid" />
+                  </a>
+
+                  <div class="property-content">
+                    <div class="price mb-2"><span>$1,291,000</span></div>
+                    <div>
+                      <span class="d-block mb-2 text-black-50"
+                        >5232 California Fake, Ave. 21BC</span
+                      >
+                      <span class="city d-block mb-3">California, USA</span>
+
+                      <div class="specs d-flex mb-4">
+                        <span class="d-block d-flex align-items-center me-3">
+                          <span class="icon-bed me-2"></span>
+                          <span class="caption">2 beds</span>
+                        </span>
+                        <span class="d-block d-flex align-items-center">
+                          <span class="icon-bath me-2"></span>
+                          <span class="caption">2 baths</span>
+                        </span>
+                      </div>
+
+                      <a
+                        href="property-single.html"
+                        class="btn btn-primary py-2 px-3"
+                        >See details</a
+                      >
+                    </div>
+                  </div>
+                </div>
+                <!-- .item -->
+
+                <div class="property-item">
+                  <a href="property-single.html" class="img">
+                    <img src="resources/static/images/img_7.jpg" alt="Image" class="img-fluid" />
+                  </a>
+
+                  <div class="property-content">
+                    <div class="price mb-2"><span>$1,291,000</span></div>
+                    <div>
+                      <span class="d-block mb-2 text-black-50"
+                        >5232 California Fake, Ave. 21BC</span
+                      >
+                      <span class="city d-block mb-3">California, USA</span>
+
+                      <div class="specs d-flex mb-4">
+                        <span class="d-block d-flex align-items-center me-3">
+                          <span class="icon-bed me-2"></span>
+                          <span class="caption">2 beds</span>
+                        </span>
+                        <span class="d-block d-flex align-items-center">
+                          <span class="icon-bath me-2"></span>
+                          <span class="caption">2 baths</span>
+                        </span>
+                      </div>
+
+                      <a
+                        href="property-single.html"
+                        class="btn btn-primary py-2 px-3"
+                        >See details</a
+                      >
+                    </div>
+                  </div>
+                </div>
+                <!-- .item -->
+
+                <div class="property-item">
+                  <a href="property-single.html" class="img">
+                    <img src="resources/static/images/img_8.jpg" alt="Image" class="img-fluid" />
+                  </a>
+
+                  <div class="property-content">
+                    <div class="price mb-2"><span>$1,291,000</span></div>
+                    <div>
+                      <span class="d-block mb-2 text-black-50"
+                        >5232 California Fake, Ave. 21BC</span
+                      >
+                      <span class="city d-block mb-3">California, USA</span>
+
+                      <div class="specs d-flex mb-4">
+                        <span class="d-block d-flex align-items-center me-3">
+                          <span class="icon-bed me-2"></span>
+                          <span class="caption">2 beds</span>
+                        </span>
+                        <span class="d-block d-flex align-items-center">
+                          <span class="icon-bath me-2"></span>
+                          <span class="caption">2 baths</span>
+                        </span>
+                      </div>
+
+                      <a
+                        href="property-single.html"
+                        class="btn btn-primary py-2 px-3"
+                        >See details</a
+                      >
+                    </div>
+                  </div>
+                </div>
+                <!-- .item -->
+
+                <div class="property-item">
+                  <a href="property-single.html" class="img">
+                    <img src="resources/static/images/img_1.jpg" alt="Image" class="img-fluid" />
+                  </a>
+
+                  <div class="property-content">
+                    <div class="price mb-2"><span>$1,291,000</span></div>
+                    <div>
+                      <span class="d-block mb-2 text-black-50"
+                        >5232 California Fake, Ave. 21BC</span
+                      >
+                      <span class="city d-block mb-3">California, USA</span>
+
+                      <div class="specs d-flex mb-4">
+                        <span class="d-block d-flex align-items-center me-3">
+                          <span class="icon-bed me-2"></span>
+                          <span class="caption">2 beds</span>
+                        </span>
+                        <span class="d-block d-flex align-items-center">
+                          <span class="icon-bath me-2"></span>
+                          <span class="caption">2 baths</span>
+                        </span>
+                      </div>
+
+                      <a
+                        href="property-single.html"
+                        class="btn btn-primary py-2 px-3"
+                        >See details</a
+                      >
+                    </div>
+                  </div>
+                </div>
+                <!-- .item -->
               </div>
 
               <div
@@ -297,7 +577,7 @@
     <div class="section"  style="background-color: white;">
       <div class="row justify-content-center footer-cta" data-aos="fade-up">
         <div class="col-lg-7 mx-auto text-center">
-          <h2 class="mb-4" style="font-weight: bold">방 잇다는 고객과의 신뢰의 약속입니다</h2>
+          <h2 class="mb-4">방 잇다는 고객과의 신뢰의 약속입니다</h2>
 			<h6 class="mb-4" style="margin-bottom:20px">아래의 버튼을 통해 계약서 양식과 정부24 링크로 이동할 수 있습니다</h6>
           <p>
             <a
@@ -327,10 +607,10 @@
             <div class="widget">
               <h3>형태별 검색</h3>
                 <ul class="list-unstyled float-start links">
-                <li><a href="./search/searchmain.do?est_addr=서울+강남구">원/투룸</a></li>
-                <li><a href="./search/searchmain.do?est_addr=서울+강남구">주택/빌라</a></li>
-                <li><a href="./search/searchmain.do?est_addr=서울+강남구">오피스텔</a></li>
-                <li><a href="./search/searchmain.do?est_addr=서울+강남구">아파트</a></li>
+                <li><a href="#">원/투룸</a></li>
+                <li><a href="#">주택/빌라</a></li>
+                <li><a href="#">오피스텔</a></li>
+                <li><a href="#">아파트</a></li>
               </ul>
             </div>
             <!-- /.widget -->
@@ -340,9 +620,16 @@
             <div class="widget">
               <h3>방 잇다 뉴스</h3>
               <ul class="list-unstyled float-start links">
-                <li><a href="tabletest.do">자유게시판</a></li>
+                <li><a href="#">자유게시판</a></li>
               </ul>
-             
+             <!--  <ul class="list-unstyled float-start links">
+                <li><a href="#">Partners</a></li>
+                <li><a href="#">Business</a></li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">Creative</a></li>
+              </ul> -->
             </div>
             <!-- /.widget -->
           </div>

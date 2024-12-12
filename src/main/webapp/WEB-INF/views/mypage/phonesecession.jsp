@@ -52,7 +52,7 @@
  <body class="sb-nav-fixed">
      <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
 		<!-- Navbar Brand-->
-		<a class="navbar-brand ps-3" href="index.html">방 잇다</a>
+		<a class="navbar-brand ps-3" href="mypages.do">방 잇다</a>
 		<!-- Sidebar Toggle-->
 		<button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
 			id="sidebarToggle" href="#!">
@@ -78,7 +78,7 @@
 				<ul class="dropdown-menu dropdown-menu-end"
 					aria-labelledby="navbarDropdown">
 
-					<li><a class="dropdown-item" href="#!">Logout</a></li>
+					<li><a class="dropdown-item" href="logout.do">Logout</a></li>
 				</ul></li>
 		</ul>
 	</nav>
@@ -197,7 +197,8 @@
 			            <!-- 모달 푸터 -->
 			            <div class="modal-footer">
 			                <!-- 확인 버튼: 폼 제출 -->
-			                <button type="submit" class="btn btn-primary" form="sellerForm">확인</button>
+			               <!--  <button type="submit" class="btn btn-primary" form="sellerForm">확인</button> -->
+			                   <button type="button" class="btn btn-primary" onclick="window.location.href='remain.do';">확인</button>
 			            </div>
 			        </div>
 			    </div>

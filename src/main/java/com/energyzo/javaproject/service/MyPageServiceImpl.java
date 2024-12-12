@@ -42,10 +42,14 @@ public class MyPageServiceImpl implements MypageService{
 		 
 		 return mypageRepository.getWishlist();
 	 }
-	  
+	
+	    public void addPoint(PointVO point) {
+	    	mypageRepository.addPoint(point);
+	    }
 	 
-	public List<PointVO> getPointlist(){
-		return mypageRepository.getPointlist();
+	 
+	public List<PointVO> getPointlist(String user_id){
+		return mypageRepository.getPointlist(user_id);
 	}
 	
 	public EstateVO getEstatelist(int est_id){
@@ -65,6 +69,7 @@ public class MyPageServiceImpl implements MypageService{
 	public List<EstOptionVO> getEstOptionsByEstId(int est_id){
 		return mypageRepository.getEstOptionsByEstId(est_id);
 	}
+	
 	
 	public void saveAgent(AgentVO agentVO) {
 		mypageRepository.insertAgent(agentVO);

@@ -59,5 +59,7 @@ import com.energyzo.javaproject.model.vo.MemberVO;
 				return mybatis.selectOne("user.findByEmail", email);
 			}
 
-		  
+		
+		
 	}
+	

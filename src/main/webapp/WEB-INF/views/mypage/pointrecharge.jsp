@@ -36,6 +36,12 @@
         <div class="section">
             <button class="pay-button" id="payButton">결제하기</button>
         </div>
+        
+        <!-- 다른 내용과 겹치지 않도록 하단에 숨겨놓은 폼 -->
+		<form id="addPointForm" action="addPoint.do" method="POST" style="display:none;">
+		    <input type="hidden" name="amount" id="amount" value="0" />
+		</form>
+		        
         <div class="section notice">
             <span>※ 주의사항: 결제 완료 후 환불이 되지 않습니다.</span>
         </div>
@@ -56,7 +62,7 @@
 
             // 각 버튼에 이벤트 리스너 추가
             document.getElementById("button1000").addEventListener("click", function () {
-                addAmount(1000);
+                addAmount(100);
             });
             document.getElementById("button3000").addEventListener("click", function () {
                 addAmount(3000);
@@ -90,6 +96,10 @@
                     if (rsp.success) {
                         alert("결제가 성공적으로 완료되었습니다.");
                         console.log(rsp);
+                        
+                        document.getElementById("amount").value = currentAmount; // 폼에 금액 설정
+                        document.getElementById("addPointForm").submit(); // 폼 전송
+                        
                     } else {
                         alert("결제에 실패했습니다. 에러 내용: " + rsp.error_msg);
                         console.error(rsp);

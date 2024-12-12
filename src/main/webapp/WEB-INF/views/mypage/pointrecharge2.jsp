@@ -13,18 +13,19 @@
 <link href="resources/static/css/pointRecharge.css" rel="stylesheet" />
 <script>
 let currentAmount = 0;
-let powerDate = "${agent.power_date}"; 
-let currentDate = new Date(powerDate);
+let powerDate = "${powerDate}"; // 서버에서 전달된 날짜 사용
+let currentDate = new Date(powerDate); // powerDate를 Date 객체로 변환
 
 function formatDate(date) {
     return date.toISOString().split('T')[0];
 }
 
+
 function addDaysToCurrentDate(days) {
     currentDate.setDate(currentDate.getDate() + days); // 날짜에 일수 추가
     const formattedDate = formatDate(currentDate);
-    document.getElementById("updatedPowerDate").textContent = formatDate(currentDate); // 변경된 날짜 화면에 업데이트
-    document.getElementById("powerDateInput").value = formattedDate;
+    document.getElementById("updatedPowerDate").textContent = formattedDate; // 변경된 날짜 화면에 업데이트
+    document.getElementById("powerDateInput").value = formattedDate;  // input에 새로운 만료일자 반영
 }
 
 function addAmount(amount) {
@@ -89,7 +90,10 @@ function updateTable() {
 	<div class="container">
 		<div class="section">
 			<div class="label">현재 만료일자:</div>
-			<div class="value">${agent.power_date}</div>
+<div class="value">
+    ${powerDate} <!-- null 또는 과거 날짜는 이미 Java에서 처리됨 -->
+</div>
+
 		</div>
 
 		<form action="pointrecharge2.do" method="post"

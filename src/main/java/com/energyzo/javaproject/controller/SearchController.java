@@ -71,7 +71,7 @@ public class SearchController {
 	@RequestMapping("searchSellerInfo.do")
 	public String searchSellerInfo(Adm_SalesVO vo, Model m){
 		
-		vo = service.getAgentInfoById(vo);
+		vo = service.getAgentInfoById(vo); 
 		System.out.println( vo.toString() );
 		m.addAttribute("agent", vo);
 		

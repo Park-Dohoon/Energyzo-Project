@@ -22,14 +22,16 @@ public interface MypageRepository {
 	
 	public List<WishlistVO> getWishlist();
 	
-	public List<PointVO> getPointlist();
+    public void addPoint(PointVO point);
+	
+	public List<PointVO> getPointlist(String user_id);
 	
 	public EstateVO getEstatelist(int est_id);
 	
 	public EstPicVO getEstpic(int est_id);
 	
 	public List<EstPicVO> getSubPicsByEstId(int est_id);
-	
+		
 	public List<EstOptionVO> getEstOptionsByEstId(int est_id);
 	
 	public void insertAgent(AgentVO agentVO);

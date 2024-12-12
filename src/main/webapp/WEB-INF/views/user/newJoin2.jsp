@@ -60,39 +60,97 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
 	rel="stylesheet">
 
-<script type="text/javascript">
-	let pageName = '1';
-	/*휴대폰 인증  */
-	function sendSMS() {
-		console.log("sendSMS 함수 호출됨"); // 로그 출력
-		const to = $("input[name='to']").val();
-		console.log("입력된 번호:", to); // 로그 출력
+<script>
+/* 휴대폰 인증 관련 */
+$(document).ready(function() {
+    // 인증번호 발송 버튼 클릭 이벤트
+    $('#sendPhoneVerificationBtn').click(function() {
+        var phoneNumber = $('#to').val();  // 사용자 입력 전화번호
 
-		if (!to) {
-			alert("수신 번호를 입력하세요!");
+
+	let pageName = 'sendSMS'; //sendSMS URL을 올바르게 설정
+	
+	//중복확인버튼 1회 누르고나서 비활성화
+	  $('#sendPhoneVerificationBtn').prop('disabled', true);
+	
+	sendSMS(pageName);  // sendSMS 함수 호출
+	console.log("sendSMS버튼 클릭됨");
+    });
+});
+
+	 //sns발송 함수 -> 원본
+	function sendSMS(pageName) {
+        const to = $("input[name='to']").val();
+        if (!to) {
+            alert("수신 번호를 입력하세요!");
+            return;
+        }
+        console.log("수신 번호:", to);
+        
+        let param = { to: to }; //서버로 보낼 객체
+        
+        // AJAX로 데이터를 서버로 전송
+        $.ajax({
+           	url : "../sendSMS.do",
+            type: "post",           // POST 방식으로 요청
+            data: param,       // 보내는 데이터
+            success: function(response) {
+                // 요청 성공 시 처리할 내용
+                console.log("응답:", response);
+                //버튼활성화
+                 $('#sendPhoneVerificationBtn').prop('disabled', false);               
+            },
+            error: function(error) {
+                // 요청 실패 시 처리할 내용
+                console.log("에러 발생:", error);               
+                alert("인증번호 요청에 실패했습니다.");
+             // 버튼 활성화
+                $('#sendPhoneVerificationBtn').prop('disabled', false);
+            }
+        });
+    } 
+
+	//인증코드 서버와 입력 확인
+	function phverifyAuthCode2() {
+		var userInputCode = document.getElementById("authCode1").value; // 입력된 인증 코드		
+		var phoneNumber = document.getElementById("to").value; // 입력된 휴대폰 번호
+		
+		if (!userInputCode) {
+			alert("인증번호를 입력해주세요.");
 			return;
 		}
+									
+		    let param = { // 서버로 전송할 변수
+				'authCode1': userInputCode, //인증코드	
+				'to': phoneNumber // 입력한 휴대폰 번호
+		    };
 
-		let pageName = "/javaproject/user/sendSms";
-
-		console.log("AJAX 요청 준비 중..."); // 로그 출력
-
+		// 인증 코드를 서버로 전송
 		$.ajax({
-			url : pageName + ".do",
-			type : "POST",
-			data : JSON.stringify({
-				'to' : to
-			}),
-			contentType : "application/json; charset=UTF-8",
+			url : '../verifyAuthCode2.do', // 서버의 verifyAuthCode.do URL로 요청
+			type : 'POST',
+			dataType: 'json', //응답형태
+			data : param, // 입력한 인증 코드를 파라미터로 전송
 			success : function(response) {
-				console.log("응답 성공:", response);
-			},
-			error : function(xhr, status, error) {
-				console.log("AJAX 에러:", error);
+				console.log(response); 
+				// 서버의 응답 처리 (인증 성공 또는 실패 메시지)
+				//alert(response); // 서버에서 보낸 메시지를 alert로 표시
+				alert("["+response.resultMessage+"]");
+				
+				if(response.resultMessage.trim() === "인증성공") { // 컨트롤러의 resultMessage와 동일하게 해줘얗
+					alert("인증성공"); // 팝업통해 출력				
+				} else {
+					alert(response.resultMessage); //인증실패시 메시지 표시					
 			}
-		});
-	}
-	
+		},
+		        error: function() {
+		            alert("인증 코드 확인 중 오류가 발생했습니다.");
+		        }
+		    });
+		}
+
+
+	/*/////////////////////////회원가입폼 제풀관련은 완료 ///////////////////////////////////////////// */
 	// 회원가입폼에서 필수값 4개 입력해야만 가입제출 가능 
     function checkFormAndRedirect() {
         // 입력 필드 값 확인
@@ -397,224 +455,77 @@
 					</div>
 
 					<!-- ///////////////////////////////////////////////////////////////////////////////////////-->
-					<script type="text/javascript">
-							$(document).ready(function() {
-							    // 휴대폰 인증요청 버튼 클릭 이벤트
-							    $('#sendPhoneVerificationBtn').click(function() {
-							        var to = $("#to").val();
-							        
-							        // 아이디 입력칸이 비어있는지 확인
-							        if (to == '' || to.length == 0) {
-							            $('#userToMessage').css("color", "red").text("공백은 사용 불가");
-							            return false;
-							        }
-							        
-							        // 휴대전화 중복 검사 함수 호출
-							        checkToDuplicate(to);
-							    });
 
-							    // 휴대전화 중복검사 함수
-							    function checkToDuplicate(to) {
-							        $.ajax({
-							            url: '../check-to', // 서버에서 아이디 중복 확인을 처리하는 URL
-							            type: 'POST', // 요청 타입은 POST
-							            data: { to: to }, // 서버로 보낼 데이터 (아이디)
-							            success: function(response) {
-							                var label = $("#userToMessage");
-
-							                // 중복 여부에 따른 메시지 출력
-							                if (response.isToDuplicate) {
-							                    label.css("color", "red").text("이미 존재하는 아이디입니다.");
-							                } else {
-							                    label.css("color", "green").text("사용 가능한 아이디입니다.");
-							                }
-							            },
-							            error: function() {
-							                alert("아이디 중복 확인에 실패했습니다. 다시 시도해주세요.");
-							            }
-							        });
-							    }
-							});
-	
-							</script>
-
-
-
-					<!-- 휴대전화번호 입력칸 -->
-					<div class="row">
-						<div class="col-md-6 mb-3 d-flex align-items-center">
-							<div class="flex-grow-1">
-								<label for="mobile" style="width: 170px;"><small
-									style='color: red;'> <필수></small>휴대전화</label> <input type="text"
-									class="form-control" id="to" name="to"
-									placeholder="휴대폰번호를 입력해 주세요" value="" required></input>
-								<div class="invalid-feedback"></div>
-							</div>
-							<p id="userToMessage"
-								style="color: red; font-size: 14px; margin-top: 10px;"></p>
-							<!--  중복확인 메시지 -->
-
-							<div>
-								<label for="verifyPhoneBtn" style="width: 170px;">&nbsp;</label>
-								<button type="button" id="sendPhoneVerificationBtn"
-									style="margin-left: 5px; width: 120px; height: 38px; background-color: #005555; color: white; border: none; cursor: pointer;"
-									onclick="sendSMS()">인증번호요청</button>
-							</div>
-						</div>
+					<!-- 휴대전화번호 입력칸 -->					
+						<div class="row">
+						  <div class="col-md-6 mb-3">
+						    <div class="d-flex justify-content-between">
+						      <div class="flex-grow-1">
+						        <label for="to" style="width: 170px;"><small style='color: red;'> <필수></small>휴대전화</label>
+						        <input type="text" class="form-control" id="to" name="to" placeholder="휴대폰번호를 입력해 주세요" value="" required>
+						        <div class="invalid-feedback"></div>
+						      </div>
+						      <div>
+						        <button type="button" id="sendPhoneVerificationBtn"  
+						          style="margin-left: 5px; width: 120px; height: 38px; background-color: #005555; color: white; border: none; cursor: pointer;" 
+						           onclick="sendSMS('/sendSMS')">인증번호요청</button>
+						      </div>
+						    </div>
+						    <p id="userToMessage" style="color: red; font-size: 14px; margin-top: 10px;"></p>
+						  </div>
 						
-						<script type="text/javascript">
+						  <!-- 인증번호 입력칸 -->
+						  <div class="col-md-6 mb-3">
+						    <div class="d-flex justify-content-between">
+						      <div class="flex-grow-1">
+						        <label for="authCode1" style="width: 170px;">&nbsp;</label>
+						        <input type="text" class="form-control" id="authCode1" name="authCode1" placeholder="숫자6자리" value="" 
+						        required maxlength="6"  pattern="^[0-9]{1,6}$">
+						        <div class="invalid-feedback"></div>
+						      </div>
+						      <div>
+						        <button type="button" id="checkButton1" 
+						          style="margin-left: 5px; width: 120px; height: 38px; background-color: #005555; color: white; border: none; cursor: pointer;" 
+						          onclick="phverifyAuthCode2()">인증확인</button>
+						      </div>
+						    </div>
+						  </div>
 						
+						  <!-- 이메일 입력칸 -->
+						  <div class="col-md-6 mb-3">
+						    <div class="d-flex justify-content-between">
+						      <div class="flex-grow-1">
+						        <label for="email" style="width: 170px;"><small style='color: red;'> <필수></small>email</label>
+						        <input type="text" class="form-control" id="email" name="email" placeholder="이메일입력하세요" value="" required>
+						        <div class="invalid-feedback"></div>
+						        <!-- 실시간 이메일 유효성 검사 메시지 -->
+						        <p id="emailMessage" style="color: red;"></p>
+						      </div>
+						      <div>
+						        <button type="button" id="sendEmailVerificationBtn" 
+						          style="margin-left: 5px; width: 120px; height: 38px; background-color: #005555; color: white; border: none; cursor: pointer;" 
+						          onclick="sendEmail('signup')">인증번호요청</button>
+						      </div>
+						    </div>
+						  </div>
 						
-						
-						
-						</script>
-
-						<!-- 인증번호 입력칸  -->
-						<div class="col-md-6 mb-3 d-flex align-items-center">
-							<div class="flex-grow-1">
-								<label for="text" style="width: 170px;">&nbsp;</label> <input
-									type="text" class="form-control" id="authCode" name="authCode"
-									placeholder="숫자6자리" value="" required maxlength="6"
-									oninput="validateCheck()" pattern="^[0-9]{1,6}$"></input>
-								<div class="invalid-feedback"></div>
-							</div>
-							<div>
-								<label for="phone" style="width: 170px;">&nbsp;</label>
-								<button type="button" id="checkButton1"
-									style="margin-left: 5px; width: 120px; height: 38px; background-color: #005555; color: white; border: none; cursor: pointer;"
-									onclick="phverifyAuthCode()">인증확인</button>
-							</div>
-						</div>
-						<!-- 인증성공메시지  -->
-						<div class="col-md-12 mb-3 d-flex align-items-center">
-							<div class="flex-grow-1">
-								<!-- successMessage 클래스 추가 -->
-								<div class="successMessage"
-									style="display: none; color: green; font-weight: bold;">
-									인증이 성공적으로 완료되었습니다!</div>
-							</div>
-						</div>
-
-
-
-						<!-- ///////////////////////////////////////////////////////////////////////////////////////-->														
-						<!-- 이메일 입력칸 -->
-								<div class="col-md-6 mb-3 d-flex align-items-center">
-									<div class="flex-grow-1">
-										<label for="email" style="width: 170px;"><small
-											style='color: red;'> <필수></small>email</label> <input
-											type="text" class="form-control" id="email" name="email"
-											placeholder="이메일입력하세요" value="ksuwyg91@nate.com" required></input>
-										<div class="invalid-feedback"></div>
-										  <!-- 이메일 관련 메시지를 표시할 공간 -->
-       									 <p id="emailMessage" style="color: red;"></p>
-									</div>
-
-									<div>
-										<label for="sendEmailVerificationBtn" style="width: 170px;">&nbsp;</label>
-										<!-- 버튼을 하나로 사용 / 동적 변경 -->
-										<button type="button" id="sendEmailVerificationBtn"
-											style="margin-left: 5px; width: 120px; height: 38px; background-color: #005555; color: white; border: none; cursor: pointer;"
-											onclick="sendEmail('signup')">인증번호요청</button>
-									</div>
-								</div>
-								<p id="emailMessage" style="color: red; font-size: 14px; margin-top: 10px;"></p>
-							<!--  중복확인 메시지 -->
-								
+						  <!-- 인증번호 입력칸 -->
+						  <div class="col-md-6 mb-3">
+						    <div class="d-flex justify-content-between">
+						      <div class="flex-grow-1">
+						        <label for="check2" style="width: 170px;">&nbsp;</label>
+						        <input type="text" class="form-control" id="check2" name="check2" placeholder="숫자6자리"
+						         value="" required maxlength="6" oninput="validateCheck2()" pattern="^[0-9]{1,6}$">
+						        <div class="invalid-feedback"></div>
+						      </div>
+						      <div>
+						        <button type="button" id="checkButton2" 
+						          style="margin-left: 5px; width: 120px; height: 38px; background-color: #005555; color: white; border: none; cursor: pointer;" 
+						          onclick="verifyAuthCode21()">인증확인</button>
+						      </div>
+						    </div>
+						    
 								<script type="text/javascript">
-								$(document).ready(function() {
-								    // 버튼 클릭 시 처리
-								    $('#sendEmailVerificationBtn').click(function() {
-								        var email = $('#email').val();  // 이메일 입력값 가져오기
-								        var buttonText = $(this).text();  // 버튼 텍스트 가져오기
-
-								        if (!email) {
-								            alert("이메일을 입력하세요.");
-								            return;
-								        }
-
-								        // 이메일 형식 확인 (정규식 예시)
-								        var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-								        if (!emailPattern.test(email)) {
-								            alert("유효하지 않은 이메일 형식입니다.");
-								            return;
-								        }
-
-								        if (buttonText === "중복확인") {
-								            // 중복 확인 요청
-								            $.ajax({
-								                type: 'POST',
-								                url: '/checkEmailDuplicate',  // 중복 확인 API 엔드포인트
-								                data: { email: email },
-								                success: function(response) {
-								                    if (response === "중복된 이메일입니다.") {
-								                        $('#emailMessage').text('중복된 이메일입니다. 다른 이메일을 사용해주세요.');
-								                        $('#sendEmailVerificationBtn').prop('disabled', false);  // 버튼 활성화
-								                    } else {
-								                        $('#emailMessage').text('유효한 이메일입니다. 인증번호를 요청하세요.');
-								                        $('#sendEmailVerificationBtn').text('인증번호 요청');  // 버튼 텍스트 변경
-
-								                        // 인증번호 요청 클릭 핸들러로 변경
-								                        $('#sendEmailVerificationBtn').off('click').on('click', function() {
-								                            sendEmail(email);  // 인증번호 요청 함수 호출
-								                        });
-								                    }
-								                },
-								                error: function() {
-								                    $('#emailMessage').text('오류가 발생했습니다. 다시 시도해주세요.');
-								                }
-								            });
-								        } else if (buttonText === "인증번호 요청") {
-								            // 인증번호 요청
-								            sendEmail(email);
-								        }
-								    });
-
-								    // 인증번호 요청 함수
-								    function sendEmail(email) {
-								        if (!email) {
-								            alert("이메일을 입력하세요");
-								            return;
-								        }
-
-								        let param = {'email': email};  // 이메일을 파라미터로 서버에 전송
-
-								        $.ajax({
-								            url: "../emailCheck.do",  // 인증번호 요청 API 엔드포인트
-								            type: "get",  // GET 방식
-								            data: param,
-								            success: function(response) {
-								                // 서버에서 인증번호 발송 성공 시
-								                alert("인증코드를 메일로 전송했습니다. 메일 확인해주세요.");
-								                $('#sendEmailVerificationBtn').prop('disabled', true);  // 인증번호 요청 후 버튼 비활성화
-								            },
-								            error: function(error) {
-								                // 서버와의 통신 에러 시
-								                console.log("에러 발생:", error);
-								                alert("인증번호 요청에 실패했습니다. 다시 시도해주세요.");
-								            }
-								        });
-								    }
-								});
-		  								   
-								</script>
-							<!-- 인증번호 입력칸 -->
-							<div class="col-md-6 mb-3 d-flex align-items-center">
-								<div class="flex-grow-1">
-									<label for="text" style="width: 170px;">&nbsp;</label> <input
-										type="text" class="form-control" id="check2" name="check2"
-										placeholder="숫자6자리" value="" required maxlength="6"
-										oninput="validateCheck2()" pattern="^[0-9]{1,6}$"></input>
-									<div class="invalid-feedback"></div>
-								</div>
-								<div>
-									<label for="email" style="width: 170px;">&nbsp;</label>
-									<button type="button" id="checkButton2"
-										style="margin-left: 5px; width: 120px; height: 38px; background-color: #005555; color: white; border: none; cursor: pointer;"
-										onclick="verifyAuthCode()">인증확인</button>
-								</div>
-
-							<script type="text/javascript">
 								// 인증번호 입력칸에서 숫자만 입력 가능하도록 실시간 검증
 								function validateCheck2() {
 									var inputField = document
@@ -622,12 +533,11 @@
 									var value = inputField.value;
 
 									// 숫자만 입력하도록
-									inputField.value = value.replace(/[^0-9]/g,
-											''); // 숫자가 아닌 모든 문자 제거
+									inputField.value = value.replace(/[^0-9]/g,''); // 숫자가 아닌 모든 문자 제거
 								}
 
-								 ////////////이메일 인증 요청 삭제금지///////////////					 
-								/* let authCode = null;
+								 //이메일 인증 요청 	삭제금지					 
+								let authCode = null;
 
 								function sendEmail(pageName) {
 
@@ -659,9 +569,9 @@
 											}
 										});
 								} //end of sendEmail 
- */
+
 								//인증번호 서버랑 내꺼랑 확인하는거 삭제금지 
-								function verifyAuthCode() {
+								function verifyAuthCode21() {
 									var userInputCode = document.getElementById("check2").value; // 입력된 인증 코드
 									if (!userInputCode) {
 										alert("인증번호를 입력해주세요.");
@@ -674,18 +584,73 @@
 
 									// 인증 코드를 서버로 전송
 									$.ajax({
-										url : '../verifyAuthCode.do', // 서버의 verifyAuthCode.do URL로 요청
+										url : '../verifyAuthCode21.do', // 서버의 verifyAuthCode.do URL로 요청
 										type : 'GET',
+										dataType: 'json', //응답형태
 										data : param, // 입력한 인증 코드를 파라미터로 전송
 										success : function(response) {
 											// 서버의 응답 처리 (인증 성공 또는 실패 메시지)
-											alert(response); // 서버에서 보낸 메시지를 alert로 표시
+											console.log(response);  // 서버에서 보낸 메시지 확인
+											//alert(response); // 서버에서 보낸 메시지를 alert로 표시
+											
+											  // 응답 객체에서 resultMessage와 userId를 가져와서 표시
+								            if (response.resultMessage === "인증성공") {
+								                alert("인증성공!"); // 인증 성공 시 사용자 아이디 표시
+								            } else {
+								                alert(response.resultMessage); // 인증 실패 시 실패 메시지 표시
+								            }
 										},
 										error : function() {
 											alert("인증 코드 확인 중 오류dp가 발생했습니다.");
 										}
 									});
+									/* 이메일 실시간 인증 */
+									$(document).ready(function() {
+									    // 이메일 입력 칸에서 포커스를 벗어났을 때 자동으로 중복 확인
+									    $('#email').on('keyup', function() {
+									        var email = $(this).val();
+									       
+									         // 이메일이 비어 있으면 피드백 초기화
+									        if (email === "") {
+									            $('#emailMessage').text("");
+									            return;
+									        }
+
+									        // 이메일 형식 검사
+									        if (!validateEmail(email)) {
+									            $('#emailMessage').css("color", "red").text("유효하지 않은 이메일 형식입니다.");
+									            return;
+									        }
+									        
+									        // 이메일 중복 검사
+									        checkEmailDuplicate(email);
+									    });
+
+									    // 이메일 중복검사 함수
+									    function checkEmailDuplicate(email) {
+									        $.ajax({
+									            url: '../check-email', // 서버에서 이메일 중복 확인을 처리하는 컨트롤러 URL (아이디와 같은 방식으로 서버 URL 수정)
+									            type: 'post', // 요청 타입 수정
+									            data: { email: email }, // 서버로 보낼 데이터
+									            success: function(response) {
+									                var label = $("#emailMessage");
+									                if (response.isEmailDuplicate) {
+									                    label.css("color", "red").text("이미 존재하는 이메일입니다.");
+									                } else {
+									                    label.css("color", "green").text("사용 가능한 이메일입니다.");
+									                }
+									            },
+									            error: function() {
+									                alert("이메일 중복 확인에 실패했습니다. 다시 시도해주세요.");
+									            }
+									        });
+									    }
+									});
+
 								} //end of verifyAuthCode
+								
+								//이메일 실시간 중복검사 
+								
 							</script>
 						</div>
 					</div>
@@ -757,24 +722,21 @@
 								}
 							});
 
-			document.getElementById('toggle-confirm-password')
-					.addEventListener(
-							'click',
+			
+						// 비밀번호확인 보이기 감추기 기능
+						document.getElementById('toggle-confirm-password').addEventListener('click',
 							function() {
-								var confirmPasswordField = document
-										.getElementById('confirm-password');
+								var confirmPasswordField = document.getElementById('confirm-password');
 								var icon = this.querySelector('i');
 								if (confirmPasswordField.type === 'password') {
 									confirmPasswordField.type = 'text';
-									icon.classList.replace('bi-eye',
-											'bi-eye-slash');
-								} else {
+									icon.classList.replace('bi-eye','bi-eye-slash');
+									} else {
 									confirmPasswordField.type = 'password';
-									icon.classList.replace('bi-eye-slash',
-											'bi-eye');
-								}
+									icon.classList.replace('bi-eye-slash','bi-eye');
+									}
+								});
 							});
-		});
 	</script>
 
 

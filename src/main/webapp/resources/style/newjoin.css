@@ -29,3 +29,7 @@
 	right-margin :0px;
 }
  
+ #sendPhoneVerificationBtn, #checkButton1,
+ #sendEmailVerificationBtn, #checkButton2 {
+ 	margin-top: 32px;
+ }

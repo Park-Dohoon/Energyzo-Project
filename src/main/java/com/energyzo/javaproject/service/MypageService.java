@@ -20,7 +20,9 @@ public interface MypageService {
 	
 	public List<WishlistVO> getWishlist();
 	
-	public List<PointVO> getPointlist();
+    public void addPoint(PointVO point);
+	
+	public List<PointVO> getPointlist(String user_id);	
 	
 	public EstateVO getEstatelist(int est_id);
 	
@@ -28,7 +30,7 @@ public interface MypageService {
 	
 	public List<EstPicVO> getSubPicsByEstId(int est_id);
 	
-	public List<EstOptionVO> getEstOptionsByEstId(int est_id);
+	public List<EstOptionVO> getEstOptionsByEstId(int est_id);	
 	
 	public void saveAgent(AgentVO agentVO);
 	

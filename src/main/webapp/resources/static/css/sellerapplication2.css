@@ -25,7 +25,6 @@ html, body {
     padding: 20px; /* 화면이 작을 때 여백 */
 }
 
-
 .status-title {
     font-size: 18px;
     font-weight: bold;
@@ -44,10 +43,14 @@ html, body {
     align-items: center;
     font-size: 16px;
     color: #fff;
-    background-color: #00695c;
+    background-color: #00695c; /* 기본 색상 */
     padding: 10px 20px;
     border-radius: 5px;
     text-align: center;
+}
+
+.step.lighter {
+    background-color: #4C9C9C; /* 연한 색상 */
 }
 
 .step i {

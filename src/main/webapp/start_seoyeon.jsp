@@ -16,8 +16,7 @@
 
 <a href='main.do'>메인</a>
 
+
 </body>
 </html>
-
-   
 
