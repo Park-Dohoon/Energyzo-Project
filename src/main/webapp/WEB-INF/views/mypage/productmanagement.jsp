@@ -6,7 +6,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>등록상품목록</title>
+
+<!-- favicon -->
+<link rel="shortcut icon" href="./resources/static/base_template/favicon.png" type="image/x-icon" />
+
 
 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
 <link href="resources/static/css/styles.css" rel="stylesheet" />

@@ -14,7 +14,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>Static Navigation - SB Admin</title>
+<title>상품등록</title>
 
 <!-- favicon -->
 <link rel="shortcut icon" href="../resources/static/base_template/favicon.png" type="image/x-icon" />
@@ -106,13 +106,11 @@ $(function(){
 
 </script>
 
-
-<title>Insert title here</title>
 </head>
    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
 		<!-- Navbar Brand-->
-			<a class="navbar-brand ps-3" href="main.do">
-			<img src="resources/static/base_template/favicon.png" alt="company-logo" class="company-logo">
+			<a class="navbar-brand ps-3" href="../main.do">
+			<img src="../resources/static/base_template/favicon.png" alt="company-logo" class="company-logo">
 			<span class="company-name">방잇다</span>
 		</a>		<!-- Sidebar Toggle-->
 		<button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
@@ -185,7 +183,7 @@ $(function(){
         <div class="container container-fluid px-4">
             <h1 class="mt-4">상품등록</h1>
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item"><a href="index.html">상품관리</a></li>
+                <li class="breadcrumb-item"><a href="../productmanagement.do">상품관리</a></li>
                 <li class="breadcrumb-item active">상품등록</li>
             </ol>
             <div class="card mb-4">

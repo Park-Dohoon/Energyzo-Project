@@ -82,7 +82,7 @@
 		>
   <!-- 로그인 상태 -->
 		<li class="logged-in d-none">
-		  <a href="#">판매자 전환</a>
+		  <a href="seller.do">판매자 전환</a>
 		</li>
 		<li class="logged-in d-none">
 		  <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
