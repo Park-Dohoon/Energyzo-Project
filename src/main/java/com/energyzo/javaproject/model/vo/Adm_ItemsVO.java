@@ -66,5 +66,7 @@ public class Adm_ItemsVO {
     private String realfname;			//사진 저장 경로
     private String fname;		//사진 이름
     
+    
+    
 
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.energyzo.javaproject.model.vo.Adm_SalesVO;
 import com.energyzo.javaproject.model.vo.Adm_UserVO;
@@ -59,6 +60,8 @@ public String adm_user_sales(Adm_SalesVO vo, Model model) {
 	return ("/adm/user/adm_user_sales");
 }
 
+
+
 //판매 신청 리스트 호출
 
 
@@ -69,6 +72,29 @@ public String adm_user_sales_apply(Adm_SalesVO vo, Model model) {
 	
 	return ("/adm/user/adm_user_sales_apply");
 }
+
+
+//판매 신청 세부 내용 호출
+@GetMapping("adm_user_sales_apply_Detail")
+public String adm_user_sales_apply_Detail(@RequestParam("id") String id, Model model) {
+	System.out.println("adm_user_sales_apply_main_deatil 진입");
+	System.out.println("id : "+id);
+	Adm_SalesVO param=new Adm_SalesVO();
+	
+	param.setUser_id(id);
+	
+	Adm_SalesVO list = salesService.detailSalesApply(param);
+	model.addAttribute("agent",list);
+	System.out.println(list);
+	
+	System.out.println("adm_user_sales_apply_main_deatil 출발");
+	return("/adm/user/detail/adm_user_sales_apply_main_detail");
+}
+
+
+
+
+
 
 	
 	

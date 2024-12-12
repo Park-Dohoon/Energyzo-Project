@@ -11,7 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.energyzo.javaproject.model.vo.Adm_ManageVO;
+import com.energyzo.javaproject.model.vo.Adm_UserVO;
+import com.energyzo.javaproject.model.vo.UserVO;
 import com.energyzo.javaproject.service.Adm_ManageService;
+import com.energyzo.javaproject.service.Adm_UserService;
+import com.energyzo.javaproject.service.MypageService;
 
 
 @Controller
@@ -64,9 +68,62 @@ public String adm_option(Adm_ManageVO vo, Model model) {
 
 @RequestMapping("adm_pw_change.do")
 public String adm_pw_change() {
+	System.out.println("adm_manage_controller adm_pw_change 진입");
 	//관리 - 비밀번호 변경
+	System.out.println("adm_manage_controller adm_pw_change 출발");
 	return ("/adm/manage/adm_pw_change");
 }
+
+
+@Autowired
+private Adm_UserService userService;
+
+@PostMapping("adm_pw_change_confirm.do")
+public String adm_pw_change_confirm(String currentPassword, 
+									String newPassword,
+									String registrationNumber,
+									Adm_UserVO vo, Model model) {
+	System.out.println("adm_manage_controller adm_pw_change_confirm 진입");
+	System.out.println("curr : "+currentPassword);
+	System.out.println("new : "+newPassword);
+	System.out.println("regis : "+registrationNumber);
+ 
+	List<Adm_UserVO> list = userService.listallUser(vo); //UserService와 일치
+	model.addAttribute("listallUser",list);
+
+	// 'supervisor' 사용자의 비밀번호 확인
+	for (Adm_UserVO user : list) {
+		if ("supervisor".equals(user.getUser_id())) { 
+			String supervisorPassword = user.getPassword();
+			System.out.println("user : "+user);
+		if (supervisorPassword.equals(currentPassword)) { 
+			System.out.println("현재 비밀번호가 일치합니다.");
+			//새 비밀번호 유효성 검토
+				//새 비밀번호 불일치
+				//공백여부
+				//유효문자
+			
+			
+			
+			
+			
+			
+			} 
+		else { System.out.println("현재 비밀번호가 일치하지 않습니다.");
+				model.addAttribute("message","현재 비밀번호를 다시 확인하십시오.");
+				return ("/adm/manage/adm_pw_change");
+				} break; } }
+	
+	
+	System.out.println("adm_manage_controller adm_pw_change_confirm 출발");
+	return ("redirect:adm_pw_change.do");
+}
+
+
+
+
+
+
 
 
 

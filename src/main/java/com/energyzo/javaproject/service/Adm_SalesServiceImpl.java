@@ -29,4 +29,12 @@ public class Adm_SalesServiceImpl implements Adm_SalesService{
 		return list;
 	}
 	
+	public Adm_SalesVO detailSalesApply(Adm_SalesVO id) {
+		System.out.println("salesserviceimpl detailSalesApply 진입");
+		Adm_SalesVO list = salesDAO.detailSalesApply(id);
+		
+		System.out.println("salesserviceimpl detailSalesApply 아웃");
+		return list;
+	}
+	
 }

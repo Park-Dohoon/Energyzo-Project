@@ -139,23 +139,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 </select>
 
-<select id="getItemlist" resultType="com.energyzo.javaproject.model.vo.Adm_ItemsVO">
-	SELECT 
-	    TO_CHAR(est_tra_com_date, 'YYYY-MM') AS month,
-	    ROUND(AVG(CASE WHEN est_tra_type = '매매' THEN est_tra_cond ELSE NULL END)) AS sale_price,
-	    COUNT(CASE WHEN est_tra_type = '매매' THEN 1 END) AS sale_count,
-	    ROUND(AVG(CASE WHEN est_tra_type = '전세' THEN est_tra_cond ELSE NULL END)) AS whole_rent_price,
-	    COUNT(CASE WHEN est_tra_type = '전세' THEN 1 END) AS whole_rent_count,
-	    ROUND(AVG(CASE WHEN est_tra_type = '월세' THEN est_monthpay ELSE NULL END)) AS monthly_rent_price,
-	    COUNT(CASE WHEN est_tra_type = '월세' THEN 1 END) AS monthly_rent_count
-	FROM estate_tb
-	WHERE 
-	    TO_CHAR(est_tra_com_date, 'YYYY-MM-DD') >= '2024-01-01'
-	GROUP BY TO_CHAR(est_tra_com_date, 'YYYY-MM')
-	ORDER BY TO_CHAR(est_tra_com_date, 'YYYY-MM')
 
-
-</select>
 
 
 </mapper>

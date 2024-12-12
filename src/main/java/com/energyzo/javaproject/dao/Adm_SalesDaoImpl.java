@@ -31,6 +31,13 @@ public class Adm_SalesDaoImpl {
 	}
 	
 	
-	
+	public Adm_SalesVO detailSalesApply(Adm_SalesVO id) {
+		System.out.println("salesdaoimpl detailsalesapply 진입");
+		Adm_SalesVO list = sqlSession.selectOne("dao.SalesDao.getDetailSaleApply",id);
+		System.out.println("list : "+list);
+		
+		System.out.println("salesdaoimpl detailsalesapply 출발");
+		return list;
+	}
 	
 }

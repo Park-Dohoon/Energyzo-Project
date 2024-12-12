@@ -53,10 +53,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		              SUM(CASE WHEN point_source = '출석' THEN point_pt ELSE 0 END)) = 0 
 		        THEN 0
 		        ELSE 
+		            SUM(CASE WHEN point_source = '출석' THEN point_pt ELSE 0 END)*100 / 
+		            (SUM(CASE WHEN point_source = '충전' THEN point_pt ELSE 0 END) + 
+		             SUM(CASE WHEN point_source = '출석' THEN point_pt ELSE 0 END))
+		    END AS sales_rate,
+		
+		    -- 포인트지급율 : recharge_point / (recharge_point + attend_point), 0으로 나누는 경우
+		    CASE 
+		        WHEN (SUM(CASE WHEN point_source = '충전' THEN point_pt ELSE 0 END) + 
+		              SUM(CASE WHEN point_source = '출석' THEN point_pt ELSE 0 END)) = 0 
+		        THEN 0
+		        ELSE 
 		            SUM(CASE WHEN point_source = '충전' THEN point_pt ELSE 0 END)*100 / 
 		            (SUM(CASE WHEN point_source = '충전' THEN point_pt ELSE 0 END) + 
 		             SUM(CASE WHEN point_source = '출석' THEN point_pt ELSE 0 END))
-		    END AS sales_rate
+		    END AS point_rate
 		FROM 
 		    point
 		WHERE 

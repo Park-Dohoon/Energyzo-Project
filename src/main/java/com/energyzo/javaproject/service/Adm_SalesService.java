@@ -10,6 +10,8 @@ public interface Adm_SalesService {
 	
 	List<Adm_SalesVO> listSalesApply(Adm_SalesVO vo);
 	
+	Adm_SalesVO detailSalesApply(Adm_SalesVO vo);
+	
 	
 
 }

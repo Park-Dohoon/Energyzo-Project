@@ -10,5 +10,7 @@ public interface Adm_SalesDao {
 	
 	public List<Adm_SalesVO> listSalesApply(Adm_SalesVO vo);
 	
+	public Adm_SalesVO detailSalesApply(Adm_SalesVO vo);
+	
 	
 }

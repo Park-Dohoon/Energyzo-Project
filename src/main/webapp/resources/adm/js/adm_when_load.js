@@ -54,16 +54,18 @@ $(document).ready(function() {
 function updateGauge(percentage, gaugeId) {
     const gaugeContainer = document.getElementById(gaugeId);
     const gaugeFill = gaugeContainer.querySelector('.gauge-fill');
+    const gaugeFill2 = gaugeContainer.querySelector('.gauge-fill2');
     const gaugeText = gaugeContainer.querySelector('.gauge-text');
     gaugeFill.style.width = percentage + '%';
+    gaugeFill2.style.width = percentage + '%';
     gaugeText.textContent = percentage + '%';
 
     if (percentage <= 30) {
-        gaugeFill.style.backgroundColor = 'green';
+        gaugeFill2.style.backgroundColor = 'green';
     } else if (percentage <= 70) {
-        gaugeFill.style.backgroundColor = 'yellow';
+        gaugeFill2.style.backgroundColor = 'yellow';
     } else {
-        gaugeFill.style.backgroundColor = 'red';
+        gaugeFill2.style.backgroundColor = 'red';
     }
 }
 

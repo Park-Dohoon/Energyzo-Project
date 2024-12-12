@@ -55,6 +55,13 @@
 	--bs-btn-bg: #005555 !important;
 	}
 
+
+
+.container-fluid {
+   
+}
+
+
 .gauge-text {
     position: absolute;
     width: 100%;
@@ -65,6 +72,7 @@
     color: white;
     font-weight: bold;
     font-size: 16px;
+    text-shadow:2px 2px 4px rgba(0, 0, 0, 0.7); /* 검은색 그림자 추가 */
 }
 
 /* Gauge 전체 컨테이너 */
@@ -81,10 +89,39 @@
 /* 사용량을 나타내는 채워진 부분 */
 .gauge-fill {
     height: 100%;       /* 높이를 전체로 설정 */
+    position : relative;
+    border-radius: 15px 0 0 15px; /* 왼쪽 끝 둥글게 */
+    transition: width 0.3s ease; /* 사용량 변경 시 부드럽게 변하도록 설정 */
+    padding-right : 10px;
+}
+
+/* 사용량을 나타내는 채워진 부분(일반) */
+.gauge-fill2 {
+    height: 100%;       /* 높이를 전체로 설정 */
     background-color: #76c7c0; /* 사용량을 나타내는 색상 */
     border-radius: 15px 0 0 15px; /* 왼쪽 끝 둥글게 */
     transition: width 0.3s ease; /* 사용량 변경 시 부드럽게 변하도록 설정 */
 }
+
+
+/* 사용량을 나타내는 채워진 부분(평균 거래금액) */
+.gauge-fill3 {
+    height: 100%;       /* 높이를 전체로 설정 */
+    background-color: #76c7c0; /* 사용량을 나타내는 색상 */
+    border-radius: 15px 0 0 15px; /* 왼쪽 끝 둥글게 */
+    transition: width 0.3s ease; /* 사용량 변경 시 부드럽게 변하도록 설정 */
+}
+
+/* 사용량을 나타내는 채워진 부분(거래건수) */
+.gauge-fill4 {
+    height: 100%;       /* 높이를 전체로 설정 */
+    background-color: #76c700; /* 사용량을 나타내는 색상 */
+    border-radius: 15px 0 0 15px; /* 왼쪽 끝 둥글게 */
+    transition: width 0.3s ease; /* 사용량 변경 시 부드럽게 변하도록 설정 */
+}
+
+
+
 
  /* 부모 div가 한 줄에 배치되도록 */
 .row-container {
@@ -106,7 +143,18 @@
  }
  
 .gauge-name {
-    width:120px;         /* 폭을 40px로 지정 */
+    width:260px;         /* 폭을 260px로 지정 */
+    text-align: right;  /* 텍스트를 가로로 가운데 정렬 */
+    margin: 0 auto;      /* 요소를 수평 가운데 정렬 */
+    display: block;      /* div가 블록 요소로 취급되게 하기 */
+    border-right: 2px solid #d3d3d3;  /* 오른쪽에 연한 회색 줄 추가 */
+    padding-right: 10px;   /* 오른쪽 줄과 텍스트 간 간격을 줌 */
+    font-size: 14px;
+}
+
+
+.gauge-name2 {
+    width:60px;         /* 폭을 260px로 지정 */
     text-align: right;  /* 텍스트를 가로로 가운데 정렬 */
     margin: 0 auto;      /* 요소를 수평 가운데 정렬 */
     display: block;      /* div가 블록 요소로 취급되게 하기 */
@@ -131,6 +179,53 @@
     padding-right: 10px;   /* 오른쪽 줄과 텍스트 간 간격을 줌 */
     font-size: 14px;
 }
+
+
+/* 전체 카드 스타일 */
+.card_body {
+    padding: 20px;
+}
+
+/* 각 항목의 그래프 컨테이너 */
+.gauge_row {
+    width: 30px; /* 막대의 너비 */
+    height: 200px; /* 막대의 최대 높이 */
+    background-color: #e0e0e0; /* 막대의 배경 색 */
+    position: relative;
+}
+
+/* 그래프의 채워진 부분 (막대) */
+.gauge_row_fill {
+    width: 100%; /* 막대의 너비를 부모 컨테이너와 같게 */
+    position: absolute;
+    bottom: 0; /* 막대가 아래에서부터 채워지도록 */
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}
+
+/* 평균 거래가의 색상 (녹색) */
+.sale_price_bar {
+    background-color: #4caf50; /* 녹색 */
+}
+
+/* 거래 건 수의 색상 (파란색) */
+.sale_count_bar {
+    background-color: #2196f3; /* 파란색 */
+}
+
+/* 그래프 안에 텍스트 */
+.gauge_row_text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+}
+
+
+
+
 
 
 .main {
