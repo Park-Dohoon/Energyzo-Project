@@ -103,9 +103,6 @@ $(function(){
 		// 팝업에서 선택된 게시글 작성자를 저장
 		let boardWriter = $('.userId').text();
 
-		// 로그인된 사용자 ID를 세션에 저장
-        let loggedInUserId = loggedInUserId;  // 서버에서 동적으로 전달받은 로그인된 사용자 ID
-
 		// 해당 게시글 및 작성자를 세션에 저장
 		localStorage.setItem('reportBoard', reportBoard);
 		localStorage.setItem('boardWriter', boardWriter);

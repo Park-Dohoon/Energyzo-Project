@@ -20,7 +20,7 @@ public class BoardController {
 
 	@Autowired
 	private MemberService mservice;
-	
+	/*
 	// 로그인 페이지 이동
 	@RequestMapping("user/newlogin2.do")
 	public String login() {
@@ -52,7 +52,7 @@ public class BoardController {
 		// 로그인 실패 시 다시 로그인 페이지로 이동
 		return "redirect:/user/newlogin2.do";  
 	}
-
+*/
 	// 게시글 목록보기
 	@RequestMapping("tabletest.do")
 	public String tableTest(HttpServletRequest request, Model m) {

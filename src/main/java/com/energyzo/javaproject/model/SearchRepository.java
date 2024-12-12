@@ -2,6 +2,7 @@ package com.energyzo.javaproject.model;
 
 import java.util.List;
 
+import com.energyzo.javaproject.model.vo.Adm_SalesVO;
 import com.energyzo.javaproject.model.vo.EstOptionVO;
 import com.energyzo.javaproject.model.vo.EstSearchDTO;
 import com.energyzo.javaproject.model.vo.EstateImgDTO;
@@ -17,4 +18,7 @@ public interface SearchRepository {
 	
 	public List<EstateImgDTO> searchImgListById(EstateVO vo);
 	
+	public Adm_SalesVO getAgentInfoById(Adm_SalesVO vo);
+	
+	public List<Adm_SalesVO> searchListByAgentId(Adm_SalesVO vo);
 }
