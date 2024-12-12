@@ -91,7 +91,7 @@
 		</div>
 		<div id="layoutSidenav_content">
                 <main>
-                    <div class="container-fluid px-4">
+                    <div class="container-fluid px-4 container">
                         <h1 class="mt-4">파워링크 구매내역</h1>
                        <ol class="breadcrumb mb-4">
                            <!--  <li class="breadcrumb-item"><a href="index.html">상품관리</a></li> 

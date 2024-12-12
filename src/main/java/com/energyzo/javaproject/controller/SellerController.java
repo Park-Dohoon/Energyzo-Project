@@ -41,16 +41,16 @@ public class SellerController {
    @RequestMapping("/seller/regist_item.do")
    public String regist_item(EstateVO vo, Model m) {
       
-	   System.out.println("regist_item 요청");
+	   if(service.isValidAgent(vo)) {
 	   
-      vo = service.insertOneItem(vo);
-      
-      EstateVO result = searchService.searchListById(vo);
-      
-      m.addAttribute("item", result);
-      
-      return "redirect:/productmanagement.do";
-      
+	      vo = service.insertOneItem(vo);
+	      
+	      EstateVO result = searchService.searchListById(vo);
+	      m.addAttribute("item", result);
+	      
+	  
+	   } 
+	   return "redirect:/productmanagement.do";
    }
 
    @PostMapping("seller/updateItem.do")

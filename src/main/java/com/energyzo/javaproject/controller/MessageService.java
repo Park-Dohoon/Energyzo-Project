@@ -18,8 +18,8 @@ public class MessageService {
 	
 	//휴대폰 문자인증	
 	public void sendMessage(HttpServletRequest request, String randomNumber) {
-		String api_key = "NCS3QU5AG3DQ2OLC";
-		String api_secret =  "89TDFKOBQSI4M8MOCMX9MYTMHPX34KYF";
+		String api_key = "NCSOAGT03CAS1XOG";
+		String api_secret =  "W63T8IXQJXGBKSUKDRUI6SEJZQUBZERX";
 								
 		
 		Message coolsms = new Message(api_key,api_secret);
@@ -33,7 +33,7 @@ public class MessageService {
 		}
 		
 		params.put("to", mTel); // 수신전화번호 -> 받는번호
-		params.put("from","01087219052"); //실제 발신전화번호 입력
+		params.put("from","01043881336"); //실제 발신전화번호 입력
 		params.put("type", "SMS");
 		params.put("text", "[인증번호] 본인확인 인증번호("+randomNumber+")를 입력하세요."); // 입력할 내용
 		params.put("app_version","JAVA SDK v2.2");

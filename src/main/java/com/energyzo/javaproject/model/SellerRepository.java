@@ -1,10 +1,14 @@
 package com.energyzo.javaproject.model;
 
+import com.energyzo.javaproject.model.vo.AgentVO;
 import com.energyzo.javaproject.model.vo.EstOptionVO;
 import com.energyzo.javaproject.model.vo.EstateImgDTO;
 import com.energyzo.javaproject.model.vo.EstateVO;
 
 public interface SellerRepository {
+	
+	// 판매자 코드 검증
+	public AgentVO isValidAgent(EstateVO vo);
 	
 	public void insertOneItem(EstateVO vo);
 	

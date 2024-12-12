@@ -299,7 +299,9 @@ $(function(){
                     <!-- 버튼 섹션 -->
                     <div class="btn-section">
                         <button id="btn_regist" class="btn btn-primary">상품등록</button>
-                        <button id="btn_cancel" class="btn btn-primary">취소</button>
+                        <a href='../productmanagement.do'>
+                        	<button id="btn_cancel" class="btn btn-primary">취소</button>
+                        </a>
                     </div>
                     
                 </div>

@@ -104,7 +104,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 </update>
 
 
-
+<select id="searchAgent" 
+		parameterType="com.energyzo.javaproject.model.vo.EstateVO"
+		resultType="com.energyzo.javaproject.model.vo.AgentVO">
+	SELECT 	*
+	FROM 	AGENT_TB
+	WHERE 	AGENT_NUM = ${agent_num}
+</select>
 
 
 </mapper>

@@ -22,8 +22,6 @@
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
 	crossorigin="anonymous"></script>
 
-
-<title>Insert title here</title>
 </head>
 <body>
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -97,7 +95,7 @@
 		</div>
 		<div id="layoutSidenav_content">
 			<main>
-                <div class="container-fluid px-4">
+                <div class="container-fluid px-4 container">
                     <h1 class="mt-4">판매자 정보</h1>
                  	<ol class="breadcrumb mb-4">
 

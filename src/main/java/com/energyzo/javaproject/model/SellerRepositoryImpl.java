@@ -4,6 +4,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.energyzo.javaproject.model.vo.AgentVO;
 import com.energyzo.javaproject.model.vo.EstOptionVO;
 import com.energyzo.javaproject.model.vo.EstateImgDTO;
 import com.energyzo.javaproject.model.vo.EstateVO;
@@ -13,6 +14,12 @@ public class SellerRepositoryImpl implements SellerRepository{
 	
 	@Autowired
 	SqlSessionTemplate sqlsession;
+	
+	// 판매자 코드 검증
+	public AgentVO isValidAgent(EstateVO vo) {
+		
+		return sqlsession.selectOne("com.energyzo.javaproject.model.SellerRepository.searchAgent", vo);
+	}
 	
 	public void insertOneItem(EstateVO vo) {
 		sqlsession.insert("com.energyzo.javaproject.model.SellerRepository.insertOneItem", vo);

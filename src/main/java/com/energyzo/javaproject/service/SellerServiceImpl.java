@@ -16,6 +16,17 @@ public class SellerServiceImpl implements SellerService{
 	@Autowired
 	SellerRepository repo;
 	
+	// 판매자 코드 검증
+	public Boolean isValidAgent(EstateVO vo) {
+		
+		if (repo.isValidAgent(vo) == null) {
+			return false;
+		} else {
+			return true;
+		}
+		
+		 
+	}
 	
 	// 상품입력
 	public EstateVO insertOneItem(EstateVO vo) {
