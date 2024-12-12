@@ -95,9 +95,13 @@ function checkFormAndRedirect() {
 <body>
 
 <div class="container">
+	<div class="container">
 		<div class="header">
 			<!-- <img src="C:\Users\user\Desktop\영문.png" alt="Company Logo"> -->
-			<h1 class="large-title">방과 사람을 잇다. 방잇다</h1>
+			<h1 class="large-title">
+				<a href='../main.do'><img alt="logo" src="../resources/static/images/방잇다로고_최종_누끼.png" style='width:100%'></a> 
+				방과 사람을 잇다
+			</h1>
 		</div>
 
 		<h1>
@@ -263,7 +267,8 @@ function checkFormAndRedirect() {
 		
 	
 		</form>
-
+	</div>
+</div>
 
 </body>
 </html>

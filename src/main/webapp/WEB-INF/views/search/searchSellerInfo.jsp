@@ -96,8 +96,8 @@ input.form-control[type="text"]{
       <div class="site-navigation">
         <!-- 왼쪽 메뉴 -->
         <ul class="menu-left js-clone-nav d-none d-lg-inline-block text-start site-menu">
-          <li class="#"><a href="./searchmain.do?est_addr=서울+강남구">매물 검색</a></li>
-          <li><a href="./searchmain.do?est_addr=서울+강남구">추천매물</a></li>
+          <li class="#"><a href="../search/searchmain.do?est_addr=서울+강남구">매물 검색</a></li>
+          <li><a href="../search/searchmain.do?est_addr=서울+강남구">추천매물</a></li>
           <li>
             <a href="../tabletest.do">자유게시판</a>
           </li>
@@ -112,9 +112,9 @@ input.form-control[type="text"]{
 		<ul
 		  class="menu-right js-clone-nav d-none d-lg-inline-block text-end site-menu"
 		>
-  		<!-- 로그인 상태 -->
+  <!-- 로그인 상태 -->
 		<li class="logged-in d-none">
-		  <a href="#">판매자 전환</a>
+		  <a href="../seller.do">판매자 전환</a>
 		</li>
 		<li class="logged-in d-none">
 		  <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -127,7 +127,7 @@ input.form-control[type="text"]{
 		  </a>
 		  <!-- 드롭다운 메뉴 -->
 		  <ul class="dropdown-menu">
-		    <li><a class="dropdown-item" href="#">마이페이지</a></li>
+		    <li><a class="dropdown-item" href="../mypages.do">마이페이지</a></li>
 			<li><a class="dropdown-item" href="../logout.do">로그아웃</a></li>
 		  </ul>
 		</li>

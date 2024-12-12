@@ -187,8 +187,10 @@ $(document).ready(function() {
 			<div class="input-form-backgroud row">
 				<div class="input-form col-md-12 mx-auto">
 					<h4 class="mb-3" style="text-align: center; position: relative;">
-						회원가입 <sup style="position: absolute; top: -10px; right: -10px;">방과
-							사람을 잇다. 방잇다</sup>
+						회원가입 
+						<sup style="position: absolute; top: -10px; right: -10px;">
+							<a href='../main.do'>방과 사람을 잇다. 방잇다</a>
+						</sup>
 					</h4>
 
 					<!-- 아이디 -->
