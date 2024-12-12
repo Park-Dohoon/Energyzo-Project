@@ -6,7 +6,7 @@ function verifyAuthCode() {
     }
 
     $.ajax({
-        url: 'verifyAuthCode.do',  // 서버의 인증 처리 URL
+        url: 'verifyAuthCode1.do',  // 서버의 인증 처리 URL
         type: 'POST',
         data: { authCode: authCode },  // 입력한 인증코드
         success: function(response) {

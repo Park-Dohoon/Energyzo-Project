@@ -62,7 +62,7 @@
 
             // 각 버튼에 이벤트 리스너 추가
             document.getElementById("button1000").addEventListener("click", function () {
-                addAmount(100);
+                addAmount(1000);
             });
             document.getElementById("button3000").addEventListener("click", function () {
                 addAmount(3000);

@@ -142,8 +142,8 @@ public class MyPageController {
 
 
 	
-	@RequestMapping("verifyAuthCode.do")
-	public String verifyAuthCode(HttpServletRequest request, @RequestParam("authCode") String userInputCode,  Model model) {
+	@RequestMapping("verifyAuthCode1.do")
+	public String verifyAuthCode1(HttpServletRequest request, @RequestParam("authCode") String userInputCode,  Model model) {
 	    // 세션에서 저장된 인증코드를 가져옴
 	    System.out.println("verifyAuthCode.do 요청 처리 중...");
 	    System.out.println("입력된 인증 코드: " + userInputCode);

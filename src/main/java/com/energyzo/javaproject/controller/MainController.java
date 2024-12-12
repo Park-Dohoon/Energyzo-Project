@@ -64,6 +64,12 @@ public class MainController {
 		 
 		    AgentVO agent = mypageService.getAgent(user_id);
 		    //System.out.println(agent.toString());
+		    
+		    if (agent == null) {
+		        System.out.println("Agent 정보를 찾을 수 없습니다. 판매자 신청 페이지로 이동합니다.");
+		        return "mypage/sellerapplication";
+		    }
+		    
 		    int reg_state  = agent.getAgent_reg_state();
 		    //System.out.println(reg_state);
 		

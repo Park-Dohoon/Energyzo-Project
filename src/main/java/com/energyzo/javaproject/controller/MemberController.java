@@ -63,16 +63,21 @@ public class MemberController {
 		}
 		int result = memberService.memberInsert(memberVO);  // 데이터베이스 삽입
 		if (result == 1) {									
-			return "redirect:/user/loginResult.do";  // 성공 시 성공성공 멘트뜸
+			
+			return "redirect:../main.do";
+			//return "redirect:/user/loginResult.do";  // 성공 시 성공성공 멘트뜸
 		}else {
 			return "redirect:/user/newlogin2.do";  // 실패 시 리디렉션
 		}
 	}
 
 
+
+	/********************* 서연 수정**********************/
+
 	// 로그인 페이지 (폼)
 	@RequestMapping("/newlogin.do")  // action 값 
-	public String showNewLoginPage(MemberVO vo, HttpSession session) {
+	public String showNewLoginPage(MemberVO vo, HttpSession session, Model model) {
 		System.out.println("here00000-----------------");
 		
 		MemberVO result = memberService.idcheck_Login(vo);
@@ -93,12 +98,24 @@ public class MemberController {
 			System.out.println("here-----------------");
 			//성공시 => 세션에 아이디값 저장
 			session.setAttribute("showNewLoginPage", vo.getUserId());
-			/* session.setAttribute("test", "abc"); */
-			return "user/loginResult";
+			
+			/*********************서연 확인***/
+			// 세션 값 확인 및 출력
+			String userId = (String) session.getAttribute("showNewLoginPage");
+			System.out.println("서연확인 유저아이디 " + userId);
+			 model.addAttribute("userId", userId);  // userId 값을 모델에 추가
+			
+		//	return "user/loginResult";
 
+			return "redirect:../main.do";
 		}
 
 	}
+
+	
+	/******************************추가*******************************/
+
+
 
 
 	// 이용약관에서 다음 누르면 회원가입폼 뜸 
