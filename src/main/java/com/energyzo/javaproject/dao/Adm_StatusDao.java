@@ -11,6 +11,5 @@ public interface Adm_StatusDao {
 	
 	public List<Adm_StatusVO> total_item_list(Map<String, String> dateStatus);
 	
-	
 
 }

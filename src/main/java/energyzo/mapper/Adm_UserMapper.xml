@@ -35,5 +35,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		'password1'
 		)
 	</insert>
+	
+	<update id="updatePassword" parameterType="com.energyzo.javaproject.model.vo.Adm_UserVO">
+    UPDATE user_tb
+    SET password = #{pw}
+    WHERE user_id = #{id}
+	</update>
 
 </mapper>

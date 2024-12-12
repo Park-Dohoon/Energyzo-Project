@@ -1,6 +1,8 @@
 package com.energyzo.javaproject.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,17 @@ public class Adm_UserDaoImpl implements Adm_UserDao{
 		return list;
 	}	
 	
+	
+	public void updatePW(String id, String pw) {
+		System.out.println("id : "+id);
+		Map<String, String> params = new HashMap<>();
+		params.put("id", id);
+		params.put("pw", pw);
+		System.out.println(params);
+		sqlSession.update("dao.UserDao.updatePassword",params);
+		System.out.println("pw : "+pw);
+		
+	}
 
 
 }

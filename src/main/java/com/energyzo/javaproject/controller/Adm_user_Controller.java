@@ -76,19 +76,22 @@ public String adm_user_sales_apply(Adm_SalesVO vo, Model model) {
 
 //판매 신청 세부 내용 호출
 @GetMapping("adm_user_sales_apply_Detail")
-public String adm_user_sales_apply_Detail(@RequestParam("id") String id, Model model) {
+public String adm_user_sales_apply_Detail(String id, Model model) {
 	System.out.println("adm_user_sales_apply_main_deatil 진입");
 	System.out.println("id : "+id);
+	
+	int agentNum=Integer.parseInt(id);
+	
 	Adm_SalesVO param=new Adm_SalesVO();
 	
-	param.setUser_id(id);
+	param.setAgent_num(agentNum);
 	
 	Adm_SalesVO list = salesService.detailSalesApply(param);
 	model.addAttribute("agent",list);
 	System.out.println(list);
 	
-	System.out.println("adm_user_sales_apply_main_deatil 출발");
-	return("/adm/user/detail/adm_user_sales_apply_main_detail");
+	System.out.println("adm_user_sales_apply_main 출발");
+	return("/adm/include/user/detail/adm_user_sales_apply_detail_main");
 }
 
 

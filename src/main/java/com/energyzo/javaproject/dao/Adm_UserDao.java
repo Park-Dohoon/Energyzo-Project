@@ -10,5 +10,6 @@ public interface Adm_UserDao {
 	
 	public List<Adm_UserVO> listallUser(Adm_UserVO vo);
 	
+	public void updatePW(String id, String pw);
 	
 }

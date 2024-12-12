@@ -34,4 +34,5 @@ public class Adm_StatusDaoImpl  implements Adm_StatusDao{
 		return list;
 	}
 	
+	
 }

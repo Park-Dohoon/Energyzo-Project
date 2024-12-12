@@ -27,6 +27,14 @@ public class Adm_UserServiceImpl implements Adm_UserService{
 		return list;
 	}
 	
+	public void updatePW(String id, String pw) {
+		System.out.println("UserServiceImpl updatePW 도착");
+		System.out.println("id : "+id);
+		System.out.println("pw : "+pw);
+		userDAO.updatePW(id, pw);
+		System.out.println("UserServiceImpl updatePW 출발");
+	}
+
 
 	
 }

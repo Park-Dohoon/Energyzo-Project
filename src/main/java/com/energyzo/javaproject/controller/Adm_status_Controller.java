@@ -5,10 +5,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -43,7 +47,41 @@ public class Adm_status_Controller {
 		return "redirect:adm_main_point.do?sdate=" + sdate + "&fdate=" + fdate; //다른 컨트롤러를 호출할 때에는 redirect로
 	}
 	
+	@PostMapping("adm_logout.do")
+	public String logout(HttpSession session) {
+	    // 세션 무효화
+	    session.invalidate();
+
+    
+	    // 로그아웃 후 리다이렉트 또는 다른 화면으로 이동
+	    return "redirect:/main.do";  // 로그인 페이지로 리다이렉트
+	}
 	
+	@GetMapping("adm_session.do")
+	public String adm_session(HttpSession session, Model model) {
+		 // 세션에서 값 가져오기
+	    String userId = (String) session.getAttribute("user_id");
+	    String userName = (String) session.getAttribute("nick_name");
+
+	    // 세션 값이 없으면 로그인 페이지로 리다이렉트
+	    if (userId ==null || userName == null) {
+	        return "redirect:/login";  // 로그인 페이지로 리다이렉트
+	    }
+
+	    
+	    // userId가 "supervisor"가 아니면 main.do로 리다이렉트
+	    if (!"supervisor".equals(userId)) {
+	        return "redirect:/main.do";  // main.do로 리다이렉트
+	    }
+	    
+	    
+	    // 세션 값을 모델에 담아서 뷰로 전달
+	    model.addAttribute("userId", userId);
+	    model.addAttribute("userName", userName);
+
+	    // 관리자 홈 화면으로 이동
+	    return "adm_main.do";  // home.jsp로 이동
+	}
 	
 	@Autowired
 	private Adm_ManageService manageService;

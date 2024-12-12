@@ -17,7 +17,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 <select id="getDetailSaleApply" resultType='com.energyzo.javaproject.model.vo.Adm_SalesVO'>
 	SELECT * FROM agent_tb
-	WHERE agent_reg_state=#{id}
+	WHERE agent_num=#{agent_num}
 	
 </select>
 

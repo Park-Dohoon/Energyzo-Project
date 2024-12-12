@@ -11,5 +11,7 @@ public interface Adm_UserService {
 	void insertUser(Adm_UserVO vo);
 	
 	public List<Adm_UserVO> listallUser(Adm_UserVO vo); 
+
+	public void updatePW(String id, String pw);
 	
 }

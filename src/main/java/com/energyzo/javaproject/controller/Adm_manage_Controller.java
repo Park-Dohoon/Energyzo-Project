@@ -2,6 +2,8 @@ package com.energyzo.javaproject.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,10 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.energyzo.javaproject.model.vo.Adm_ManageVO;
 import com.energyzo.javaproject.model.vo.Adm_UserVO;
-import com.energyzo.javaproject.model.vo.UserVO;
 import com.energyzo.javaproject.service.Adm_ManageService;
 import com.energyzo.javaproject.service.Adm_UserService;
-import com.energyzo.javaproject.service.MypageService;
 
 
 @Controller
@@ -80,12 +80,16 @@ private Adm_UserService userService;
 
 @PostMapping("adm_pw_change_confirm.do")
 public String adm_pw_change_confirm(String currentPassword, 
-									String newPassword,
+									String password,
 									String registrationNumber,
-									Adm_UserVO vo, Model model) {
+									Adm_UserVO vo, Model model,
+									HttpSession session
+									
+									) {
 	System.out.println("adm_manage_controller adm_pw_change_confirm 진입");
+	System.out.println("session : " + session);
 	System.out.println("curr : "+currentPassword);
-	System.out.println("new : "+newPassword);
+	System.out.println("new : "+password);
 	System.out.println("regis : "+registrationNumber);
  
 	List<Adm_UserVO> list = userService.listallUser(vo); //UserService와 일치
@@ -93,24 +97,23 @@ public String adm_pw_change_confirm(String currentPassword,
 
 	// 'supervisor' 사용자의 비밀번호 확인
 	for (Adm_UserVO user : list) {
-		if ("supervisor".equals(user.getUser_id())) { 
-			String supervisorPassword = user.getPassword();
+		String id=user.getUser_id();
+		String pw=user.getPassword();
+		if ("supervisor".equals(id)) { 
+			String supervisorPassword = pw;
 			System.out.println("user : "+user);
 		if (supervisorPassword.equals(currentPassword)) { 
 			System.out.println("현재 비밀번호가 일치합니다.");
-			//새 비밀번호 유효성 검토
-				//새 비밀번호 불일치
-				//공백여부
-				//유효문자
+			System.out.println("비밀번호 변경 출발");
 			
-			
-			
-			
-			
+			userService.updatePW(id, password);
+			System.out.println("userservice : "+userService);
+						
+			System.out.println("비밀번호 변경 도착");
 			
 			} 
 		else { System.out.println("현재 비밀번호가 일치하지 않습니다.");
-				model.addAttribute("message","현재 비밀번호를 다시 확인하십시오.");
+				model.addAttribute("message","현재 비밀번호 오류.");
 				return ("/adm/manage/adm_pw_change");
 				} break; } }
 	

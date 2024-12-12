@@ -16,5 +16,5 @@ public class Adm_UserVO {
 	private String birth;
 	private String address;
 	private String password;
-
+	private String PW;
 }
