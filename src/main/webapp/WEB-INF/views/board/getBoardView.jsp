@@ -87,13 +87,13 @@ $(function(){
 				id="sidenavAccordion">
 				<div class="sb-sidenav-menu">
 					<div class="nav">
-						<div class="sb-sidenav-menu-heading">Core</div>
+						<div class="sb-sidenav-menu-heading"></div>
 						<a class="nav-link" href="main.do">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-tachometer-alt"></i>
 							</div> 메인페이지
 						</a>
-						<div class="sb-sidenav-menu-heading">Interface</div>
+						
 						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
 							data-bs-target="#collapseLayouts" aria-expanded="false"
 							aria-controls="collapseLayouts">
@@ -111,7 +111,7 @@ $(function(){
 							</nav>
 						</div>
 						
-						<div class="sb-sidenav-menu-heading">Addons</div>
+						
 						 <a class="nav-link" href="tabletest.do">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-table"></i>
@@ -120,11 +120,11 @@ $(function(){
 					</div>
 				</div>
 				<div class="sb-sidenav-footer">
-				<c:if test="${not empty loggedInUser}">
+				<c:if test="${not empty sessionScope.showNewLoginPage}">
 					<div class="small">Logged in as:</div>
-					${loggedInUser}
+					${sessionScope.showNewLoginPage}
 				</c:if>
-					<c:if test="${empty loggedInUser}">
+					<c:if test="${empty sessionScope.showNewLoginPage}">
 						<p>
 							로그인하지 않았습니다.<br>
 							<a href="user/newlogin2.do">로그인</a>
@@ -139,7 +139,7 @@ $(function(){
 				<div class='container'>
 					<h1 class="mt-4">게시글 상세보기</h1>
 					<ol class="breadcrumb mb-4">
-						<li class="breadcrumb-item"><a href="resources/static/index.html">메인페이지</a></li>
+						<li class="breadcrumb-item"><a href="main.do">메인페이지</a></li>
 						<li class="breadcrumb-item active">자유게시판</li>
 					</ol>
 					<div class="card mb-4"></div>
