@@ -1391,7 +1391,6 @@ window.onload = function(){
 	
     document.addEventListener("DOMContentLoaded", () => {
         const userId = "${sessionScope.showNewLoginPage}";  
-        console.log(userId);
 
         const loggedInElements = document.querySelectorAll(".logged-in");
         const loggedOutElements = document.querySelectorAll(".logged-out");
@@ -1403,10 +1402,26 @@ window.onload = function(){
             loggedInElements.forEach((el) => el.classList.add("d-none"));
             loggedOutElements.forEach((el) => el.classList.remove("d-none"));
         }
+        
+        $.ajax({
+        	type: "POST"
+        	,data: {user_id: userId}
+        	,url : "searchAgentById"
+        	,success: function(result){
+        		if(result){
+        			$('a[href="../seller.do"]').show();
+        		} else {
+        			$('a[href="../seller.do"]').hide();
+        		}
+        	}
+        	,error: function(e){
+        		console.log(e);
+        	}
+        })
     });
 	
+	
 	</script>
-<!-- 헤더관련 -->
 
 </body>
 </html>

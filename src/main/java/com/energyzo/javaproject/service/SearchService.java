@@ -14,5 +14,7 @@ public interface SearchService {
 	
 	public Adm_SalesVO getAgentInfoById(Adm_SalesVO vo);
 	
+	public Adm_SalesVO getAgentInfoByUserId(Adm_SalesVO vo);
+	
 	public List<Adm_SalesVO> searchListByAgentId(Adm_SalesVO vo);
 }

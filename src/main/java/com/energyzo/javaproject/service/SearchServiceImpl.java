@@ -69,7 +69,13 @@ public class SearchServiceImpl implements SearchService {
 	public Adm_SalesVO getAgentInfoById(Adm_SalesVO vo) {
 		return repo.getAgentInfoById(vo);
 	}
-	// 판매자 id로 매물 검색
+	
+	// 판매자 정보 검색
+	public Adm_SalesVO getAgentInfoByUserId(Adm_SalesVO vo) {
+		return repo.getAgentInfoByUserId(vo);
+	}
+	
+		// 판매자 id로 매물 검색
 	public List<Adm_SalesVO> searchListByAgentId(Adm_SalesVO vo) {
 		return repo.searchListByAgentId(vo);
 	}

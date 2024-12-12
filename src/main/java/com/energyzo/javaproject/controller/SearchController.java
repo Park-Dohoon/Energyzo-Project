@@ -81,6 +81,17 @@ public class SearchController {
 		return "search/searchSellerInfo";
 	}
 	
+	// 
+	@ResponseBody
+	@RequestMapping("searchAgentById")
+	public Boolean searchAgentById(Adm_SalesVO vo){
+		
+		Adm_SalesVO result = service.getAgentInfoByUserId(vo);
+		//System.out.println(result.toString());
+		
+		return ( result != null );
+	}
+	
 	// 서울시 부동산 api
 	@ResponseBody
 	@RequestMapping(value="seoulProperty", method = { RequestMethod.GET }, produces = "application/text; charset=UTF-8")

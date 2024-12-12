@@ -43,6 +43,10 @@ public class SearchRepositoryImpl implements SearchRepository{
 		
 		return sqlsession.selectOne("com.energyzo.javaproject.model.SearchRepository.getAgentInfoById",vo);
 	}
+	// 판매자 유저 아이디로 정보 검색
+	public Adm_SalesVO getAgentInfoByUserId(Adm_SalesVO vo) {
+		return sqlsession.selectOne("com.energyzo.javaproject.model.SearchRepository.getAgentInfoByUserId",vo);
+	}
 	// 판매자 id로 매물 검색
 	public List<Adm_SalesVO> searchListByAgentId(Adm_SalesVO vo){
 		
