@@ -95,7 +95,7 @@
 		  </a>
 		  <!-- 드롭다운 메뉴 -->
 		  <ul class="dropdown-menu">
-		    <li><a class="dropdown-item" href="#">마이페이지</a></li>
+		    <li><a class="dropdown-item" href="mypages.do">마이페이지</a></li>
 			<li><a class="dropdown-item" href="logout.do">로그아웃</a></li>
 		  </ul>
 		</li>

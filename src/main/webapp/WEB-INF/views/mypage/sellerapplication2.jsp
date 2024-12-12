@@ -6,7 +6,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>판매자 신청</title>
+
+<!-- favicon -->
+<link rel="shortcut icon" href="./resources/static/base_template/favicon.png" type="image/x-icon" />
 
 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
 <link href="resources/static/css/sellerapplication2.css" rel="stylesheet" />

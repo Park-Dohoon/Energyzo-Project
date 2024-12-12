@@ -6,7 +6,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>계정탈퇴 본인 인증</title>
+
+<!-- favicon -->
+<link rel="shortcut icon" href="./resources/static/base_template/favicon.png" type="image/x-icon" />
 
 <link
 	href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css"

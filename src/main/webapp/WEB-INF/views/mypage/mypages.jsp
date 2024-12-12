@@ -12,7 +12,11 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>Static Navigation - SB Admin</title>
+<title>마이페이지</title>
+
+<!-- favicon -->
+<link rel="shortcut icon" href="./resources/static/base_template/favicon.png" type="image/x-icon" />
+
 <link href="resources/static/css/styles.css" rel="stylesheet" />
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
 	crossorigin="anonymous"></script>
