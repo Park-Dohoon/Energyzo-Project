@@ -1,13 +1,15 @@
 package com.energyzo.javaproject.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.energyzo.javaproject.model.vo.Adm_SalesVO;
 import com.energyzo.javaproject.model.vo.Adm_UserVO;
@@ -94,6 +96,40 @@ public String adm_user_sales_apply_Detail(String id, Model model) {
 	return("/adm/include/user/detail/adm_user_sales_apply_detail_main");
 }
 
+//판매 신청 승인 여부
+@PostMapping("adm_user_sales_apply_approve")
+public String adm_user_sales_apply_approve(String agent_num, String approve, Adm_SalesVO vo, Model model) {
+    System.out.println("adm_user_controller adm_user_sales_apply_approve 도착");
+
+    System.out.println("[=================" + agent_num);
+    System.out.println("[=================" + approve);
+    System.out.println("[=================" + vo);
+    if (approve == null) {
+        // approve 파라미터가 null인 경우 처리
+        System.out.println("approve 파라미터가 null입니다.");
+        return "redirect:adm_user_sales_apply"; // 적절한 처리를 한 후 리디렉션
+    }
+    
+
+
+    Map<String, String> params = new HashMap<>();
+    if (approve == "1") {
+        // 판매자 등록 승인시
+        params.put("id", agent_num);
+        params.put("agent_reg_state", "2");
+        System.out.println("params : " + params);
+        salesService.approveSalesApply(vo);
+    } else {
+        // 판매자 등록 거절시
+    	//외래키 관련 삭제 불가
+        salesService.rejectSalesApply(vo);
+    }
+
+    System.out.println("adm_user_controller adm_user_sales_apply_approve 출발");
+
+    return "redirect:adm_user_sales_apply";
+}
+
 
 
 
@@ -117,6 +153,28 @@ System.out.println("User controller.user_insert 맵핑 출발");
 return "redirect:adm_user_alluser.do";  //입력 후 전체 목록 호출
 
 }
+
+
+// incolpleted
+
+@RequestMapping("adm_user_alluser_Detail")
+public String adm_user_alluser_Detail(Adm_UserVO vo) {
+System.out.println("User controller.adm_user_alluser_Detail.do 맵핑 도착");
+	//회원관리 - 회원 추가
+System.out.println("User controller.adm_user_alluser_Detail.do 맵핑 출발");
+return "redirect:adm_user_alluser.do";  //입력 후 전체 목록 호출
+
+}
+
+@RequestMapping("adm_user_sales_Detail")
+public String adm_user_sales_Detail(Adm_UserVO vo) {
+System.out.println("User controller.adm_user_sales_Detail 맵핑 도착");
+	//회원관리 - 회원 추가
+System.out.println("User controller.adm_user_sales_Detail 맵핑 출발");
+return "redirect:adm_user_sales.do";  //입력 후 전체 목록 호출
+
+}
+
 
 
 

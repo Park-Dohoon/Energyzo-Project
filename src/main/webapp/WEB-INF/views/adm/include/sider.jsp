@@ -28,7 +28,7 @@
                         <a class="nav-link" href="adm_pw_change.do">비밀번호 변경</a>
                     </nav>
                 </div>
-                <a class="nav-link collapsed" href="adm_pw_change.do">
+                <a class="nav-link collapsed" href="adm_logout.do">
                     <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                     로그아웃
                 </a>

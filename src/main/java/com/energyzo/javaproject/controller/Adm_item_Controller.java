@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.energyzo.javaproject.model.vo.Adm_ItemsVO;
+import com.energyzo.javaproject.model.vo.Adm_UserVO;
 import com.energyzo.javaproject.model.vo.EstateVO;
 import com.energyzo.javaproject.service.Adm_ItemsService;
 
@@ -109,7 +110,25 @@ public String adm_item_all_Detail(@RequestParam("id") String id, Model model) {
 }
 
 
+//incomplete
 
 
+@RequestMapping("adm_item_complain_Detail")
+public String adm_item_complain_Detail(Adm_UserVO vo) {
+System.out.println("User controller.adm_item_complain_Detail 맵핑 도착");
+	//회원관리 - 회원 추가
+System.out.println("User controller.adm_item_complain_Detail 맵핑 출발");
+return "redirect:adm_item_complain.do";  //입력 후 전체 목록 호출
+
+}
+
+@RequestMapping("adm_item_discount_Detail")
+public String adm_item_discount_Detail(Adm_UserVO vo) {
+System.out.println("User controller.adm_item_discount_Detail 맵핑 도착");
+	//회원관리 - 회원 추가
+System.out.println("User controller.adm_item_discount_Detail 맵핑 출발");
+return "redirect:adm_item_discount.do";  //입력 후 전체 목록 호출
+
+}
 
 }

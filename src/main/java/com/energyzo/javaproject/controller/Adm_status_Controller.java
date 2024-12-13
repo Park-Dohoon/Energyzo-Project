@@ -1,11 +1,13 @@
 package com.energyzo.javaproject.controller;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +16,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.energyzo.javaproject.model.vo.Adm_ManageVO;
 import com.energyzo.javaproject.model.vo.Adm_StatusVO;
@@ -47,12 +48,13 @@ public class Adm_status_Controller {
 		return "redirect:adm_main_point.do?sdate=" + sdate + "&fdate=" + fdate; //다른 컨트롤러를 호출할 때에는 redirect로
 	}
 	
-	@PostMapping("adm_logout.do")
+	@GetMapping("adm_logout.do")
 	public String logout(HttpSession session) {
-	    // 세션 무효화
-	    session.invalidate();
-
-    
+	    // 세션이 존재하는지 확인
+	    if (session != null && session.getAttribute("userId") != null) {
+	        // 세션 무효화
+	        session.invalidate();
+	    }
 	    // 로그아웃 후 리다이렉트 또는 다른 화면으로 이동
 	    return "redirect:/main.do";  // 로그인 페이지로 리다이렉트
 	}
@@ -65,7 +67,8 @@ public class Adm_status_Controller {
 
 	    // 세션 값이 없으면 로그인 페이지로 리다이렉트
 	    if (userId ==null || userName == null) {
-	        return "redirect:/login";  // 로그인 페이지로 리다이렉트
+	    	
+	        return "redirect:/main.do";  // 로그인 페이지로 리다이렉트
 	    }
 
 	    
@@ -80,7 +83,7 @@ public class Adm_status_Controller {
 	    model.addAttribute("userName", userName);
 
 	    // 관리자 홈 화면으로 이동
-	    return "adm_main.do";  // home.jsp로 이동
+	    return "adm_main.do";
 	}
 	
 	@Autowired
@@ -89,6 +92,7 @@ public class Adm_status_Controller {
 	@GetMapping("adm_main_point.do")
 	public String adm_main_point(String sdate, String fdate, Model model) {
 		System.out.println("adm_status_controller main_point 도착");
+		
 		//사업현황-포인트
 		Map<String, String> datepoint = new HashMap<>();
 		datepoint.put("sdate", sdate);
@@ -119,7 +123,8 @@ public class Adm_status_Controller {
 		//사업현황-출석체크	
 		return ("/adm/status/adm_main_attend");
 	}
-	
+
+
 	
 	@RequestMapping("adm_main_auct.do")
 	public String adm_main_auct() {
@@ -155,7 +160,7 @@ public class Adm_status_Controller {
 	
 	
 	@GetMapping("adm_main_trade_body.do")
-	public String adm_main_trade_body(@RequestParam("sdate") String sdate, @RequestParam("fdate") String fdate, Model model) {
+	public String adm_main_trade_body(String sdate, String fdate, Model model) {
 		System.out.println("controller adm_main_trade_body 도착");
 		//사업현황-거래
 	    	    
@@ -182,9 +187,57 @@ public class Adm_status_Controller {
 		
 	}
 	
+	//이하 미완성
 	
+	@RequestMapping("adm_main_trade_body_Detail")
+	public String adm_main_trade_body_Detail() {
+		//사업현황-거래-세부
+		// 기본 시작일과 종료일 설정 (예: 90일 전 ~ 오늘)
+	    LocalDate today = LocalDate.now();
+	    LocalDate startDate = today.minusDays(90);
+	    
+	    String sdate = startDate.toString();  // 기본 시작일 (30일 전)
+	    String fdate = today.toString();      // 기본 종료일 (오늘)
+		return "redirect:adm_main_trade_body.do?sdate=" + sdate + "&fdate=" + fdate;
+	}
 
-
+	@RequestMapping("adm_main_attend_Detail")
+	public String adm_main_attend_Detail() {
+		//사업현황-거래-세부
+		// 기본 시작일과 종료일 설정 (예: 90일 전 ~ 오늘)
+	    LocalDate today = LocalDate.now();
+	    LocalDate startDate = today.minusDays(90);
+	    
+	    String sdate = startDate.toString();  // 기본 시작일 (30일 전)
+	    String fdate = today.toString();      // 기본 종료일 (오늘)
+		return "redirect:adm_main_attend.do?sdate=\" + sdate + \"&fdate=\" + fdate;";
+	}
 	
+	@RequestMapping("adm_main_point_Detail")
+	public String adm_main_point_Detail() {
+		//사업현황-거래-세부
+		// 기본 시작일과 종료일 설정 (예: 90일 전 ~ 오늘)
+	    LocalDate today = LocalDate.now();
+	    LocalDate startDate = today.minusDays(90);
+	    
+	    String sdate = startDate.toString();  // 기본 시작일 (30일 전)
+	    String fdate = today.toString();      // 기본 종료일 (오늘)
+		return "redirect:adm_main_point.do?sdate=" + sdate + "&fdate=" + fdate;
+	}
+	
+	
+	public void checkAdminSession(HttpServletRequest request, HttpServletResponse response) {
+	    String userId = (String) request.getSession().getAttribute("userId");
+	    System.out.println(userId);
+	    if (!"supervisor".equals(userId)) {
+	        // 관리자가 아니면 로그아웃 처리
+	        request.getSession().invalidate(); // 세션 무효화
+	        try {
+	            response.sendRedirect(request.getContextPath() + "/main.do"); // main.do로 리다이렉트
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	}
 	
 }

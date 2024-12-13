@@ -21,22 +21,45 @@
 							        </c:if>
 							    </div>
 							    
-							    <div class="mb-3">
-							        <label for="newPassword" class="form-label">새 비밀번호</label>
-							        <input type="text" class="form-control" id="newPassword" name="newPassword" 
-							               placeholder="새 비밀번호를 입력해주세요."
-							               value="${newPassword}"> <!-- 입력한 값을 그대로 표시 -->
-							    </div>
 							    
-							    <div class="mb-3">
-							        <label for="registrationNumber" class="form-label">새 비밀번호 확인</label>
-							        <input type="text" class="form-control" id="registrationNumber" name="registrationNumber" 
-							               placeholder="새 비밀번호를 확인해주세요."
-							               value="${registrationNumber}"> <!-- 입력한 값을 그대로 표시 -->
-							        <c:if test="${not empty message1}">
-							            <div class="alert alert-danger">${message1}</div>
-							        </c:if>
-							    </div>
+							    
+					<!-- 비밀번호 -->
+					<div class="mb-3">
+						<label for="password">새 비밀번호 <small><영문 /숫자 10자리 이내></small></label>
+						<div class="input-group">
+							<input type="password" class="form-control" id="password"
+								name="password" placeholder="비밀번호를 입력하세요" required
+								maxlength="10" pattern="^[a-zA-Z0-9]{1,10}$"
+								onblur="handleBlur()"></input>
+							<div class="input-group-append">
+								<span class="input-group-text" id="toggle-password"> <i
+									class="bi bi-eye"></i>
+								</span>
+							</div>
+						</div>
+						<div class="invalid-feedback" style="display: none;">영문/숫자
+							10자리 이내 확인해주세요</div>
+					</div>
+
+					<!-- 비밀번호 확인 -->
+					<div class="mb-3">
+						<label for="confirm-password">새 비밀번호 확인</label>
+						<div class="input-group">
+							<input type="password" class="form-control" id="confirm-password"
+								name="confirm-password" placeholder="비밀번호를 확인하세요" required
+								maxlength="10" pattern="^[a-zA-Z0-9]{1,10}$"
+								onblur="handleBlur()"></input>
+							<div class="input-group-append">
+								<span class="input-group-text" id="toggle-confirm-password">
+									<i class="bi bi-eye"></i>
+								</span>
+							</div>
+						</div>
+						<div class="invalid-feedback" style="display: none;"></div>
+					</div>
+							    
+							    
+							    
 							
 							    <div>
 							        <button type="submit" class="btn btn-primary w-100 mb-2">비밀번호 변경</button>

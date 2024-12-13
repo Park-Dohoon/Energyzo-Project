@@ -1,6 +1,7 @@
 package com.energyzo.javaproject.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,6 +36,17 @@ public class Adm_SalesServiceImpl implements Adm_SalesService{
 		
 		System.out.println("salesserviceimpl detailSalesApply 아웃");
 		return list;
+	}
+	
+	public void rejectSalesApply(Adm_SalesVO vo) {
+		//판매자 신청 거절
+		salesDAO.rejectSalesApply(vo);
+	}
+	
+	public void approveSalesApply(Adm_SalesVO vo) {
+		//판매자 신청 승인
+		salesDAO.approveSalesApply(vo);
+		
 	}
 	
 }

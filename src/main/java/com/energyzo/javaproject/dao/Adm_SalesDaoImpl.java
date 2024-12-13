@@ -1,6 +1,7 @@
 package com.energyzo.javaproject.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,21 @@ public class Adm_SalesDaoImpl {
 		
 		System.out.println("salesdaoimpl detailsalesapply 출발");
 		return list;
+	}
+	
+	
+	public void rejectSalesApply(Adm_SalesVO vo) {
+	    System.out.println("salesdaoimpl rejectSalesApply 진입");
+	    // agent_num을 이용해 해당 데이터를 삭제하는 쿼리 실행
+	    sqlSession.delete("dao.SalesDao.deleteRejectSalesApply", vo);
+	    System.out.println("rejectSalesApply 완료");
+	}
+	
+	public void approveSalesApply(Adm_SalesVO vo) {
+	    System.out.println("salesdaoimpl approveSalesApply 진입");
+	    // agent_num을 이용해 agent_reg_state를 2로 업데이트하는 쿼리 실행
+	    sqlSession.update("dao.SalesDao.updateApproveSalesApply", vo);
+	    System.out.println("approveSalesApply 완료");
 	}
 	
 }

@@ -39,8 +39,8 @@
 										            ${list.agent_tel}
 										        </td>
 										        <td>
-											        ${list.agent_reg_state == 1 ? "정상" : 
-												      list.agent_reg_state == 2 ? "승인 대기" : 
+											        ${list.agent_reg_state == 1 ? "승인 대기" : 
+												      list.agent_reg_state == 2 ? "정상" : 
 												      list.agent_reg_state == 3 ? "해촉" : list.agent_state}
 										      	</td>
 										    </tr>

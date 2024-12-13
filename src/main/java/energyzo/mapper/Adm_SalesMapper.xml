@@ -21,5 +21,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 </select>
 
+<delete id="deleteRejectSalesApply" parameterType='com.energyzo.javaproject.model.vo.Adm_SalesVO'>
+    DELETE FROM agent_tb
+    WHERE agent_num = #{agent_num}
+</delete>
+
+
+<update id="updateApproveSalesApply" parameterType='com.energyzo.javaproject.model.vo.Adm_SalesVO'>
+    UPDATE agent_tb
+    SET agent_reg_state = 2
+    WHERE agent_num = #{agent_num}
+</update>
 
 </mapper>
