@@ -432,10 +432,8 @@
 
 <!-- 지우지 말것!!!!!! js로 빼지도 말것 못 가지고 옴 -->
 	<script type="text/javascript">
-	
     document.addEventListener("DOMContentLoaded", () => {
         const userId = "${sessionScope.showNewLoginPage}";  
-
         const loggedInElements = document.querySelectorAll(".logged-in");
         const loggedOutElements = document.querySelectorAll(".logged-out");
 
@@ -474,8 +472,6 @@
         	}
         })
     });
-	
-	
 	</script>
 
 

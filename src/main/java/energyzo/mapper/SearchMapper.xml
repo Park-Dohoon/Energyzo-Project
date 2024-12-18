@@ -127,7 +127,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</where>
 	</select>
 	
-	<!-- 판매자 ID로 판매자 검색 -->
+	<!-- 유저 ID로 판매자 검색 -->
 	<select id="getAgentInfoByUserId"
 	parameterType	="com.energyzo.javaproject.model.vo.Adm_SalesVO"
 	resultType		="com.energyzo.javaproject.model.vo.Adm_SalesVO">

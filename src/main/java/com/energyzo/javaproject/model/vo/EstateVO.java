@@ -69,7 +69,7 @@ public class EstateVO {
 	private MultipartFile file6;		// 6번 파일
 	
 	public void setRootPath(String rootPath) {
-		this.rootPath = rootPath.substring(0, rootPath.indexOf("."))+"Energyzo-Project-MyPage";
+		this.rootPath = rootPath.substring(0, rootPath.indexOf("."))+"Energyzo-Project";
 	}
 	
 	public void setFile1(MultipartFile file) {
